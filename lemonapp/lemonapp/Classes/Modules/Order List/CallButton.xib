@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kHR-kP-uEa" customClass="HighlightedButton" customModule="lemonapp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="79" height="79"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.0" green="0.7843137255" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <inset key="titleEdgeInsets" minX="-23" minY="40" maxX="0.0" maxY="0.0"/>
+            <inset key="imageEdgeInsets" minX="27" minY="0.0" maxX="0.0" maxY="15"/>
+            <state key="normal" title="Call" image="ic_call"/>
+            <point key="canvasLocation" x="408.5" y="116.5"/>
+        </button>
+    </objects>
+    <resources>
+        <image name="ic_call" width="19" height="18"/>
+    </resources>
+</document>

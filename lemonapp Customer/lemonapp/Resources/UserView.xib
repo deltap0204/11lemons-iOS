@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserView" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="balanceLabel" destination="A53-Jg-Jj9" id="OqF-IU-zPQ"/>
+                <outlet property="cameraImageView" destination="nHs-1V-TtV" id="yQT-9f-s5D"/>
+                <outlet property="imageButton" destination="PAn-z5-yoe" id="qpo-Wf-Ges"/>
+                <outlet property="locationButton" destination="VBu-nn-HNP" id="JUX-JM-Sf5"/>
+                <outlet property="nameTextField" destination="kAb-OC-xnM" id="DVX-4C-LrH"/>
+                <outlet property="photoView" destination="Oj7-uE-8Aw" id="hVG-G9-RXU"/>
+                <outlet property="profilePhotoPlaceholderLabel" destination="Gba-Uh-NXt" id="XpK-B3-zfM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vve-cU-tTz">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="210"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kAb-OC-xnM">
+                    <rect key="frame" x="-0.5" y="0.0" width="600" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="250" constant="37" id="piv-ic-X2H"/>
+                    </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="light" returnKeyType="next"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="sOk-3J-Xqf"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBu-nn-HNP">
+                    <rect key="frame" x="0.0" y="21" width="600" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="MG8-dg-Seg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                    <state key="normal" title="Irvington, NY" image="ic_location_icon">
+                        <color key="titleColor" red="0.090196078430000007" green="0.70196078429999997" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="disabled" image=" ">
+                        <color key="titleColor" red="0.090196078430000007" green="0.70196078429999997" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A53-Jg-Jj9" customClass="HighlightedButton" customModule="lemonapp" customModuleProvider="target">
+                    <rect key="frame" x="224" y="47" width="152" height="27"/>
+                    <color key="backgroundColor" red="0.0" green="0.72156864399999998" blue="0.83137255909999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="ZHn-qE-Mhb"/>
+                        <constraint firstAttribute="width" constant="152" id="zlU-Pa-HsA"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="2"/>
+                    <state key="normal" title="$10.00" image="ic_wallet">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="highlighted" image="ic_wallet"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4n-fo-yvj" userLabel="photo">
+                    <rect key="frame" x="234" y="84" width="132" height="132"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gba-Uh-NXt">
+                            <rect key="frame" x="30" y="32" width="71" height="69"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="57"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera" highlightedImage="ic_camera_profile_highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="nHs-1V-TtV">
+                            <rect key="frame" x="56" y="102" width="20" height="20"/>
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="7Gt-ol-JPH"/>
+                                <constraint firstAttribute="width" constant="20" id="eEb-V4-Zbg"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oj7-uE-8Aw">
+                            <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Oj7-uE-8Aw" secondAttribute="trailing" id="0he-S1-jSs"/>
+                        <constraint firstItem="Gba-Uh-NXt" firstAttribute="centerY" secondItem="d4n-fo-yvj" secondAttribute="centerY" id="20g-10-8Ig"/>
+                        <constraint firstAttribute="bottom" secondItem="Oj7-uE-8Aw" secondAttribute="bottom" id="Ava-mx-l3H"/>
+                        <constraint firstItem="Oj7-uE-8Aw" firstAttribute="leading" secondItem="d4n-fo-yvj" secondAttribute="leading" id="BXV-2D-Rqq"/>
+                        <constraint firstAttribute="height" constant="132" id="JtI-JS-UtM"/>
+                        <constraint firstItem="nHs-1V-TtV" firstAttribute="centerX" secondItem="d4n-fo-yvj" secondAttribute="centerX" id="Vlb-Re-brH"/>
+                        <constraint firstAttribute="width" constant="132" id="ZGc-kQ-z7b"/>
+                        <constraint firstAttribute="bottom" secondItem="nHs-1V-TtV" secondAttribute="bottom" constant="10" id="lM7-08-Fpz"/>
+                        <constraint firstItem="Gba-Uh-NXt" firstAttribute="centerX" secondItem="d4n-fo-yvj" secondAttribute="centerX" id="nI6-xw-Kee"/>
+                        <constraint firstItem="Oj7-uE-8Aw" firstAttribute="top" secondItem="d4n-fo-yvj" secondAttribute="top" id="tkK-Pi-He2"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="66"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAn-z5-yoe" customClass="HighlightedButton" customModule="lemonapp" customModuleProvider="target">
+                    <rect key="frame" x="234" y="84" width="132" height="132"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="d4n-fo-yvj" firstAttribute="centerX" secondItem="kAb-OC-xnM" secondAttribute="centerX" id="3sp-NA-c3l"/>
+                <constraint firstItem="kAb-OC-xnM" firstAttribute="top" secondItem="vve-cU-tTz" secondAttribute="top" id="45i-zB-GRW"/>
+                <constraint firstItem="A53-Jg-Jj9" firstAttribute="top" secondItem="VBu-nn-HNP" secondAttribute="bottom" constant="5" id="HOr-J0-z5d"/>
+                <constraint firstItem="A53-Jg-Jj9" firstAttribute="centerX" secondItem="vve-cU-tTz" secondAttribute="centerX" id="O0s-b5-k31"/>
+                <constraint firstItem="PAn-z5-yoe" firstAttribute="centerY" secondItem="d4n-fo-yvj" secondAttribute="centerY" id="W97-Du-u5s"/>
+                <constraint firstItem="PAn-z5-yoe" firstAttribute="centerX" secondItem="d4n-fo-yvj" secondAttribute="centerX" id="WF8-MF-ol2"/>
+                <constraint firstItem="kAb-OC-xnM" firstAttribute="width" secondItem="vve-cU-tTz" secondAttribute="width" id="bWh-Vp-amW"/>
+                <constraint firstAttribute="height" constant="210" id="brp-na-UGt"/>
+                <constraint firstItem="PAn-z5-yoe" firstAttribute="height" secondItem="d4n-fo-yvj" secondAttribute="height" id="btu-PN-Bgm"/>
+                <constraint firstItem="PAn-z5-yoe" firstAttribute="top" secondItem="A53-Jg-Jj9" secondAttribute="bottom" constant="10" id="h9Q-ln-cEB"/>
+                <constraint firstItem="kAb-OC-xnM" firstAttribute="centerX" secondItem="vve-cU-tTz" secondAttribute="centerX" id="j1X-YX-TsS"/>
+                <constraint firstItem="PAn-z5-yoe" firstAttribute="width" secondItem="d4n-fo-yvj" secondAttribute="width" id="kWc-H4-D2F"/>
+                <constraint firstItem="VBu-nn-HNP" firstAttribute="top" secondItem="kAb-OC-xnM" secondAttribute="bottom" constant="-5" id="lnW-YI-jz2"/>
+                <constraint firstItem="VBu-nn-HNP" firstAttribute="centerX" secondItem="vve-cU-tTz" secondAttribute="centerX" id="r5R-2N-xml"/>
+                <constraint firstItem="VBu-nn-HNP" firstAttribute="width" secondItem="vve-cU-tTz" secondAttribute="width" id="rxX-RL-ulc"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="512" y="311"/>
+        </view>
+    </objects>
+    <resources>
+        <image name=" " width="8" height="12"/>
+        <image name="ic_camera" width="15" height="12"/>
+        <image name="ic_camera_profile_highlighted" width="15" height="12"/>
+        <image name="ic_location_icon" width="8" height="12"/>
+        <image name="ic_wallet" width="20" height="18"/>
+    </resources>
+</document>

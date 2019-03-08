@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeleteView" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="btnDelete" destination="0lF-fO-kxC" id="0l9-It-V4l"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="406" height="66"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lF-fO-kxC">
+                    <rect key="frame" x="0.0" y="0.0" width="406" height="46"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Delete Service">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="onDelete:" destination="-1" eventType="touchUpInside" id="CGw-GD-87W"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="0lF-fO-kxC" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="RsA-uK-9AK"/>
+                <constraint firstItem="0lF-fO-kxC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="eMN-AJ-JjV"/>
+                <constraint firstAttribute="bottom" secondItem="0lF-fO-kxC" secondAttribute="bottom" constant="10" id="i0S-YR-5D2"/>
+                <constraint firstItem="0lF-fO-kxC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pZN-mI-bSt"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-65" y="-322.5"/>
+        </view>
+    </objects>
+</document>

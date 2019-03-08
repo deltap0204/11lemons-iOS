@@ -1,0 +1,2 @@
+apn push "<8077727b b0e57424 33c288a6 fd6a31a7 745f0c02 fbd297c1 8acbe2fe ce2898c1>" -c ./w -m "Test push"
+

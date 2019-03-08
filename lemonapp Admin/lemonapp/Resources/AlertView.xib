@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertView" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="6ED-zO-JAA" id="okC-i2-7od"/>
+                <outlet property="labelContainer" destination="xCn-a4-ZuJ" id="3Br-dY-Fjz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ED-zO-JAA" userLabel="Alert">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCn-a4-ZuJ">
+                            <rect key="frame" x="67" y="269" width="241" height="130"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR4-cC-APe">
+                                    <rect key="frame" x="75" y="71" width="91" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="BR4-cC-APe" secondAttribute="bottom" constant="30" id="9K1-s0-IiU"/>
+                                <constraint firstItem="BR4-cC-APe" firstAttribute="centerX" secondItem="xCn-a4-ZuJ" secondAttribute="centerX" id="ZdX-Dh-cnz"/>
+                                <constraint firstAttribute="height" constant="130" id="cay-Kv-hd7"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_success" translatesAutoresizingMaskIntoConstraints="NO" id="VpJ-s4-MAd">
+                            <rect key="frame" x="67" y="204" width="241" height="130"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="130" id="boA-4T-uLf"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="xCn-a4-ZuJ" secondAttribute="trailing" constant="67" id="0Sg-jk-9xB"/>
+                        <constraint firstItem="VpJ-s4-MAd" firstAttribute="centerY" secondItem="xCn-a4-ZuJ" secondAttribute="top" id="4T4-DV-aoi"/>
+                        <constraint firstItem="xCn-a4-ZuJ" firstAttribute="centerX" secondItem="6ED-zO-JAA" secondAttribute="centerX" id="8gd-2N-dWm"/>
+                        <constraint firstItem="xCn-a4-ZuJ" firstAttribute="leading" secondItem="6ED-zO-JAA" secondAttribute="leading" constant="67" id="Lsz-Q8-tmr"/>
+                        <constraint firstItem="xCn-a4-ZuJ" firstAttribute="centerY" secondItem="6ED-zO-JAA" secondAttribute="centerY" id="NPC-AE-WrM"/>
+                        <constraint firstItem="VpJ-s4-MAd" firstAttribute="trailing" secondItem="xCn-a4-ZuJ" secondAttribute="trailing" id="Uou-pi-RVh"/>
+                        <constraint firstItem="VpJ-s4-MAd" firstAttribute="leading" secondItem="xCn-a4-ZuJ" secondAttribute="leading" id="rwL-mV-aSn"/>
+                        <constraint firstItem="VpJ-s4-MAd" firstAttribute="centerX" secondItem="6ED-zO-JAA" secondAttribute="centerX" id="y4J-hH-8n4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6ED-zO-JAA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2h2-Yv-gO6"/>
+                <constraint firstItem="6ED-zO-JAA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6iy-p7-cKz"/>
+                <constraint firstAttribute="trailing" secondItem="6ED-zO-JAA" secondAttribute="trailing" id="GYr-Kt-dbz"/>
+                <constraint firstAttribute="bottom" secondItem="6ED-zO-JAA" secondAttribute="bottom" id="ncC-hv-Fy8"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="3sl-SJ-Fu5">
+            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        </activityIndicatorView>
+    </objects>
+    <resources>
+        <image name="ic_success" width="130" height="130"/>
+    </resources>
+</document>

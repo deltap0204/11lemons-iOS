@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Automatic">
+    <entity name="Address" representedClassName=".AddressModel" syncable="YES">
+        <attribute name="aptSuite" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="adresses" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="DeliveryPricing" representedClassName=".DeliveryPricingModel" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="FAQItem" representedClassName=".FAQItemModel" syncable="YES">
+        <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Garment" representedClassName=".GarmentModel" syncable="YES">
+        <attribute name="descr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="viewed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="brand" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GarmentBrand" inverseName="garments" inverseEntity="GarmentBrand" syncable="YES"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GarmentType" inverseName="garments" inverseEntity="GarmentType" syncable="YES"/>
+    </entity>
+    <entity name="GarmentBrand" representedClassName=".GarmentBrandModel" syncable="YES">
+        <attribute name="descr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="garments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Garment" inverseName="brand" inverseEntity="Garment" syncable="YES"/>
+    </entity>
+    <entity name="GarmentType" representedClassName=".GarmentTypeModel" syncable="YES">
+        <attribute name="descr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="garments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Garment" inverseName="type" inverseEntity="Garment" syncable="YES"/>
+    </entity>
+    <entity name="Order" representedClassName=".OrderModel" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="amountState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="amountTax" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="amountWithoutTax" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="deliveryDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deliveryEstimatedArrivalDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deliveryEstimatedPickupDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deliveryUpchargeAmount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="detergent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dryer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfItems" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="paymentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="placed" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="repeatState" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="serviceType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shirt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="softener" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="viewed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="details" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderDetails" inverseName="order" inverseEntity="OrderDetails" syncable="YES"/>
+    </entity>
+    <entity name="OrderDetails" representedClassName=".OrderDetailsModel" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="pricePer" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="priceWithoutTaxes" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="tax" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="details" inverseEntity="Order" syncable="YES"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="PaymentCard" representedClassName=".PaymentCardModel" syncable="YES">
+        <attribute name="expiration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="paymentCards" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName=".ProductModel" syncable="YES">
+        <attribute name="descr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="taxable" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="useWeight" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="parentProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="subproducts" inverseEntity="Product" syncable="YES"/>
+        <relationship name="subproducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="parentProduct" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".UserModel" syncable="YES">
+        <attribute name="defaultAddressId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="defaultPaymentCardId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profilePhoto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referralCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walletAmount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="adresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Address" inverseName="user" inverseEntity="Address" syncable="YES"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" syncable="YES"/>
+        <relationship name="paymentCards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PaymentCard" inverseName="user" inverseEntity="PaymentCard" syncable="YES"/>
+    </entity>
+    <entity name="WalletTransition" representedClassName=".WalletTransitionModel" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="viewed" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Address" positionX="-308" positionY="240" width="128" height="210"/>
+        <element name="DeliveryPricing" positionX="169" positionY="-63" width="128" height="75"/>
+        <element name="FAQItem" positionX="169" positionY="54" width="128" height="73"/>
+        <element name="Garment" positionX="-27" positionY="-279" width="128" height="148"/>
+        <element name="GarmentBrand" positionX="-126" positionY="-117" width="128" height="103"/>
+        <element name="GarmentType" positionX="115" positionY="-282" width="128" height="103"/>
+        <element name="Order" positionX="-18" positionY="24" width="128" height="420"/>
+        <element name="OrderDetails" positionX="70" positionY="186" width="128" height="180"/>
+        <element name="PaymentCard" positionX="-83" positionY="207" width="128" height="195"/>
+        <element name="Product" positionX="304" positionY="180" width="128" height="195"/>
+        <element name="User" positionX="-308" positionY="-66" width="128" height="240"/>
+        <element name="WalletTransition" positionX="-108" positionY="81" width="128" height="180"/>
+    </elements>
+</model>

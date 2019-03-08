@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U42-cL-OLB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Common Container View Controller-->
+        <scene sceneID="qUh-e0-kU1">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="U42-cL-OLB" customClass="CommonContainerViewController" customModule="lemonapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wsV-PM-47C" customClass="RemoveKeyboardView" customModule="lemonapp" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopLeftLemonBg" translatesAutoresizingMaskIntoConstraints="NO" id="27K-c5-8Bs">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b0r-YW-fdK">
+                                <rect key="frame" x="0.0" y="215" width="375" height="452"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpd-TJ-v5t">
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42A-k8-6ie" customClass="UserView" customModule="lemonapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="65" width="375" height="210"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="210" id="MK6-AG-jIW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="b0r-YW-fdK" secondAttribute="bottom" id="08r-83-DWc"/>
+                            <constraint firstItem="dpd-TJ-v5t" firstAttribute="centerY" secondItem="wsV-PM-47C" secondAttribute="centerY" id="2Yg-SZ-93Y"/>
+                            <constraint firstItem="42A-k8-6ie" firstAttribute="centerX" secondItem="EaI-MS-ozt" secondAttribute="centerX" id="5cu-Gi-clS"/>
+                            <constraint firstItem="27K-c5-8Bs" firstAttribute="centerY" secondItem="wsV-PM-47C" secondAttribute="centerY" id="DOb-wK-rpb"/>
+                            <constraint firstItem="27K-c5-8Bs" firstAttribute="centerX" secondItem="EaI-MS-ozt" secondAttribute="centerX" id="E2E-Ef-tBL"/>
+                            <constraint firstItem="dpd-TJ-v5t" firstAttribute="width" secondItem="wsV-PM-47C" secondAttribute="width" id="KqQ-FZ-Gd9"/>
+                            <constraint firstItem="42A-k8-6ie" firstAttribute="top" secondItem="wsV-PM-47C" secondAttribute="top" constant="65" id="PXi-85-l8C"/>
+                            <constraint firstItem="b0r-YW-fdK" firstAttribute="width" secondItem="wsV-PM-47C" secondAttribute="width" id="WEk-Mg-571"/>
+                            <constraint firstItem="b0r-YW-fdK" firstAttribute="centerX" secondItem="EaI-MS-ozt" secondAttribute="centerX" id="XpA-z9-SKe"/>
+                            <constraint firstItem="b0r-YW-fdK" firstAttribute="top" secondItem="42A-k8-6ie" secondAttribute="top" constant="150" id="cJv-jK-HTQ"/>
+                            <constraint firstItem="42A-k8-6ie" firstAttribute="width" secondItem="wsV-PM-47C" secondAttribute="width" id="lLv-Op-x4J"/>
+                            <constraint firstItem="27K-c5-8Bs" firstAttribute="height" secondItem="wsV-PM-47C" secondAttribute="height" id="oaB-2i-Eji"/>
+                            <constraint firstItem="dpd-TJ-v5t" firstAttribute="height" secondItem="wsV-PM-47C" secondAttribute="height" id="qsL-Dc-qcf"/>
+                            <constraint firstItem="dpd-TJ-v5t" firstAttribute="centerX" secondItem="EaI-MS-ozt" secondAttribute="centerX" id="tOp-zi-kDU"/>
+                            <constraint firstItem="27K-c5-8Bs" firstAttribute="width" secondItem="wsV-PM-47C" secondAttribute="width" id="v9N-3X-mY0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EaI-MS-ozt"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="container" destination="dpd-TJ-v5t" id="DuC-eB-ypG"/>
+                        <outlet property="userView" destination="42A-k8-6ie" id="9Lz-lB-NEf"/>
+                        <outlet property="userViewTopConstraint" destination="PXi-85-l8C" id="jqP-0X-pQ3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cfE-5l-jcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2066" y="1973"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="PSx-8e-MLe">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SettingsScreen" storyboardName="Settings" id="zwb-Oy-J9R" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Kn-td-oxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2666.5" y="1915"/>
+        </scene>
+        <!--AddressDetailsScreen-->
+        <scene sceneID="F7p-ug-HCr">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="AddressScreen" storyboardName="Profile" referencedIdentifier="AddressDetailsScreen" id="YOl-oS-0Rx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MYA-SC-br8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2685" y="1973"/>
+        </scene>
+        <!--PaymentCardDetailsScreen-->
+        <scene sceneID="krF-tE-OKG">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PaymentCardScreen" storyboardName="Profile" referencedIdentifier="PaymentCardDetailsScreen" id="Oqk-Am-aK1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="854-bl-A0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2683.5" y="2025"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="TopLeftLemonBg" width="375" height="667"/>
+    </resources>
+</document>

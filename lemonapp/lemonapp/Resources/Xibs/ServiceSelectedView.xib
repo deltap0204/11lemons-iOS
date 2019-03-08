@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Helvetica.ttc">
+            <string>Helvetica</string>
+            <string>Helvetica</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ServiceSelectedView" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="lblDescription" destination="Bx6-43-PJX" id="K4K-9d-ebg"/>
+                <outlet property="lblTitle" destination="9gg-Kb-Z0h" id="8Cy-3a-ltF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="406" height="46"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gg-Kb-Z0h">
+                    <rect key="frame" x="15" y="5" width="42" height="21"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bx6-43-PJX">
+                    <rect key="frame" x="91" y="15.5" width="285" height="0.0"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_dark_forward_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="i3P-bc-9KE">
+                    <rect key="frame" x="380" y="5.5" width="11" height="20"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBh-gt-emU">
+                    <rect key="frame" x="0.0" y="0.0" width="406" height="31"/>
+                    <connections>
+                        <action selector="onAction:" destination="-1" eventType="touchUpInside" id="NyH-Q5-L0J"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Bx6-43-PJX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" constant="1" id="0Q0-A1-Doz"/>
+                <constraint firstItem="i3P-bc-9KE" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="0hI-1o-a5l"/>
+                <constraint firstItem="DBh-gt-emU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2w8-5g-xC9"/>
+                <constraint firstItem="9gg-Kb-Z0h" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5XF-IA-sLa"/>
+                <constraint firstItem="DBh-gt-emU" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="6fc-70-zbk"/>
+                <constraint firstItem="DBh-gt-emU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8tp-86-WM2"/>
+                <constraint firstAttribute="trailing" secondItem="i3P-bc-9KE" secondAttribute="trailing" constant="15" id="NKH-gv-CKb"/>
+                <constraint firstItem="9gg-Kb-Z0h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Obs-TE-4Dv"/>
+                <constraint firstItem="Bx6-43-PJX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="P8V-BV-xjG"/>
+                <constraint firstItem="DBh-gt-emU" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="iI9-4o-kLC"/>
+                <constraint firstItem="i3P-bc-9KE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rcO-47-SrZ"/>
+                <constraint firstItem="i3P-bc-9KE" firstAttribute="leading" secondItem="Bx6-43-PJX" secondAttribute="trailing" constant="4" id="yAB-XP-VMB"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="1" y="-111"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_dark_forward_arrow" width="11" height="20"/>
+    </resources>
+</document>

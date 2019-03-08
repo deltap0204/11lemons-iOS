@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PreferencesUserView" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="lblTitle" destination="1Sq-gu-IX4" id="Crg-fe-oXS"/>
+                <outlet property="stackView" destination="fOx-C2-hxc" id="rQJ-BV-hem"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="IfX-BJ-wET">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="193"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LjN-ZK-Mr5">
+                    <rect key="frame" x="0.0" y="8" width="600" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PREFERENCES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Sq-gu-IX4">
+                            <rect key="frame" x="8" y="30" width="115" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.72156864399999998" blue="0.83137255909999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="1Sq-gu-IX4" secondAttribute="bottom" constant="9" id="Hmn-yQ-8bW"/>
+                        <constraint firstAttribute="height" constant="60" id="UOH-Px-hVD"/>
+                        <constraint firstItem="1Sq-gu-IX4" firstAttribute="leading" secondItem="LjN-ZK-Mr5" secondAttribute="leading" constant="8" id="eeT-0d-AWL"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="fOx-C2-hxc">
+                    <rect key="frame" x="0.0" y="68" width="600" height="125"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fOx-C2-hxc" secondAttribute="trailing" id="4BK-Ig-zOf"/>
+                <constraint firstItem="LjN-ZK-Mr5" firstAttribute="top" secondItem="IfX-BJ-wET" secondAttribute="top" constant="8" id="9n4-1t-LHV"/>
+                <constraint firstItem="fOx-C2-hxc" firstAttribute="top" secondItem="LjN-ZK-Mr5" secondAttribute="bottom" id="TWa-JM-0St"/>
+                <constraint firstItem="LjN-ZK-Mr5" firstAttribute="leading" secondItem="IfX-BJ-wET" secondAttribute="leading" id="XLd-FG-cHy"/>
+                <constraint firstAttribute="bottom" secondItem="fOx-C2-hxc" secondAttribute="bottom" id="d4q-KX-XvA"/>
+                <constraint firstItem="fOx-C2-hxc" firstAttribute="leading" secondItem="IfX-BJ-wET" secondAttribute="leading" id="j5Z-de-Onp"/>
+                <constraint firstAttribute="trailing" secondItem="LjN-ZK-Mr5" secondAttribute="trailing" id="kWe-Cz-yIK"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="d4q-KX-XvA"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="331" y="144.5"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReceiptItemFooter" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="lblTotal" destination="ZcL-6g-GVh" id="46a-5G-3dr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="478" height="66"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill-end" translatesAutoresizingMaskIntoConstraints="NO" id="Ff2-1T-dHL">
+                    <rect key="frame" x="0.0" y="0.0" width="484" height="68"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUj-n8-kKl">
+                    <rect key="frame" x="15" y="34" width="88" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcL-6g-GVh">
+                    <rect key="frame" x="386" y="25" width="80" height="25"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="FaG-Lj-hoB"/>
+                        <constraint firstAttribute="width" constant="80" id="zFX-Yd-MpU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="13"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Ff2-1T-dHL" secondAttribute="bottom" constant="-2" id="1kL-7Y-jw0"/>
+                <constraint firstAttribute="trailing" secondItem="Ff2-1T-dHL" secondAttribute="trailing" constant="-6" id="69H-H0-TMV"/>
+                <constraint firstAttribute="trailing" secondItem="ZcL-6g-GVh" secondAttribute="trailing" constant="12" id="8gR-dP-ERC"/>
+                <constraint firstItem="fUj-n8-kKl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Vgf-z9-b73"/>
+                <constraint firstAttribute="bottom" secondItem="fUj-n8-kKl" secondAttribute="bottom" constant="16" id="eJN-R5-IHp"/>
+                <constraint firstItem="Ff2-1T-dHL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="g2E-BY-Gyu"/>
+                <constraint firstItem="ZcL-6g-GVh" firstAttribute="bottom" secondItem="fUj-n8-kKl" secondAttribute="bottom" id="rio-KB-Tw7"/>
+                <constraint firstItem="Ff2-1T-dHL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="t7a-QU-6An"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-63" y="-57"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bill-end" width="327" height="70"/>
+    </resources>
+</document>

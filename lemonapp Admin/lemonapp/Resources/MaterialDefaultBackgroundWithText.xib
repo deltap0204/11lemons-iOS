@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MaterialDefaultBackgroundWithText" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="materialNameLbl" destination="aqN-Mu-Lpf" id="yRY-dN-kf0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPE-3j-1Lg">
+                    <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ServiceDefaultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Wwm-hp-yKK">
+                            <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Material" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqN-Mu-Lpf">
+                            <rect key="frame" x="5" y="5" width="52" height="52"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Wwm-hp-yKK" secondAttribute="bottom" id="1fx-Yl-ztO"/>
+                        <constraint firstItem="aqN-Mu-Lpf" firstAttribute="centerY" secondItem="iPE-3j-1Lg" secondAttribute="centerY" id="B9Q-0t-Ls2"/>
+                        <constraint firstAttribute="trailing" secondItem="aqN-Mu-Lpf" secondAttribute="trailing" constant="5" id="Dp3-a1-pfT"/>
+                        <constraint firstItem="Wwm-hp-yKK" firstAttribute="leading" secondItem="iPE-3j-1Lg" secondAttribute="leading" id="P0c-cY-YTu"/>
+                        <constraint firstAttribute="trailing" secondItem="Wwm-hp-yKK" secondAttribute="trailing" id="bzl-ST-cih"/>
+                        <constraint firstAttribute="bottom" secondItem="aqN-Mu-Lpf" secondAttribute="bottom" constant="5" id="dQd-nK-z9R"/>
+                        <constraint firstItem="aqN-Mu-Lpf" firstAttribute="leading" secondItem="iPE-3j-1Lg" secondAttribute="leading" constant="5" id="eqM-K7-NCL"/>
+                        <constraint firstItem="aqN-Mu-Lpf" firstAttribute="centerX" secondItem="iPE-3j-1Lg" secondAttribute="centerX" id="kho-UL-Sq2"/>
+                        <constraint firstItem="aqN-Mu-Lpf" firstAttribute="top" secondItem="iPE-3j-1Lg" secondAttribute="top" constant="5" id="w57-HZ-NkK"/>
+                        <constraint firstItem="Wwm-hp-yKK" firstAttribute="top" secondItem="iPE-3j-1Lg" secondAttribute="top" id="xWI-wX-ii3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iPE-3j-1Lg" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Dlc-ox-4Im"/>
+                <constraint firstItem="iPE-3j-1Lg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="J3o-Xq-b0j"/>
+                <constraint firstItem="iPE-3j-1Lg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gct-ZL-Y8e"/>
+                <constraint firstItem="iPE-3j-1Lg" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="lzB-Bx-xfh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ServiceDefaultBackground" width="63" height="62"/>
+    </resources>
+</document>

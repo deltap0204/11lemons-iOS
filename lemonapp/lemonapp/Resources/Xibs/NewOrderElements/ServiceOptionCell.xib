@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ServiceOptionCell" customModule="lemonapp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="37.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wl-B8-Kgo">
+                        <rect key="frame" x="20" y="4" width="256" height="35"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="G4E-Mg-ihj">
+                        <rect key="frame" x="280" y="11" width="21" height="21.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="G4E-Mg-ihj" secondAttribute="height" multiplier="1:1" id="Mnr-Wm-Rde"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="G4E-Mg-ihj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3kH-QD-b8Y"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="G4E-Mg-ihj" secondAttribute="trailing" constant="11" id="4Bl-Pc-fOQ"/>
+                    <constraint firstItem="1Wl-B8-Kgo" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.8" id="Hpu-Zx-0wl"/>
+                    <constraint firstItem="1Wl-B8-Kgo" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.8" id="KB7-oz-cMB"/>
+                    <constraint firstItem="1Wl-B8-Kgo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="MRc-X5-RlB"/>
+                    <constraint firstItem="G4E-Mg-ihj" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.5" id="tc7-WW-VJh"/>
+                    <constraint firstItem="1Wl-B8-Kgo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yml-pl-w1z"/>
+                    <constraint firstItem="G4E-Mg-ihj" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1:1" id="zRe-rv-1rD"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="zRe-rv-1rD"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="checkImg" destination="G4E-Mg-ihj" id="9Qm-En-TiA"/>
+                <outlet property="titleLbl" destination="1Wl-B8-Kgo" id="nDV-CG-j1l"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="152"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkmark" width="13" height="11"/>
+    </resources>
+</document>

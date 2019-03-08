@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nLF-Z4-CRt">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="9un-Qi-RuV">
+            <objects>
+                <viewController id="nLF-Z4-CRt" customClass="SplashViewController" customModule="lemonapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WdH-Z9-3UG"/>
+                        <viewControllerLayoutGuide type="bottom" id="C5U-CC-geB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Y2-oB-c6J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lemon_slice" translatesAutoresizingMaskIntoConstraints="NO" id="CrL-v9-UHJ">
+                                <rect key="frame" x="140" y="286" width="95" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="M7u-7H-x4P"/>
+                                    <constraint firstAttribute="width" constant="95" id="ZCS-0d-dqu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.83921568627450982" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="CrL-v9-UHJ" firstAttribute="centerX" secondItem="9Y2-oB-c6J" secondAttribute="centerX" id="Jyj-hH-h9y"/>
+                            <constraint firstItem="CrL-v9-UHJ" firstAttribute="centerY" secondItem="9Y2-oB-c6J" secondAttribute="centerY" id="jVc-hy-hpI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="L9W-4H-SWG"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eha-t8-cHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-239" y="118"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_lemon_slice" width="100" height="100"/>
+    </resources>
+</document>

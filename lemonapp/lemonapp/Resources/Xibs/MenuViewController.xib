@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="adminModeSwitch" destination="Ea3-nT-bRS" id="Xhz-Ge-0JT"/>
+                <outlet property="menuHeaderView" destination="Afb-Nh-vLl" id="df9-6w-RfP"/>
+                <outlet property="signOutButton" destination="SE7-tv-vmM" id="Cq5-of-CBR"/>
+                <outlet property="signoutBottomSpace" destination="R6Y-cG-omI" id="nRW-fV-cGU"/>
+                <outlet property="tableView" destination="Xsa-cO-vP7" id="nEt-fh-Hx1"/>
+                <outlet property="view" destination="iN0-l3-epB" id="zIZ-i4-I9q"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_bg" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-1v-CTc">
+                    <rect key="frame" x="0.0" y="0.0" width="290" height="667"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="290" id="9As-N3-lfx"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afb-Nh-vLl" customClass="MenuHeaderView" customModule="lemonapp" customModuleProvider="target">
+                    <rect key="frame" x="-0.5" y="65" width="375" height="60"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="vbr-4p-2RG"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xsa-cO-vP7">
+                    <rect key="frame" x="0.0" y="143" width="375" height="483"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="ffA-XY-Udq"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oHT-XW-2oe" userLabel="separator">
+                    <rect key="frame" x="0.0" y="141" width="375" height="2"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="5uL-ym-Xb9"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SE7-tv-vmM">
+                    <rect key="frame" x="0.0" y="626" width="100" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="0PZ-WY-gDM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Sign Out" image="ic_sign_out">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="highlighted" image="ic_sign_out_highlighted">
+                        <color key="titleColor" red="0.090196078430000007" green="0.70196078429999997" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ea3-nT-bRS">
+                    <rect key="frame" x="316" y="631" width="51" height="31"/>
+                    <color key="onTintColor" red="0.0" green="0.72156862749999995" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </switch>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="XrI-1v-CTc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1LR-iM-gj0"/>
+                <constraint firstItem="SE7-tv-vmM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3mM-iX-KMw"/>
+                <constraint firstItem="XrI-1v-CTc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5EM-fP-kJf"/>
+                <constraint firstItem="Xsa-cO-vP7" firstAttribute="top" secondItem="Afb-Nh-vLl" secondAttribute="bottom" constant="18" id="A7e-2P-XEi"/>
+                <constraint firstAttribute="bottom" secondItem="Xsa-cO-vP7" secondAttribute="bottom" id="G9q-RZ-MSG"/>
+                <constraint firstItem="Afb-Nh-vLl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="65" id="I1E-dy-ZWt"/>
+                <constraint firstItem="oHT-XW-2oe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OHU-HK-RaG"/>
+                <constraint firstItem="Xsa-cO-vP7" firstAttribute="bottom" secondItem="SE7-tv-vmM" secondAttribute="top" id="QdY-1S-nen"/>
+                <constraint firstAttribute="bottom" secondItem="SE7-tv-vmM" secondAttribute="bottom" id="R6Y-cG-omI"/>
+                <constraint firstItem="Ea3-nT-bRS" firstAttribute="centerY" secondItem="SE7-tv-vmM" secondAttribute="centerY" id="RVF-m8-mbD"/>
+                <constraint firstAttribute="bottom" secondItem="XrI-1v-CTc" secondAttribute="bottom" id="UHZ-4Z-Os3"/>
+                <constraint firstItem="Afb-Nh-vLl" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="WmB-IZ-WpQ"/>
+                <constraint firstItem="Afb-Nh-vLl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="c3R-xb-pq3"/>
+                <constraint firstAttribute="trailing" secondItem="Xsa-cO-vP7" secondAttribute="trailing" id="d8u-mA-G0G"/>
+                <constraint firstItem="Ea3-nT-bRS" firstAttribute="bottom" secondItem="SE7-tv-vmM" secondAttribute="bottom" constant="-5" id="dAd-vq-Xp0"/>
+                <constraint firstItem="Xsa-cO-vP7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fRT-qy-Pod"/>
+                <constraint firstAttribute="trailing" secondItem="oHT-XW-2oe" secondAttribute="trailing" id="ghN-72-vxE"/>
+                <constraint firstAttribute="trailing" secondItem="Ea3-nT-bRS" secondAttribute="trailing" constant="10" id="qTX-FT-04M"/>
+                <constraint firstItem="Xsa-cO-vP7" firstAttribute="top" secondItem="oHT-XW-2oe" secondAttribute="bottom" id="rLK-3V-7w4"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="hFN-in-dvG"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="G9q-RZ-MSG"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="399.5" y="417.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_sign_out" width="11" height="10"/>
+        <image name="ic_sign_out_highlighted" width="11" height="10"/>
+        <image name="menu_bg" width="290" height="667"/>
+    </resources>
+</document>

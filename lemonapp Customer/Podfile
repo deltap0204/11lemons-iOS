@@ -1,0 +1,46 @@
+platform :ios, '11.0'
+use_frameworks!
+
+def project_pods
+    pod 'Moya'
+    pod 'Differ', '1.0.3'
+    pod 'Bond', '~> 6.7.1'
+    pod 'SwiftyJSON'
+    pod 'UIColor_Hex_Swift', '~> 4.0.1'
+    pod 'SnapKit', '~> 4.0.0'
+    pod 'DrawerController', '~> 4.0'
+    # pod 'Braintree', '~> 4.2.3'
+    # pod 'Braintree/Apple-Pay', '~> 4.2.3'
+    pod 'Braintree'
+    pod 'Braintree/Apple-Pay'
+    pod 'SwiftDate'
+    pod 'Bolts'
+    pod 'KeychainAccess'
+    pod 'JSQCoreDataKit'
+    pod 'Reachability'
+    #pod 'BTNavigationDropdownMenu'
+    pod 'BTNavigationDropdownMenu', :git => 'https://github.com/zkrige/BTNavigationDropdownMenu.git'
+    pod 'MGSwipeTableCell'
+    pod 'Fabric'
+    pod 'Crashlytics'
+    pod 'SDWebImage', '~> 4.0'
+    pod 'MBProgressHUD', '~> 1.1.0'
+    pod 'IQKeyboardManagerSwift', '5.0.0'
+end
+
+target 'lemonapp' do
+    project_pods
+end
+
+target 'lemonapp Staging' do
+    project_pods
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['ENABLE_BITCODE'] = 'YES'
+        end
+    end
+end
+

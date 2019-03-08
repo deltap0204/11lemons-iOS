@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <development version="7000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadImageView" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="btnSelectImage" destination="Qse-zk-ZvT" id="plv-9d-QSc"/>
+                <outlet property="lblTitle" destination="8ER-cF-cmo" id="5hI-Z8-FMr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="460" height="133"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lsc-iG-cY3">
+                    <rect key="frame" x="0.0" y="8" width="460" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ER-cF-cmo">
+                            <rect key="frame" x="8" y="10" width="47" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.72156864399999998" blue="0.83137255909999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="8ER-cF-cmo" firstAttribute="leading" secondItem="Lsc-iG-cY3" secondAttribute="leading" constant="8" id="16Y-wQ-gCS"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="4iR-WC-gTW"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="cgp-Uc-eeI"/>
+                        <constraint firstAttribute="height" constant="40" id="lMz-ai-nhQ"/>
+                        <constraint firstItem="8ER-cF-cmo" firstAttribute="centerY" secondItem="Lsc-iG-cY3" secondAttribute="centerY" id="xPZ-If-zvs"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qse-zk-ZvT">
+                    <rect key="frame" x="195.5" y="56" width="69" height="69"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="69" id="rcb-2z-Ucx"/>
+                    </constraints>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="NotesCameraNormal"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didImageButtonPressed:" destination="-1" eventType="touchUpInside" id="mLW-eJ-Ynu"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Qse-zk-ZvT" firstAttribute="top" secondItem="Lsc-iG-cY3" secondAttribute="bottom" constant="8" id="D5e-6S-dt1"/>
+                <constraint firstItem="Qse-zk-ZvT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="L25-LT-bQw"/>
+                <constraint firstItem="Lsc-iG-cY3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="R8s-vA-v3T"/>
+                <constraint firstAttribute="trailing" secondItem="Lsc-iG-cY3" secondAttribute="trailing" id="TVw-dv-Gpq"/>
+                <constraint firstAttribute="bottom" secondItem="Qse-zk-ZvT" secondAttribute="bottom" constant="8" id="X5U-oh-YQi"/>
+                <constraint firstItem="Lsc-iG-cY3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="mPL-OJ-PCy"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="68" y="-215.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="NotesCameraNormal" width="22" height="17"/>
+    </resources>
+</document>

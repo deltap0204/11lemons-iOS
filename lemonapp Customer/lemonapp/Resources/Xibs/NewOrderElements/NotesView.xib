@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="17E199" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesView" customModule="lemonapp" customModuleProvider="target">
+            <connections>
+                <outlet property="lblTitle" destination="RMr-ta-abv" id="31j-lD-9NH"/>
+                <outlet property="tvNote" destination="1PL-QH-kxA" id="yFr-HT-dGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="233"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVu-gd-9op">
+                    <rect key="frame" x="0.0" y="8" width="600" height="60"/>
+                    <subviews>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fb6-Ke-tU5">
+                            <rect key="frame" x="572" y="19" width="20" height="22"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="ic_minus_circle"/>
+                            <connections>
+                                <action selector="didButtonRemovePressed:" destination="-1" eventType="touchUpInside" id="iPq-Gt-lBQ"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NOTES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMr-ta-abv">
+                            <rect key="frame" x="8" y="30" width="46" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.72156864399999998" blue="0.83137255909999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="4D2-2E-WzT"/>
+                        <constraint firstItem="RMr-ta-abv" firstAttribute="leading" secondItem="yVu-gd-9op" secondAttribute="leading" constant="8" id="BOA-Q7-Hfj"/>
+                        <constraint firstItem="Fb6-Ke-tU5" firstAttribute="centerY" secondItem="yVu-gd-9op" secondAttribute="centerY" id="Ikx-7k-a6c"/>
+                        <constraint firstAttribute="trailing" secondItem="Fb6-Ke-tU5" secondAttribute="trailing" constant="8" id="ULk-dI-ffp"/>
+                        <constraint firstAttribute="bottom" secondItem="RMr-ta-abv" secondAttribute="bottom" constant="9" id="csm-BZ-maY"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1PL-QH-kxA">
+                    <rect key="frame" x="25" y="76" width="550" height="149"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="1PL-QH-kxA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="0j2-pm-O84"/>
+                <constraint firstAttribute="trailing" secondItem="1PL-QH-kxA" secondAttribute="trailing" constant="25" id="Dwk-xj-vyi"/>
+                <constraint firstItem="yVu-gd-9op" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Ecg-on-4sa"/>
+                <constraint firstItem="yVu-gd-9op" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="f6l-Yv-5Ia"/>
+                <constraint firstItem="1PL-QH-kxA" firstAttribute="top" secondItem="yVu-gd-9op" secondAttribute="bottom" constant="8" id="lsY-Bg-eqi"/>
+                <constraint firstAttribute="bottom" secondItem="1PL-QH-kxA" secondAttribute="bottom" constant="8" id="sFL-fe-20z"/>
+                <constraint firstAttribute="trailing" secondItem="yVu-gd-9op" secondAttribute="trailing" id="sq3-x9-yjw"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="491" y="117.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_minus_circle" width="20" height="20"/>
+    </resources>
+</document>
