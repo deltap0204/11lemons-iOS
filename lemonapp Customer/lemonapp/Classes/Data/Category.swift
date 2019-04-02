@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+
 
 final class Category: Copying {
     
@@ -29,32 +29,8 @@ final class Category: Copying {
     var deleted: Bool = false
     var attributes: [Attribute]?
     
-    fileprivate var _dataModel: CategoryModel = CategoryModel()
-    
     init(id: Int) {
         self.id = id
-    }
-    
-    convenience init(categoryModel: CategoryModel) {
-        self.init(id: categoryModel.id.intValue)
-        name = categoryModel.name
-        description = categoryModel.descr
-        active = categoryModel.active
-        maxAllowed = categoryModel.maxAllowed?.intValue
-        required = categoryModel.required
-        image = categoryModel.image
-        itemizeOnReceipt = categoryModel.itemizeOnReceipt
-        allowMultipleValues = categoryModel.allowMultipleValues
-        singleProduct = categoryModel.singleProduct
-        pounds = categoryModel.pounds
-        dollars = categoryModel.dollars
-        months = categoryModel.months
-        hours = categoryModel.hours
-        other = categoryModel.other
-        deleted = categoryModel.isDelet
-        temporaryAttribute = categoryModel.temporaryAttribute
-        attributes = categoryModel.attributes.map { Attribute(attributeModel: $0) }
-        _dataModel = categoryModel
     }
     
     convenience init (original: Category) {
@@ -99,6 +75,15 @@ final class Category: Copying {
         self.attributes = attributes
     }
     
+    convenience init(entity: CategoryEntity) {
+        self.init(id: entity.id,
+                  maxAllowed: entity.maxAllowed.value,
+                  required: entity.required.value,
+                  itemizeOnReceipt: entity.itemizeOnReceipt.value,
+                  allowMultipleValues: entity.allowMultipleValues.value,
+                  temporaryAttribute: entity.temporaryAttribute.value,
+                  attributes: entity.attributes.compactMap({Attribute(entity: $0)}))
+    }
     
     func sync(_ category: Category) {
         name = category.name
@@ -118,44 +103,5 @@ final class Category: Copying {
         other = category.other
         deleted = category.deleted
         attributes = category.attributes
-        syncDataModel()
-    }
-}
-
-extension Category: DataModelWrapper {
-    
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        _dataModel.id = NSNumber(value: id as Int)
-        _dataModel.name = name
-        _dataModel.descr = description
-        _dataModel.active = active
-        _dataModel.maxAllowed = maxAllowed as! NSNumber
-        _dataModel.required = required ?? false
-        _dataModel.image = image
-        _dataModel.itemizeOnReceipt = itemizeOnReceipt ?? false
-        _dataModel.allowMultipleValues = allowMultipleValues ?? false
-        _dataModel.temporaryAttribute = temporaryAttribute ?? false
-        _dataModel.singleProduct = singleProduct
-        _dataModel.pounds = pounds
-        _dataModel.dollars = dollars
-        _dataModel.months = months
-        _dataModel.hours = hours
-        _dataModel.other = other
-        _dataModel.isDelet = deleted
-        
-        attributes?.forEach {
-            if let attributeModel = $0.dataModel as? AttributeModel, !_dataModel.attributes.contains(attributeModel) {
-                if let exist = try? LemonCoreDataManager.fetch(AttributeModel.self).contains(attributeModel) {
-                    if !exist {
-                        LemonCoreDataManager.insert(false, objects: attributeModel)
-                    }
-                }
-                _dataModel.attributes.insert(attributeModel)
-            }
-        }
     }
 }

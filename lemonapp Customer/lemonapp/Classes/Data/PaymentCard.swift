@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+
 
 enum PaymentCardType: String {
     
@@ -181,8 +181,6 @@ final class PaymentCard: Copying, Equatable {
         }
         return ""
     }
-    
-    fileprivate var _dataModel: PaymentCardModel
 
     init (id: Int? = nil,
         number: String = "",
@@ -192,8 +190,7 @@ final class PaymentCard: Copying, Equatable {
         deleted: Bool = false,
         userId: Int,
         token: String? = nil,
-        billingAddress: BillingAddress? = nil,
-        dataModel: PaymentCardModel? = nil) {
+        billingAddress: BillingAddress? = nil) {
             self.id = id
             self.number = number
             if let type = PaymentCardType(rawValue: type) {
@@ -205,7 +202,6 @@ final class PaymentCard: Copying, Equatable {
             self.userId = userId
             self.token = token
             self.billingAddress = billingAddress ?? BillingAddress()
-            self._dataModel = dataModel ?? PaymentCardModel(id: id, number: number, expiration: expiration, type: type, removed: deleted, userId: userId, token: token, zip: billingAddress?.zip)
     }
     
     convenience init(original: PaymentCard) {
@@ -219,6 +215,28 @@ final class PaymentCard: Copying, Equatable {
             billingAddress: original.billingAddress)
     }
     
+    init(entity: PaymentCardEntity) {
+        self.id = entity.id.value
+        self.number = entity.number
+        self.expiration = entity.expiration
+        self.secCode = entity.secCode
+        self.deleted = entity.deleted
+        self.userId = entity.userId
+        self.token = entity.token
+        
+        if let billAddress = entity.billingAddress {
+            self.billingAddress = BillingAddress(entity: billAddress)
+        } else {
+            self.billingAddress = nil
+        }
+        
+        if let paymentType = entity.type {
+            self._type = PaymentCardType(rawValue: paymentType)
+        } else {
+            self._type = nil
+        }
+    }
+    
     func sync(_ paymentCard: PaymentCard) {
         self.id = paymentCard.id
         self.number = paymentCard.number
@@ -227,44 +245,6 @@ final class PaymentCard: Copying, Equatable {
         self.deleted = paymentCard.deleted
         self.userId = paymentCard.userId
         self.billingAddress = paymentCard.billingAddress
-        syncDataModel() 
-    }
-}
-
-extension PaymentCard: DataModelWrapper {
-    
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        if let id = self.id,
-        let token = self.token {
-            _dataModel.id = NSNumber(value: id as Int)
-            _dataModel.number = self.number
-            _dataModel.type = self.type.rawValue
-            _dataModel.removed = self.deleted
-            _dataModel.userId = NSNumber(value: self.userId as Int)
-            _dataModel.token = token
-            _dataModel.zip = self.billingAddress?.zip
-            saveDataModelChanges()
-        }
-    }
-}
-
-extension PaymentCard {
-    convenience init(paymentCardModel: PaymentCardModel) {
-        
-        self.init(id: paymentCardModel.id?.intValue,
-            number: paymentCardModel.number,
-            type: paymentCardModel.type,
-            expiration: paymentCardModel.expiration ?? "",
-            secCode: "000",
-            deleted: paymentCardModel.removed,
-            userId: paymentCardModel.userId.intValue,
-            token: paymentCardModel.token,
-            billingAddress: BillingAddress(zip: paymentCardModel.zip),
-            dataModel: paymentCardModel)
     }
 }
 

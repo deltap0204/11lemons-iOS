@@ -59,7 +59,8 @@ final class SubproductsViewController: UIViewController {
                 //TODO tableview-migration
                 //Before migration code
                 
-                productCell.viewModel = dataSource/*[indexPath.section]*/[indexPath.row]
+                productCell.viewModel = dataSource[indexPath.row]
+                productCell.selectionStyle = .none
                 return productCell
             }
             return cell

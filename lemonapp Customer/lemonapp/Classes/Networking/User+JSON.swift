@@ -23,7 +23,8 @@ extension User: JSONDecodable {
             settings: Settings(notificationString: try? j["Pref_Notification"].value(), cloudClosetEnabled: try? j["Pref_CloudCloset"].value()),
             preferences: try Preferences.decode(j) ,
             walletAmount: j["WalletAmount"].double,
-            referralCode: try? j["ReferralCode"].value()
+            referralCode: try? j["ReferralCode"].value(),
+            isAdmin: false
         )
     }
 }

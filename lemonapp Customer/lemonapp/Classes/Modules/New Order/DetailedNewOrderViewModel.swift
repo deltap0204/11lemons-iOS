@@ -158,7 +158,7 @@ final class DetailedNewOrderViewModel {
     
     func syncUpdates(_ completion: (() -> Void)?) {
         _ = LemonAPI.editOrder(editedOrder: order).request().observeNext { [weak self] (result: EventResolver<Order>) in
-            self?.order.syncDataModel()
+            DataProvider.sharedInstance.refreshUserOrders()
             self?.hasChanges.value = false
             completion?()
         }

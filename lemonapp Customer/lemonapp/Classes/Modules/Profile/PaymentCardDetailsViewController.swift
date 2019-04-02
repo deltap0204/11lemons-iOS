@@ -139,7 +139,7 @@ final class PaymentCardDetailsViewModel: ViewModel {
                                             .request().observeNext { (resultResolver: EventResolver<PaymentCard>) in
                                                 do {
                                                     let paymentCard = try resultResolver()
-                                                    paymentCard.saveDataModel()
+                                                    DataProvider.sharedInstance.refreshPaymentCards()
                                                     self?.userWrapper.paymentCards.value.append(paymentCard)
                                                     if isDefault {
                                                         if let userWrapper = self?.userWrapper {

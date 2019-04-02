@@ -28,7 +28,7 @@ var Storage: StorageContext! = nil
 
 public func initStorageContext(completion: @escaping () -> ()) {
     do {
-        Storage = try RealmStorageContext(configuration: .basic(url: "11LemonsData"))
+        Storage = try RealmStorageContext(configuration: .basic(url: "11LemonsDataAdmin"))
         completion()
     } catch(let error){
         let appError = RealmInitializationError()

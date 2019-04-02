@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum Shirt: String {
+enum Shirt: String, Codable {
     case Folded, Hanger
     
     var image: UIImage {

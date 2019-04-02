@@ -21,6 +21,13 @@ struct BillingAddress {
         self.zip = zip
     }
     
+    init(entity: BillingAddressEntity) {
+        self.address = entity.address
+        self.city = entity.city
+        self.state = entity.state
+        self.zip = entity.zip
+    }
+    
     init(zip: String? = "") {
         self.zip = zip ?? ""
     }

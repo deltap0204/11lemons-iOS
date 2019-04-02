@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftDate
-import CoreData
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -38,8 +38,6 @@ final class DeliveryPricing {
     var type: DeliveryOption
     var amount: Double
     var active: Bool = true
-    
-    fileprivate var _dataModel: DeliveryPricingModel
     
     var isAvailable: Bool {
         let timeZone = TimeZone.current
@@ -74,15 +72,9 @@ final class DeliveryPricing {
         return true
     }
     
-    init(type: DeliveryOption, amount: Double, dataModel: DeliveryPricingModel? = nil) {
+    init(type: DeliveryOption, amount: Double) {
         self.type = type
         self.amount = amount
-        self._dataModel = dataModel ?? DeliveryPricingModel(type: type.rawValue, amount: amount)
-    }
-    
-    convenience init(deliveryPricingModel: DeliveryPricingModel) {
-        let type = DeliveryOption(rawValue: deliveryPricingModel.type.intValue) ?? .afterTomorrow
-        self.init(type: type, amount:deliveryPricingModel.amount.doubleValue)
     }
     
     func titleForDate(_ date: Date) -> String {
@@ -231,17 +223,5 @@ final class DeliveryPricing {
         let tomorrow = DeliveryPricing(type: .tomorrow, amount: 4.99)
         let free = DeliveryPricing(type: .afterTomorrow, amount: 0)
         return [today, tomorrow, free]
-    }
-}
-
-extension DeliveryPricing: DataModelWrapper {
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        _dataModel.type = NSNumber(value: self.type.rawValue)
-        _dataModel.amount = NSNumber(value: self.amount)
-        saveDataModelChanges()
     }
 }

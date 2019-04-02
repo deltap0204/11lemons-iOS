@@ -53,18 +53,13 @@ final class MenuViewController : UIViewController {
                 if let source = self,
                     let destination = UIStoryboard(storyboard: .Auth).instantiateInitialViewController() {
                     ReplaceSegue(identifier: nil, source: source, destination: destination).perform()
-                    DataProvider.sharedInstance.clear()
-                    LemonCoreDataManager.dropDataBase()
                     LemonAPI.clear()
+                    DataProvider.sharedInstance.clear()
                 }
                 })
             self?.present(signOutAlert, animated: true, completion: nil)
         }
-        
-    
-        viewModel.menuHeaderViewModel.observeNext { [weak menuHeaderView] in
-            menuHeaderView?.viewModel = $0
-        }
+
         menuHeaderView.bnd_tap.observeNext { [weak self] in
             //TODO migration-check
             //TODO tableview-migration

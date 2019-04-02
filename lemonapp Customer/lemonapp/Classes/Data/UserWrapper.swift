@@ -36,10 +36,10 @@ final class UserWrapper {
     let applePayCard: ApplePayCard?
     
     var activeAddresses: [Address] {
-        return self.addresses.value.flatMap { !$0.deleted ? $0 : nil }
+        return self.addresses.value.compactMap { !$0.deleted ? $0 : nil }
     }
     var activePaymentCards: [PaymentCard] {
-        return self.paymentCards.value.flatMap { !$0.deleted ? $0 : nil }
+        return self.paymentCards.value.compactMap { !$0.deleted ? $0 : nil }
     }
     
     var fullName: String {
@@ -119,10 +119,11 @@ final class UserWrapper {
         
         //walletAmount.skip(first: 1).observeNext { [weak self] in
         walletAmount.skip(first: 1).observeNext { [weak self] in
-            if let walletAmount = $0, self?.user.walletAmount != walletAmount {
-                self?.changedUser.walletAmount = walletAmount
-                self?.user.walletAmount = walletAmount
-                self?.user.syncDataModel()
+            guard let self = self else {return}
+            if let walletAmount = $0, self.user.walletAmount != walletAmount {
+                self.changedUser.walletAmount = walletAmount
+                self.user.walletAmount = walletAmount
+                save(user: self.user)
             }
         }
         
@@ -144,5 +145,6 @@ final class UserWrapper {
     
     func saveChanges() {
         user.sync(changedUser)
+        save(user: self.user)
     }
 }

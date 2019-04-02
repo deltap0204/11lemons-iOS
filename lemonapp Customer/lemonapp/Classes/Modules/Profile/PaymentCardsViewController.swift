@@ -42,7 +42,7 @@ final class PaymentCardsViewModel: ViewModel {
                     }
                     if let paymentCard = self?.userWrapper.activePaymentCards[auxIndex] {
                         paymentCard.deleted = true
-                        paymentCard.syncDataModel()
+                        DataProvider.sharedInstance.refreshPaymentCards()
                     }
                 }
                 break;

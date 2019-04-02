@@ -133,6 +133,17 @@ final class Preferences: Copying, Codable {
         self.scheduledFrequency = original.scheduledFrequency
     }
     
+    init(entity: PreferencesEntity) {
+        self.detergent = entity.detergent
+        self.shirts = entity.shirts
+        self.notes = entity.notes
+        self.tips = entity.tips
+        self.dryer = entity.dryer
+        self.softener = entity.softener
+        self.scheduledWeekday = entity.scheduledWeekday
+        self.scheduledFrequency = entity.scheduledFrequency
+    }
+    
     func sync(_ preferences: Preferences) {
         self.detergent = preferences.detergent
         self.shirts = preferences.shirts

@@ -173,7 +173,7 @@ final class SignUpViewModel: ViewModel {
             ).request().observeNext { (userResolver: EventResolver<User>) in
                 do {
                     let user = try userResolver()
-                    user.saveDataModel()
+                    save(user:user)
                     LemonAPI.userId = user.id
                     LemonAPI.userPassword = passwordVal
                     sink.completed(with:  {return (user, location) })

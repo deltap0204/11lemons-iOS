@@ -20,7 +20,7 @@ final class FaqViewModel {
     }
     
     func update(_ completion: @escaping () -> Void) {
-        DataProvider.sharedInstance.refreshFAQ {
+        DataProvider.sharedInstance.refreshFaqs {
             completion()
         }
     }

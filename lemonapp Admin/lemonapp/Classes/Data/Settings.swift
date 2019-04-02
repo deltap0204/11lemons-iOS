@@ -97,6 +97,14 @@ final class Settings: Copying, Codable {
         self.cloudClosetEnabled = original.cloudClosetEnabled
     }
     
+    init(entity: SettingsEntity) {
+        self.cloudClosetEnabled = entity.cloudClosetEnabled
+        
+        self.pushEnabled = entity.pushEnabled
+        self.mailEnabled = entity.mailEnabled
+        self.messageEnabled = entity.messageEnabled
+    }
+    
     func sync(_ settings: Settings) {
         pushEnabled = settings.pushEnabled
         mailEnabled = settings.mailEnabled

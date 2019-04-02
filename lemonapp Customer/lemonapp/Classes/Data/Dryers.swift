@@ -8,6 +8,6 @@
 import Foundation
 
 
-enum Dryer: String {
+enum Dryer: String, Codable {
     case None, Bounce
 }

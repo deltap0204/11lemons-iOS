@@ -9,7 +9,7 @@ import Foundation
 
 
 
-final class Preferences: Copying {
+final class Preferences: Copying, Codable {
     
     var detergent: Detergent = .Original
     var shirts: Shirt = .Hanger
@@ -131,6 +131,17 @@ final class Preferences: Copying {
         self.softener = original.softener
         self.scheduledWeekday = original.scheduledWeekday
         self.scheduledFrequency = original.scheduledFrequency
+    }
+    
+    init(entity: PreferencesEntity) {
+        self.detergent = entity.detergent
+        self.shirts = entity.shirts
+        self.notes = entity.notes
+        self.tips = entity.tips
+        self.dryer = entity.dryer
+        self.softener = entity.softener
+        self.scheduledWeekday = entity.scheduledWeekday
+        self.scheduledFrequency = entity.scheduledFrequency
     }
     
     func sync(_ preferences: Preferences) {

@@ -215,6 +215,28 @@ final class PaymentCard: Copying, Equatable {
             billingAddress: original.billingAddress)
     }
     
+    init(entity: PaymentCardEntity) {
+        self.id = entity.id.value
+        self.number = entity.number
+        self.expiration = entity.expiration
+        self.secCode = entity.secCode
+        self.deleted = entity.deleted
+        self.userId = entity.userId
+        self.token = entity.token
+        
+        if let billAddress = entity.billingAddress {
+            self.billingAddress = BillingAddress(entity: billAddress)
+        } else {
+            self.billingAddress = nil
+        }
+        
+        if let paymentType = entity.type {
+            self._type = PaymentCardType(rawValue: paymentType)
+        } else {
+            self._type = nil
+        }
+    }
+    
     func sync(_ paymentCard: PaymentCard) {
         self.id = paymentCard.id
         self.number = paymentCard.number

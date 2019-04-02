@@ -111,29 +111,55 @@ final class Order {
     }
     
 
-    convenience init(entity: OrderEntity) {
+    init(entity: OrderEntity) {
         let newOrderAmount = entity.orderAmount == nil ? OrderAmount() : OrderAmount(entity:entity.orderAmount!)
-        self.init(id: entity.id,
-                  orderAmount: newOrderAmount,
-                  orderPlaced: entity.orderPlaced,
-                  repeatState: entity.repeatState.value,
-                  notes: entity.notes,
-                  feedbackRating: entity.feedbackRating.value,
-                  feedbackText: entity.feedbackText,
-                  delivery: Delivery(entity:entity.delivery),
-                  status: entity.status,
-                  paymentStatus: entity.paymentStatus,
-                  orderDetails: entity.orderDetails.compactMap { OrderDetail(entity: $0) },
-                  orderImages: entity.orderImages.compactMap { OrderImages(entity: $0) },
-                  paymentId: entity.paymentId.value,
-                  promoId: entity.promoId.value,
-                  lastModified: entity.lastModified,
-                  detergent: entity.detergent,
-                  shirt: entity.shirt,
-                  services: [ServiceType.WashFold, ServiceType.DryClean, ServiceType.LaunderPress],
-                  dryer: entity.dryer,
-                  softener: entity.softener,
-                  tips: entity.tips)
+
+        self.id = entity.id
+        self.orderAmount = newOrderAmount
+        self.orderPlaced = entity.orderPlaced
+        self.repeatState = entity.repeatState.value
+        if let deliveryEntity = entity.delivery {
+            self.delivery = Delivery(entity:deliveryEntity)
+        }
+        self.status = entity.status
+        self.paymentStatus = entity.paymentStatus
+        self.orderDetails = entity.orderDetails.compactMap { OrderDetail(entity: $0) }
+        self.orderImages = entity.orderImages.compactMap { OrderImages(entity: $0) }
+        self.paymentId = entity.paymentId.value
+        self.promoId = entity.promoId.value
+        self.lastModified = entity.lastModified
+        self.detergent = entity.detergent
+        self.shirt = entity.shirt
+        self.serviceType = [ServiceType.WashFold, ServiceType.DryClean, ServiceType.LaunderPress]
+        self.dryer = entity.dryer
+        self.notes = entity.notes
+        self.feedbackRating = entity.feedbackRating.value
+        self.feedbackText = entity.feedbackText
+        self.softener = entity.softener
+        self.tips = entity.tips
+        
+        if let user = entity.createdBy {
+            self.createdBy = User(entity: user)
+        } else {
+            self.createdBy = nil
+        }
+        
+        if let user = entity.lastModifiedUser {
+            self.lastModifiedUser = User(entity: user)
+        } else {
+            self.lastModifiedUser = nil
+        }
+
+        self.userId = entity.userId.value
+        self.lastModifiedUserId = entity.lastModifiedUserId.value
+        if let c = entity.card {
+            self.card = PaymentCard(entity: c)
+        } else {
+            self.card = nil
+        }
+        
+        self.applePayToken = entity.applePayToken
+        self.starch = entity.starch
     }
     
     

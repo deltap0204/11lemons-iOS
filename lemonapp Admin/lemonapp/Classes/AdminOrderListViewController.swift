@@ -62,7 +62,7 @@ class AdminOrderListViewController: UIViewController {
             //TODO tableview-migration
             //Before migration code
             
-            if let orderCellViewModel = dataSource/*[indexPath.section]*/[indexPath.row] as? AdminOrderCellViewModel {
+            if let orderCellViewModel = dataSource[indexPath.row] as? AdminOrderCellViewModel {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AdminOrderCell", for: indexPath)
                 if let orderCell = cell as? AdminOrderCell {
                     orderCellViewModel.navigationDelegate = self

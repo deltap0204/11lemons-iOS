@@ -9,16 +9,12 @@ def project_pods
     pod 'UIColor_Hex_Swift', '~> 4.0.1'
     pod 'SnapKit', '~> 4.0.0'
     pod 'DrawerController', '~> 4.0'
-    # pod 'Braintree', '~> 4.2.3'
-    # pod 'Braintree/Apple-Pay', '~> 4.2.3'
     pod 'Braintree'
     pod 'Braintree/Apple-Pay'
     pod 'SwiftDate'
     pod 'Bolts'
     pod 'KeychainAccess'
-    pod 'JSQCoreDataKit'
     pod 'Reachability'
-    #pod 'BTNavigationDropdownMenu'
     pod 'BTNavigationDropdownMenu', :git => 'https://github.com/zkrige/BTNavigationDropdownMenu.git'
     pod 'MGSwipeTableCell'
     pod 'Fabric'
@@ -26,6 +22,7 @@ def project_pods
     pod 'SDWebImage', '~> 4.0'
     pod 'MBProgressHUD', '~> 1.1.0'
     pod 'IQKeyboardManagerSwift', '5.0.0'
+    pod 'RealmSwift'
 end
 
 target 'lemonapp' do

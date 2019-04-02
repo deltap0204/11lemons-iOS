@@ -33,3 +33,10 @@ public class ErrorWithDescription: LocalizedError, CustomNSError {
 public class OrderHasNotCreatedByError:ErrorWithDescription {}
 
 public class FindWithIdFailContextFetchError:ErrorWithDescription {}
+public class RealmInitializationError:ErrorWithDescription {}
+public class SaveAdminOrderRealmError:ErrorWithDescription {}
+public class SaveProductsRealmError:ErrorWithDescription {}
+public class DeleteAllRealmError:ErrorWithDescription {}
+public class SaveAddressRealmError:ErrorWithDescription {}
+public class SavePaymentCardRealmError:ErrorWithDescription {}
+public class SaveWalletTransitionRealmError:ErrorWithDescription {}

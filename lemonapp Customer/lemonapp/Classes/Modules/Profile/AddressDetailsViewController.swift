@@ -139,7 +139,7 @@ final class AddressDetailsViewModel: ViewModel {
                                     .request().observeNext { (addressResolver: EventResolver<Address>) in
                                         do {
                                             let resultAddress = try addressResolver()
-                                            resultAddress.saveDataModel()
+                                            DataProvider.sharedInstance.refreshAddresses()
                                             self?.userWrapper.addresses.value.append(resultAddress)
                                             if isDefault {
                                                 if let userWrapper = self?.userWrapper {

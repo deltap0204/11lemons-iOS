@@ -270,10 +270,7 @@ final class DeliveryViewModel {
     func onRequestComplete(_ result: EventResolver<Order>, task: BFTaskCompletionSource<AnyObject>) {
         do {
             let order = try result()
-            if !editMode {
-                LemonCoreDataManager.insert(objects: order.dataModel)
-            }
-            order.syncDataModel()
+            DataProvider.sharedInstance.refreshUserOrders()
             self.order.updated.next(true)
             task.set(result: order)
         } catch let error as BackendError {
@@ -302,7 +299,7 @@ final class DeliveryViewModel {
     
     func syncUpdates(_ completion: (() -> Void)?) {
         _ = LemonAPI.editOrder(editedOrder: order).request().observeNext { [weak self] (result: EventResolver<Order>) in
-            self?.order.syncDataModel()
+            DataProvider.sharedInstance.refreshUserOrders()
             self?.hasChanges.value = false
             completion?()
         }

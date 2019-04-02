@@ -9,9 +9,8 @@
 import Foundation
 import SwiftDate
 
-
 extension Preferences {
-    
+
     static func nextPickupDateString(_ frequency: Int, weekday: Int?, currentDate: Date) -> String {
         guard let weekday = weekday else { return "" }
         let formatter = DateFormatter()

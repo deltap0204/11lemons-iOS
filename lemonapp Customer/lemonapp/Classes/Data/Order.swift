@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+
 import Bond
 
 final class Order {
@@ -51,11 +51,7 @@ final class Order {
     
     let updated = Observable(false)
     
-    fileprivate var _dataModel: OrderModel
-    init() {
-        _dataModel = OrderModel()
-    }
-    
+    init() {}
     
     init(id: Int,
          orderAmount: OrderAmount,
@@ -78,7 +74,6 @@ final class Order {
          dryer: Dryer,
          softener: Softener,
          tips: Int,
-         dataModel: OrderModel? = nil,
          lastModifiedUser: User? = nil,
          createdBy: User? = nil) {
         
@@ -105,264 +100,75 @@ final class Order {
         self.tips = tips
         self.createdBy = createdBy
         self.lastModifiedUser = lastModifiedUser
-        let oldDataModel = dataModel ?? LemonCoreDataManager.findWithId(id)
-        self._dataModel = oldDataModel ?? OrderModel()
-        if let oldDataModel = oldDataModel {
-            self.viewed.value = (oldDataModel.viewed && status == OrderStatus(rawValue: oldDataModel.status.intValue)) || status == .archived || status == .canceled
-        }
-        self.viewed.skip(first: 1).observeNext { [weak self] _ in
-            self?.syncDataModel()
-        }
-        
     }
     
-    convenience init(orderModel: OrderModel) {
-        let orderAmount = OrderAmount(
-            amount: orderModel.amount.doubleValue,
-            tax: orderModel.amountTax.doubleValue,
-            amountWithoutTax: orderModel.amountWithoutTax.doubleValue,
-            numberOfItems: orderModel.numberOfItems.intValue,
-            state: orderModel.amountState
-        )
-        var delivery = Delivery()
-        delivery.deliveryDate = orderModel.deliveryDate
-        delivery.deliveryUpchargeAmount = orderModel.deliveryUpchargeAmount?.doubleValue
-        delivery.estimatedArrivalDate = orderModel.deliveryEstimatedArrivalDate
-        delivery.estimatedPickupDate = orderModel.deliveryEstimatedPickupDate
-//        var pickUpAddress: Address? = nil
-        if let pickUpAddressModel = orderModel.pickUpAddress {
-            delivery.pickupAddress = Address(addressModel: pickUpAddressModel)
+    init(entity: OrderEntity) {
+        let newOrderAmount = entity.orderAmount == nil ? OrderAmount() : OrderAmount(entity:entity.orderAmount!)
+        
+        self.id = entity.id
+        self.orderAmount = newOrderAmount
+        self.orderPlaced = entity.orderPlaced
+        self.repeatState = entity.repeatState.value
+        if let deliveryEntity = entity.delivery {
+            self.delivery = Delivery(entity:deliveryEntity)
         }
-//        var dropOffAddress: Address? = nil
-        if let dropOffAddressModel = orderModel.dropOffAddress {
-            delivery.dropoffAddress = Address(addressModel: dropOffAddressModel)
-        }
+        self.status = entity.status
+        self.paymentStatus = entity.paymentStatus
+        self.orderDetails = entity.orderDetails.compactMap { OrderDetail(entity: $0) }
+        self.orderImages = entity.orderImages.compactMap { OrderImages(entity: $0) }
+        self.paymentId = entity.paymentId.value
+        self.promoId = entity.promoId.value
+        self.lastModified = entity.lastModified
+        self.detergent = entity.detergent
+        self.shirt = entity.shirt
+        self.serviceType = [ServiceType.WashFold, ServiceType.DryClean, ServiceType.LaunderPress]
+        self.dryer = entity.dryer
+        self.notes = entity.notes
+        self.feedbackRating = entity.feedbackRating.value
+        self.feedbackText = entity.feedbackText
+        self.softener = entity.softener
+        self.tips = entity.tips
         
-        let shirt = Shirt(rawValue: orderModel.shirt) ?? .Hanger
-        let softener = Softener(rawValue: orderModel.softener) ?? .None
-        let dryer = Dryer(rawValue: orderModel.dryer) ?? .None
-        let tips = orderModel.tips.intValue
-        let detergent = Detergent(rawValue: orderModel.detergent) ?? .Original
-        let services = orderModel.serviceType.components(separatedBy: ",").flatMap { ServiceType(rawValue: $0) }
-        let feedbackRating = orderModel.feedbackRating.intValue
-        
-        var lmUser: User? = nil
-        if let lastModifiedUser = orderModel.lastModifiedUser {
-            lmUser = User(userModel: lastModifiedUser)
-        }
-        var user: User? = nil
-        if let createdBy = orderModel.createdBy {
-            user = User(userModel: createdBy)
-        }
-        
-        self.init(id: orderModel.id.intValue,
-                  orderAmount: orderAmount,
-                  orderPlaced: orderModel.placed as! Date,
-                  repeatState: orderModel.repeatState,
-                  notes: orderModel.notes,
-                  feedbackRating: feedbackRating,
-                  feedbackText: orderModel.feedbackText,
-                  delivery: delivery,
-                  status: OrderStatus(rawValue: orderModel.status.intValue) ?? .awaitingPickup,
-                  paymentStatus: OrderPaymentStatus(rawValue: orderModel.paymentStatus.intValue) ?? .paymentNotProcessed,
-                  orderDetails: orderModel.details.map { OrderDetail(orderDetailModel: $0) },
-                  orderImages: orderModel.orderImages.map { OrderImages(orderImagesModel: $0) },
-                  paymentId: orderModel.paymentId?.intValue,
-                  promoId: nil,
-                  lastModified: orderModel.lastModified,
-                  detergent: detergent,
-                  shirt: shirt,
-                  services: services,
-                  dryer: dryer,
-                  softener: softener,
-                  tips: tips,
-                  dataModel: orderModel,
-                  lastModifiedUser: lmUser,
-                  createdBy: user)
-        self.userId = orderModel.userId?.intValue
-    }
-    
-    var hasChanges: Bool {
-        let shirt = Shirt(rawValue: _dataModel.shirt) ?? .Hanger
-        let softener = Softener(rawValue: _dataModel.softener) ?? .None
-        let dryer = Dryer(rawValue: _dataModel.dryer) ?? .None
-        let tips = _dataModel.tips.intValue
-        let detergent = Detergent(rawValue: _dataModel.detergent) ?? .Original
-        
-        var hasChanges: Bool = false
-        hasChanges = hasChanges || self.shirt != shirt
-        hasChanges = hasChanges || self.softener != softener
-        hasChanges = hasChanges || self.dryer != dryer
-        hasChanges = hasChanges || self.tips != tips
-        hasChanges = hasChanges || self.detergent != detergent
-        hasChanges = hasChanges || self.notes != _dataModel.notes
-        
-        let services = _dataModel.serviceType.components(separatedBy: ",").flatMap { ServiceType(rawValue: $0) }
-        if services.count != self.serviceType.count {
-            hasChanges = true
+        if let user = entity.createdBy {
+            self.createdBy = User(entity: user)
         } else {
-            for service in services {
-                hasChanges = hasChanges || !serviceType.contains(service)
-            }
+            self.createdBy = nil
         }
         
-        return hasChanges
+        if let user = entity.lastModifiedUser {
+            self.lastModifiedUser = User(entity: user)
+        } else {
+            self.lastModifiedUser = nil
+        }
+        
+        self.userId = entity.userId.value
+        self.lastModifiedUserId = entity.lastModifiedUserId.value
+        if let c = entity.card {
+            self.card = PaymentCard(entity: c)
+        } else {
+            self.card = nil
+        }
+        
+        self.applePayToken = entity.applePayToken
+        self.starch = entity.starch
     }
     
-    func sync(_ order: Order) {
-        self.userId = order.userId
-        self.orderPlaced = order.orderPlaced
-        self.notes = order.notes
-        self.feedbackRating = order.feedbackRating
-        self.feedbackText = order.feedbackText
-        self.repeatState = order.repeatState
-        self.orderAmount = order.orderAmount
-        self.paymentId = order.paymentId
-        let viewed = self.viewed.value && status == order.status || status == .archived || status == .canceled
-        self.status = order.status
-        self.paymentStatus = order.paymentStatus
-        self.delivery = order.delivery
-        self.lastModified = order.lastModified
-        self.shirt = order.shirt
-        self.dryer = order.dryer
-        self.softener = order.softener
-        self.tips = order.tips
-        self.serviceType = order.serviceType
-        self.detergent = order.detergent
-        self.lastModifiedUser = order.lastModifiedUser
-        self.createdBy = order.createdBy
-        LemonCoreDataManager.context.perform { [weak order, weak self] in
-            if let strongSelf = self {
-                let details = strongSelf._dataModel.details.map { $0 }
-                strongSelf._dataModel.details.removeAll()
-                LemonCoreDataManager.delete(false, objects: details)
-                if let newOrderDetails = order?.orderDetails?.map({ $0.dataModel }) {
-                    LemonCoreDataManager.insert(false, objects: newOrderDetails)
-                }
-                strongSelf.orderDetails = order?.orderDetails
-                DispatchQueue.main.async {
-                    strongSelf.viewed.value = viewed
-                }
-            }
-        }
+    
+    //lucas review this
+    var hasChanges: Bool {
+        return true
     }
     
     func reset() {
-        
-        let shirt = Shirt(rawValue: _dataModel.shirt) ?? .Hanger
-        let softener = Softener(rawValue: _dataModel.softener) ?? .None
-        let dryer = Dryer(rawValue: _dataModel.dryer) ?? .None
-        let tips = _dataModel.tips.intValue
-        let detergent = Detergent(rawValue: _dataModel.detergent) ?? .Original
-        let services = _dataModel.serviceType.components(separatedBy: ",").flatMap { ServiceType(rawValue: $0) }
-        
-        self.shirt = shirt
-        self.softener = softener
-        self.dryer = dryer
-        self.tips = tips
-        self.detergent = detergent
-        self.serviceType = services
-        self.notes = _dataModel.notes
+        self.shirt = .Hanger
+        self.softener = .Downy
+        self.dryer = .Bounce
+        self.tips = 0
+        self.detergent = .Original
+        self.serviceType = [ServiceType.WashFold, ServiceType.DryClean, ServiceType.LaunderPress]
+        self.notes = ""
     }
 }
-
-extension Order: DataModelWrapper {
-    
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        _dataModel.id = NSNumber(value: id as Int)
-        //_dataModel.userId = userId == nil ? userId : NSNumber(value: userId! as Int)
-        if let userId = userId {
-            _dataModel.userId = NSNumber(value: userId as Int)
-        }
-        _dataModel.placed = orderPlaced
-        _dataModel.notes = notes
-        _dataModel.feedbackRating = NSNumber(value: feedbackRating ?? 0 as Int)
-        _dataModel.feedbackText = feedbackText ?? ""
-        _dataModel.repeatState = repeatState ?? false
-        _dataModel.amount = NSNumber(value: orderAmount.amount)
-        _dataModel.amountWithoutTax = NSNumber(value: orderAmount.amountWithoutTax as Double)
-        _dataModel.numberOfItems = NSNumber(value: orderAmount.numberOfItems as Int)
-        _dataModel.amountTax = NSNumber(value: orderAmount.tax as Double)
-        _dataModel.amountState = orderAmount.state
-        //_dataModel.paymentId = paymentId == nil ? paymentId : NSNumber(value: self.paymentId! as Int)
-        if let paymentId = paymentId {
-            _dataModel.paymentId = NSNumber(value: paymentId as Int)
-        }
-        _dataModel.status = NSNumber(value: status.rawValue as Int)
-        _dataModel.paymentStatus = NSNumber(value: paymentStatus.rawValue as Int)
-        _dataModel.deliveryDate = delivery.deliveryDate
-        _dataModel.deliveryUpchargeAmount = delivery.deliveryUpchargeAmount == nil ? nil : NSNumber(value: delivery.deliveryUpchargeAmount! as Double)
-        _dataModel.deliveryEstimatedArrivalDate = delivery.estimatedArrivalDate
-        _dataModel.deliveryEstimatedPickupDate = delivery.estimatedPickupDate
-        _dataModel.lastModified = lastModified
-        _dataModel.shirt = shirt.rawValue
-        _dataModel.softener = softener.rawValue
-        _dataModel.dryer = dryer.rawValue
-        _dataModel.tips = NSNumber(value: tips)
-        _dataModel.serviceType = serviceType.reduce("") { $0 + $1.rawValue + "," }
-        _dataModel.detergent = detergent.rawValue
-        _dataModel.viewed = viewed.value != nil ? viewed.value : false
-        orderDetails?.forEach {
-            if let orderDetailsModel = $0.dataModel as? OrderDetailsModel, !_dataModel.details.contains(orderDetailsModel) {
-                if let exist = try? LemonCoreDataManager.fetch(OrderDetailsModel.self).contains(orderDetailsModel) {
-                    if !exist {
-                        LemonCoreDataManager.insert(false, objects: orderDetailsModel)
-                    }
-                }
-                _dataModel.details.insert(orderDetailsModel)
-            }
-        }
-        
-        if let lastModifiedUser = lastModifiedUser {
-            if let userModel = lastModifiedUser.dataModel as? UserModel {
-                if let exist = try? LemonCoreDataManager.fetch(UserModel.self).contains(userModel) {
-                    if !exist {
-                        LemonCoreDataManager.insert(false, objects: userModel)
-                    }
-                }
-            }
-            _dataModel.createdBy = lastModifiedUser.dataModel as? UserModel
-        }
-        if let createdBy = createdBy {
-            if let userModel = createdBy.dataModel as? UserModel {
-                if let exist = try? LemonCoreDataManager.fetch(UserModel.self).contains(userModel) {
-                    if !exist {
-                        LemonCoreDataManager.insert(false, objects: userModel)
-                    }
-                }
-            }
-            _dataModel.createdBy = createdBy.dataModel as? UserModel
-        }
-        
-        if let pickUpAddress = delivery.pickupAddress {
-            if let addressModel = pickUpAddress.dataModel as? AddressModel {
-                if let exist = try? LemonCoreDataManager.fetch(AddressModel.self).contains(addressModel) {
-                    if !exist {
-                        LemonCoreDataManager.insert(false, objects: addressModel)
-                    }
-                }
-            }
-            _dataModel.pickUpAddress = pickUpAddress.dataModel as? AddressModel
-        }
-        if let dropOffAddress = delivery.dropoffAddress {
-            if let addressModel = dropOffAddress.dataModel as? AddressModel {
-                if let exist = try? LemonCoreDataManager.fetch(AddressModel.self).contains(addressModel) {
-                    if !exist {
-                        LemonCoreDataManager.insert(false, objects: addressModel)
-                    }
-                }
-            }
-            _dataModel.dropOffAddress = dropOffAddress.dataModel as? AddressModel
-        }
-        
-        saveDataModelChanges()
-    }
-}
-
 
 extension Order: DashboardItem {
     

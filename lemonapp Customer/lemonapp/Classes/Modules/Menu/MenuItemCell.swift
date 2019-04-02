@@ -41,13 +41,13 @@ final class MenuItemCell : UITableViewCell {
     }
     
     private func bindDashboard() {
-        let dataProvider = DataProvider.sharedInstance
-        let dashboardBandage = dataProvider.userOrdersUpdates
-        .combineLatest(with: dataProvider.walletUpdates)
-        .map { return $0 + $1 }
-        
-        dashboardBandage.map { "\($0)"}.bind(to: self.badgeLabel.bnd_text)
-        dashboardBandage.map { $0 == 0 }.bind(to: self.badgeView.bnd_hidden)
+//        let dataProvider = DataProvider.sharedInstance
+//        let dashboardBandage = dataProvider.userOrders
+//        .combineLatest(with: dataProvider.walletUpdates)
+//        .map { return $0 + $1 }
+//        
+//        dashboardBandage.map { "\($0)"}.bind(to: self.badgeLabel.bnd_text)
+//        dashboardBandage.map { $0 == 0 }.bind(to: self.badgeView.bnd_hidden)
     }
     
     override func awakeFromNib() {

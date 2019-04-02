@@ -40,7 +40,7 @@ final class AddressesViewModel: ViewModel {
                 range.forEach {
                     if let address = self?.userWrapper.activeAddresses[$0] {
                         address.deleted = true
-                        address.syncDataModel()
+                        DataProvider.sharedInstance.refreshAddresses()
                     }
                 }
                 break;

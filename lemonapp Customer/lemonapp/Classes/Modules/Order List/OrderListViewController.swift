@@ -248,7 +248,6 @@ class OrderListViewController : UIViewController {
         
         viewModel.update {
             self.tableView.reloadData()
-            self.tableView.alpha = 1
             self.hintLabel.alpha = 1
         }
         
@@ -299,7 +298,6 @@ class OrderListViewController : UIViewController {
             }
         }
         UIView.animate(withDuration: 0.2, animations: {
-            self.tableView.alpha = 0
             self.hintLabel.alpha = 0
         }) 
     }

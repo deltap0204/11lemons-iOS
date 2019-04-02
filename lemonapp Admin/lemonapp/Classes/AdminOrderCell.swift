@@ -119,6 +119,7 @@ class AdminOrderCell : MGSwipeTableCell {
                     strongSelf.imgForward.isHidden = false
                     strongSelf.imgBadge.isHidden = true
                     strongSelf.lblBadgeTotal.isHidden = true
+                    self?.badgeActicity.stopAnimating()
                 } else {
                     strongSelf.lblBadgeStart.isHidden = true
                     strongSelf.imgForward.isHidden = true
@@ -131,11 +132,11 @@ class AdminOrderCell : MGSwipeTableCell {
                 if value <= 0 {
                     
                     self?.imgBadge.isHidden = true
-                    self?.badgeActicity.isHidden = false
-                    self?.badgeActicity.startAnimating()
+                    if let strongSelf = self, let viewModel = strongSelf.viewModel, !viewModel.showStartBadge.value {
+                        self?.badgeActicity.startAnimating()
+                    }
                 } else {
                     self?.imgBadge.isHidden = false
-                    self?.badgeActicity.isHidden = true
                     self?.badgeActicity.stopAnimating()
                 }
             }).dispose(in: self.disposeBag)
@@ -147,7 +148,6 @@ class AdminOrderCell : MGSwipeTableCell {
                 DispatchQueue.main.async {
                 switch processStatus {
                 case .processing:
-                    strongSelf.badgeActicity.isHidden = false
                     strongSelf.badgeActicity.startAnimating()
                     strongSelf.imgBadge.isHidden = true
                     strongSelf.viewBadge.isHidden = false
@@ -189,7 +189,6 @@ class AdminOrderCell : MGSwipeTableCell {
                     strongSelf.viewBadge.backgroundColor = OrderPaymentStatus.ccDecline.color
                     strongSelf.imgBadge.image = OrderPaymentStatus.ccDecline.icon
                 case .failedAndProcessing:
-                    strongSelf.badgeActicity.isHidden = false
                     strongSelf.badgeActicity.startAnimating()
                     strongSelf.imgBadge.isHidden = true
                     strongSelf.lblBadgeTotal.isHidden = true

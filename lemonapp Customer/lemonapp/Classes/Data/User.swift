@@ -8,9 +8,9 @@
 import SwiftyJSON
 import Bond
 import PassKit
-import CoreData
 
-final class User: Copying {
+
+final class User: Copying, Codable {
     
     fileprivate static let USER_ID_KEY              = "UserID"
     fileprivate static let USER_FIRST_NAME_KEY      = "First"
@@ -32,10 +32,9 @@ final class User: Copying {
     var defaultAddressId: Int?
     var walletAmount: Double?
     var referralCode: String?
+    var isAdmin: Bool
     
     var defaultPaymentCardId: Int?    
-    
-    fileprivate var _dataModel: UserModel
     
     init(id: Int,
         firstName: String,
@@ -49,7 +48,7 @@ final class User: Copying {
         preferences: Preferences,
         walletAmount: Double?,
         referralCode: String?,
-        dataModel: UserModel? = nil) {
+        isAdmin: Bool) {
             
             self.id = id
             self.firstName = firstName
@@ -65,7 +64,7 @@ final class User: Copying {
             self.preferences = preferences
             self.walletAmount = walletAmount
             self.referralCode = referralCode
-            self._dataModel = dataModel ?? UserModel(id: id, firstName: firstName, lastName: lastName, email: email, mobilePhone: mobilePhone, profilePhoto: profilePhoto, defaultAddressId: defaultAddressId, defaultPaymentCardId: defaultPaymentCardId, walletAmount: walletAmount, referralCode: referralCode)
+            self.isAdmin = isAdmin
     }
     
     convenience init(original: User) {
@@ -80,7 +79,34 @@ final class User: Copying {
             settings: original.settings.copy(),
             preferences: original.preferences.copy(),
             walletAmount: original.walletAmount,
-            referralCode: original.referralCode)
+            referralCode: original.referralCode,
+            isAdmin: original.isAdmin)
+    }
+    
+    init(entity: UserEntity) {
+        self.id = entity.id
+        self.firstName = entity.firstName
+        self.lastName = entity.lastName
+        self.email = entity.email
+        self.mobilePhone = entity.mobilePhone
+        self.profilePhoto = entity.profilePhoto
+        if let pref = entity.preferences {
+            self.preferences = Preferences(entity: pref)
+        } else {
+            self.preferences = Preferences()
+        }
+        if let settings = entity.settings {
+            self.settings = Settings(entity: settings)
+        } else {
+            self.settings = Settings()
+        }
+        
+        self.defaultAddressId = entity.defaultAddressId.value
+        self.walletAmount = entity.walletAmount.value
+        self.referralCode = entity.referralCode
+        self.isAdmin = entity.isAdmin
+        
+        self.defaultPaymentCardId = entity.defaultPaymentCardId.value
     }
     
     func sync(_ user: User) {
@@ -96,60 +122,29 @@ final class User: Copying {
         self.preferences.sync(user.preferences)
         self.walletAmount = user.walletAmount
         self.referralCode = user.referralCode
-        syncDataModel() 
+        self.isAdmin = user.isAdmin
     }
 }
 
-extension User: DataModelWrapper {
-    
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        _dataModel.id = self.id as NSNumber
-        _dataModel.firstName = self.firstName
-        _dataModel.lastName = self.lastName
-        _dataModel.email = self.email
-        _dataModel.mobilePhone = self.mobilePhone
-        _dataModel.profilePhoto = self.profilePhoto
-        
-        if let defaultAddressId = self.defaultAddressId {
-            _dataModel.defaultAddressId = defaultAddressId as NSNumber
-        }
-        
-        if let defaultPaymentCardId = self.defaultPaymentCardId {
-            _dataModel.defaultPaymentCardId = defaultPaymentCardId as NSNumber
-        }
-        
-        if let walletAmount = self.walletAmount {
-            _dataModel.walletAmount = walletAmount as NSNumber
-        }
-        
-        _dataModel.referralCode = self.referralCode
-        saveDataModelChanges()
-    }
-    
-    func saveDataModel() {
-        LemonCoreDataManager.insert(objects: dataModel)
+func save(user: User) {
+    let encoder = JSONEncoder()
+    if let encoded = try? encoder.encode(user) {
+        let defaults = UserDefaults.standard
+        defaults.set(encoded, forKey: "SavedUser")
+        defaults.synchronize()
     }
 }
 
-extension User {
-    convenience init(userModel: UserModel) {
-        
-        self.init(id: userModel.id.intValue,
-            firstName: userModel.firstName,
-            lastName: userModel.lastName,
-            email: userModel.email,
-            mobilePhone: userModel.mobilePhone,
-            profilePhoto: userModel.profilePhoto,
-            defaultAddressId: userModel.defaultAddressId?.intValue,
-            defaultPaymentCardId: userModel.defaultPaymentCardId?.intValue,
-            settings: Settings(),
-            preferences: Preferences(),
-            walletAmount: userModel.walletAmount?.doubleValue,
-            referralCode: userModel.referralCode,
-            dataModel: userModel)
+func loadUser() -> User? {
+    let decoder = JSONDecoder()
+    let defaults = UserDefaults.standard
+    if let decoded  = defaults.object(forKey: "SavedUser") as? Data {
+        do {
+            let user = try decoder.decode(User.self, from: decoded)
+            return user
+        } catch {
+            return nil
+        }
     }
+    return nil
 }

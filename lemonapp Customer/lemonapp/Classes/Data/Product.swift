@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+
 
 final class Product: Equatable {
     
@@ -19,7 +19,6 @@ final class Product: Equatable {
     var useWeight: Bool
     var parentId: Int
     var subproducts = [Product]()
-    fileprivate var _dataModel: ProductModel
     
     init (id: Int,
         name: String,
@@ -28,8 +27,7 @@ final class Product: Equatable {
         price: Float,
         taxable: Bool,
         useWeight: Bool,
-        parentId: Int,
-        dataModel: ProductModel? = nil) {
+        parentId: Int) {
             
             self.id = id
             self.name = name
@@ -39,33 +37,22 @@ final class Product: Equatable {
             self.taxable = taxable
             self.useWeight = useWeight
             self.parentId = parentId
-            
-            self._dataModel = dataModel ?? LemonCoreDataManager.findWithId(id) ?? ProductModel(id: NSNumber(value: id as Int),
-                name: name,
-                description: description,
-                isActive: isActive,
-                price: NSNumber(value: price as Float),
-                taxable: taxable,
-                useWeight: useWeight,
-                parentId: NSNumber(value: parentId as Int))
-
-            syncDataModel()
     }
-    
-    convenience init(productModel: ProductModel) {
-        self.init(id: productModel.id.intValue,
-            name: productModel.name,
-            description: productModel.descr,
-            isActive: productModel.isActive,
-            price: productModel.price.floatValue,
-            taxable: productModel.taxable,
-            useWeight: productModel.useWeight,
-            parentId: productModel.parentId.intValue,
-            dataModel: productModel)
+
+    init(entity: ProductEntity) {
+        self.id = entity.id
+        self.name = entity.name
+        self.description = entity.descriptions
+        self.isActive = entity.isActive
+        self.price = entity.price
+        self.taxable = entity.taxable
+        self.useWeight = entity.useWeight
+        self.parentId = entity.parentId
+        self.subproducts = entity.subproducts.compactMap({ Product(entity: $0)})
     }
     
     static func groupingProducts(_ products: [Product]) -> [Product] {
-        let groupedProducts = products.flatMap { $0.parentId == 0 ? $0 : nil }
+        let groupedProducts = products.compactMap { $0.parentId == 0 ? $0 : nil }
         var productsDict = [Int: Product]()
         groupedProducts.forEach { productsDict[$0.id] = $0 }
         products.forEach { if $0.parentId != 0 {  productsDict[$0.parentId]?.subproducts.append($0) } }
@@ -73,24 +60,6 @@ final class Product: Equatable {
     }
 }
 
-extension Product: DataModelWrapper {
-    
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        _dataModel.id = NSNumber(value: self.id as Int)
-        _dataModel.name = self.name
-        _dataModel.descr = self.description
-        _dataModel.isActive = self.isActive
-        _dataModel.price = NSNumber(value: self.price as Float)
-        _dataModel.taxable = self.taxable
-        _dataModel.useWeight = self.useWeight
-        _dataModel.parentId = NSNumber(value: self.parentId as Int)
-        saveDataModelChanges()
-    }
-}
 
 func == (left: Product, right: Product) -> Bool {
     return left.id == right.id

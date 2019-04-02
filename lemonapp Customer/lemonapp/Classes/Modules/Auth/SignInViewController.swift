@@ -39,7 +39,7 @@ final class SignInViewModel: ViewModel {
                     _ = LemonAPI.login(email: emailVal, password: passwordVal).request().observeNext { (event: EventResolver<User>) in
                                 do {
                                     let user = try event()
-                                    user.saveDataModel()
+                                    save(user:user)
                                     LemonAPI.userId = user.id
                                     LemonAPI.userPassword = passwordVal
                                     self?.storeLatestEmail()
@@ -73,7 +73,7 @@ let notificationNameToken = Notification.Name("TokenSaved")
 func saveToken(token: AccessToken) {
     LemonAPI.accessToken = token
 
-    DataProvider.sharedInstance.refreshData()
+    DataProvider.sharedInstance.refreshAllData()
     DataProvider.sharedInstance.refreshUserOrders()
     
     

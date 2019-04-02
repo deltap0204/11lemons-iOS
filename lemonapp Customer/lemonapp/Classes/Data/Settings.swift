@@ -9,7 +9,7 @@ import Foundation
 import Bond
 import ReactiveKit
 
-final class Settings: Copying {
+final class Settings: Copying, Codable {
     
     fileprivate let NotificationKey = "Notification"
     fileprivate let CloudClosetEnabledKey = "CloudCloset"
@@ -40,6 +40,27 @@ final class Settings: Copying {
         let settings = (list as NSArray).componentsJoined(by: ",")
         return settings
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case pushEnabled, cloudClosetEnabled, mailEnabled, messageEnabled
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.pushEnabled = try container.decode(Bool.self, forKey: .pushEnabled)
+        self.cloudClosetEnabled = try container.decode(Bool.self, forKey: .cloudClosetEnabled)
+        self.mailEnabled = try container.decode(Bool.self, forKey: .mailEnabled)
+        self.messageEnabled = try container.decode(Bool.self, forKey: .messageEnabled)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(pushEnabled, forKey: .pushEnabled)
+        try container.encode(cloudClosetEnabled, forKey: .cloudClosetEnabled)
+        try container.encode(mailEnabled, forKey: .mailEnabled)
+        try container.encode(messageEnabled, forKey: .messageEnabled)
+    }
+    
     
     init(notificationString: String? = nil, cloudClosetEnabled: Bool? = nil) {
         let defaults = UserDefaults.standard
@@ -74,6 +95,14 @@ final class Settings: Copying {
     convenience init(original: Settings) {
         self.init(notificationString: original.encodedSetting)
         self.cloudClosetEnabled = original.cloudClosetEnabled
+    }
+    
+    init(entity: SettingsEntity) {
+        self.cloudClosetEnabled = entity.cloudClosetEnabled
+        
+        self.pushEnabled = entity.pushEnabled
+        self.mailEnabled = entity.mailEnabled
+        self.messageEnabled = entity.messageEnabled
     }
     
     func sync(_ settings: Settings) {

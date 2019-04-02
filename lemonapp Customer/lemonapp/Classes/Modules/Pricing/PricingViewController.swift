@@ -35,6 +35,7 @@ final class PricingViewController: UIViewController {
         productsTable.addSubview(self.refreshControl)
         
         bindViewModel()
+        self.viewModel.delegate = self
         
         newOrderButton.bnd_tap.observeNext { [weak self] in
             self?.router?.showOrdersFlow()
@@ -45,6 +46,7 @@ final class PricingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.productsTable.alpha = 1
+        self.viewModel.updateDepartmentList({})
     }
     
     
@@ -66,7 +68,7 @@ final class PricingViewController: UIViewController {
             //Before migration code
             
             if let productCell = cell as? ProductCell {
-                productCell.viewModel = dataSource/*[indexPath.section]*/[indexPath.row]
+                productCell.viewModel = dataSource[indexPath.row]
                 return productCell
             }
  
@@ -87,7 +89,7 @@ final class PricingViewController: UIViewController {
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel.update { [weak self] in
+        viewModel.updateDepartmentList { [weak self] in
             self?.refreshControl.endRefreshing()
         }
     }
@@ -101,5 +103,12 @@ extension PricingViewController: UITableViewDelegate {
         if viewModel.productCellViewModels[indexPath.row].subprodutsViewModel != nil {
             performSegueWithIdentifier(.Subproducts, sender: tableView.cellForRow(at: indexPath))
         }
+    }
+}
+
+extension PricingViewController: ProductViewModelDelegate {
+    
+    func hiddenLoading() {
+        self.refreshControl.endRefreshing()
     }
 }

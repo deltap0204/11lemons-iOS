@@ -20,11 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     
+    private var eventTracker : EventTracker!
     var reachability : Reachability? = Reachability.forInternetConnection()
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Fabric.with([Crashlytics.self])
+        self.initialSetup()
+        
         
         UIApplication.shared.statusBarStyle = .lightContent
 
@@ -32,29 +34,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //LemonCoreDataManager
         
         IQKeyboardManager.sharedManager().enable = true
+        
+        
+        initStorageContext {
 
-        
-        initLemonCoreDataManager {
-            if DataProvider.sharedInstance.isUserLogged {
-                _ = LemonAPI.restore()
-                let authRouter = AuthRouter()
-                authRouter.openHome(false)
-                DataProvider.sharedInstance.restoreData() { [weak self] in
-                    guard let strongSelf = self else { return }
-                    strongSelf.setupReachability()
-                    strongSelf.refreshData()
-                    strongSelf.checkAPIVersion()
+            if self.shouldLogout() {
+                if DataProvider.sharedInstance.isUserLogged {
+                    LemonAPI.clear()
+                    DataProvider.sharedInstance.clear()
                 }
-            } else {
-        
                 let initialViewController = UIStoryboard(storyboard: .Auth).instantiateInitialViewController()
                 UIApplication.shared.keyWindow?.rootViewController = initialViewController
                 
                 self.setupReachability()
                 self.checkAPIVersion()
+            } else {
+                if DataProvider.sharedInstance.isUserLogged {
+                    _ = LemonAPI.restore()
+                    let authRouter = AuthRouter()
+                    authRouter.openHome(false)
+                    DataProvider.sharedInstance.restoreData() { [weak self] in
+                        guard let strongSelf = self else { return }
+                        strongSelf.setupReachability()
+                        strongSelf.refreshData()
+                        strongSelf.checkAPIVersion()
+                    }
+                } else {
+                    
+                    let initialViewController = UIStoryboard(storyboard: .Auth).instantiateInitialViewController()
+                    UIApplication.shared.keyWindow?.rootViewController = initialViewController
+                    
+                    self.setupReachability()
+                    self.checkAPIVersion()
+                }
+                
             }
     
         }
+        return true
+    }
+    
+    fileprivate let APP_PREVIOUS_VERSION = "AppPreviousVersion"
+    
+    private func shouldLogout() -> Bool {
+        
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        let numberVersion = appVersion?.replacingOccurrences(of: ".", with: "") ?? "9999"
+        let version = Int(numberVersion) ?? 9999
+        let defaults = UserDefaults.standard
+        
+        if let appPreviousVersion = UserDefaults.standard.object(forKey: APP_PREVIOUS_VERSION) as? Int {
+            if appPreviousVersion >= version {
+                return false
+            }
+        }
+
+        defaults.set(version, forKey: APP_PREVIOUS_VERSION)
+        defaults.synchronize()
         return true
     }
     
@@ -130,9 +166,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    private func initialSetup() {
+        crashlyticsTool.initialize()
+        self.setupEventTracker()
+    }
+    
+    private func setupEventTracker() {
+        self.eventTracker = EventTrackerImpl()
+    }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        LemonCoreDataManager.saveChanges()
+//        LemonCoreDataManager.saveChanges()
     }
     
     fileprivate func customizeUI() {

@@ -8,31 +8,34 @@
 
 import Foundation
 import Bond
+import ReactiveKit
 
+protocol ProductViewModelDelegate {
+    func hiddenLoading()
+}
 
 final class PricingViewModel: ViewModel {
     
+    let departments: MutableObservableArray<Service>
     let productCellViewModels = MutableObservableArray<ProductCellViewModel>()
-    
+    var disposeBag = DisposeBag()
+    var delegate: ProductViewModelDelegate?
+
     init() {
-        update({})
+        self.departments = DataProvider.sharedInstance.productsItems
+        departments.observeNext { [weak self] event in
+            guard let self = self else {return}
+            self.refreshDepartmentList(self.departments.array)
+            }.dispose(in: disposeBag)
+        self.updateDepartmentList({})
     }
 
-    func update(_ completion: @escaping () -> Void) {
-        _ = LemonAPI.getDepartmentsAll().request().observeNext { [weak self] (result: EventResolver<[Service]>) in
-            do {
-                guard let strongSelf = self else { return }
-                completion()
-                let departments = try result()
-                
-                strongSelf.refreshDepartmentList( departments.filter{$0.active} )
-                completion()
-                
-            } catch { }
-        }
+    func updateDepartmentList(_ completion: @escaping () -> Void) {
+        DataProvider.sharedInstance.refreshDepartments(completion)
     }
     
     fileprivate func refreshDepartmentList(_ departments: [Service]) {
-        self.productCellViewModels.replace(with: departments.flatMap { $0.active ? ProductCellViewModel(department: $0) : nil })
+        self.productCellViewModels.replace(with: departments.compactMap { $0.active ? ProductCellViewModel(department: $0) : nil })
+        self.delegate?.hiddenLoading()
     }
 }

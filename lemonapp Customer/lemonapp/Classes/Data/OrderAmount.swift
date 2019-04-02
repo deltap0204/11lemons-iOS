@@ -23,4 +23,12 @@ final class OrderAmount {
         self.numberOfItems = numberOfItems
         self.state = state
     }
+    
+    convenience init(entity: OrderAmountEntity) {
+        self.init(amount: entity.amount,
+                  tax: entity.tax,
+                  amountWithoutTax: entity.amountWithoutTax,
+                  numberOfItems: entity.numberOfItems,
+                  state: entity.state)
+    }
 }

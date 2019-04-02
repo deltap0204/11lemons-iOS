@@ -444,6 +444,7 @@
 		A028EB8D1FE0175900017A6A /* DepartmentAndServiceSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028EB8B1FE0175900017A6A /* DepartmentAndServiceSelectionDelegate.swift */; };
 		A028EB8F1FE035BC00017A6A /* ServiceSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028EB8E1FE035BC00017A6A /* ServiceSelectionDelegate.swift */; };
 		A028EB901FE035BC00017A6A /* ServiceSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028EB8E1FE035BC00017A6A /* ServiceSelectionDelegate.swift */; };
+		A031D71822308F0100B8989E /* WalletTransitionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031D71722308F0100B8989E /* WalletTransitionEntity.swift */; };
 		A033371A2020F3DB004097CE /* Order+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03337192020F3DB004097CE /* Order+Helper.swift */; };
 		A033371B2020F3DB004097CE /* Order+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03337192020F3DB004097CE /* Order+Helper.swift */; };
 		A033371D2020F818004097CE /* OrderPaymentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A033371C2020F818004097CE /* OrderPaymentStatus.swift */; };
@@ -524,6 +525,22 @@
 		A08DA778205C481700126685 /* PatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08DA776205C481700126685 /* PatterHelper.swift */; };
 		A092DF53220EF65600F5B708 /* ReceiptHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A092DF52220EF65600F5B708 /* ReceiptHeaderView.xib */; };
 		A092DF55220EF66000F5B708 /* FeedbackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A092DF54220EF66000F5B708 /* FeedbackView.xib */; };
+		A09324D822307A2600E7839A /* OrderEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324D722307A2600E7839A /* OrderEntity.swift */; };
+		A09324DA22307A7400E7839A /* AttributeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324D922307A7400E7839A /* AttributeEntity.swift */; };
+		A09324DC22307A8B00E7839A /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324DB22307A8B00E7839A /* CategoryEntity.swift */; };
+		A09324DE22307AA100E7839A /* ProductEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324DD22307AA100E7839A /* ProductEntity.swift */; };
+		A09324E022307AB800E7839A /* OrderGarmentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324DF22307AB800E7839A /* OrderGarmentEntity.swift */; };
+		A09324E222307ACB00E7839A /* ServiceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324E122307ACB00E7839A /* ServiceEntity.swift */; };
+		A09324E422307AE400E7839A /* OrderDetailsReceiptEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324E322307AE400E7839A /* OrderDetailsReceiptEntity.swift */; };
+		A09324E622307AFE00E7839A /* BillingAddressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324E522307AFE00E7839A /* BillingAddressEntity.swift */; };
+		A09324E822307B1300E7839A /* AddressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324E722307B1300E7839A /* AddressEntity.swift */; };
+		A09324EA22307B2600E7839A /* DeliveryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324E922307B2600E7839A /* DeliveryEntity.swift */; };
+		A09324EC22307B3900E7839A /* OrderAmountEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324EB22307B3900E7839A /* OrderAmountEntity.swift */; };
+		A09324EE22307B4B00E7839A /* PaymentCardEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324ED22307B4B00E7839A /* PaymentCardEntity.swift */; };
+		A09324F022307B6A00E7839A /* OrderDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324EF22307B6A00E7839A /* OrderDetailEntity.swift */; };
+		A09324F222307B7C00E7839A /* OrderImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324F122307B7C00E7839A /* OrderImagesEntity.swift */; };
+		A09324F422307B9300E7839A /* SettingsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324F322307B9300E7839A /* SettingsEntity.swift */; };
+		A09324F622307BA600E7839A /* PreferencesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09324F522307BA600E7839A /* PreferencesEntity.swift */; };
 		A09900661FD59825009C7FA2 /* GarmentCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A09900651FD59825009C7FA2 /* GarmentCardView.xib */; };
 		A09900671FD59825009C7FA2 /* GarmentCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A09900651FD59825009C7FA2 /* GarmentCardView.xib */; };
 		A09900691FD5A8B9009C7FA2 /* GarmentCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09900681FD5A8B9009C7FA2 /* GarmentCardViewModel.swift */; };
@@ -596,7 +613,7 @@
 		A0F098212018E07200469EBC /* PreferencesUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0F0981F2018E07200469EBC /* PreferencesUserView.xib */; };
 		A0F098232018E47700469EBC /* PreferencesUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F098222018E47700469EBC /* PreferencesUserView.swift */; };
 		A0F098242018E47700469EBC /* PreferencesUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F098222018E47700469EBC /* PreferencesUserView.swift */; };
-		A0F20194222871BF001354BF /* PFARecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2018E222871BF001354BF /* PFARecord.swift */; };
+		A0F20194222871BF001354BF /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2018E222871BF001354BF /* UserEntity.swift */; };
 		A0F20198222871DB001354BF /* PersistanceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F20197222871DB001354BF /* PersistanceProtocols.swift */; };
 		A0F20199222871DB001354BF /* PersistanceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F20197222871DB001354BF /* PersistanceProtocols.swift */; };
 		A0F2019B222871F9001354BF /* PersistanceLayerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2019A222871F9001354BF /* PersistanceLayerAPI.swift */; };
@@ -925,7 +942,7 @@
 		071366911D92BE3100A86555 /* TextFieldWithPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithPicker.swift; sourceTree = "<group>"; };
 		071B012D1D9E784700C36577 /* User+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+JSON.swift"; sourceTree = "<group>"; };
 		076F80271DA3CB0A007DCEAE /* AdminOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOrderCell.swift; sourceTree = "<group>"; };
-		076F80281DA3CB0A007DCEAE /* AdminOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdminOrderCell.xib; path = ../Classes/AdminOrderCell.xib; sourceTree = "<group>"; };
+		076F80281DA3CB0A007DCEAE /* AdminOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdminOrderCell.xib; sourceTree = "<group>"; };
 		076F802D1DA3E59B007DCEAE /* AdminOrderCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOrderCellViewModel.swift; sourceTree = "<group>"; };
 		077CECA31D9D1D7000D25775 /* AdminOrderListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOrderListViewController.swift; sourceTree = "<group>"; };
 		077CECA61D9D1D8C00D25775 /* AdminOrderListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminOrderListViewModel.swift; sourceTree = "<group>"; };
@@ -1173,6 +1190,7 @@
 		A028EB821FDF0B8900017A6A /* ServiceSelectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSelectionViewModel.swift; sourceTree = "<group>"; };
 		A028EB8B1FE0175900017A6A /* DepartmentAndServiceSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentAndServiceSelectionDelegate.swift; sourceTree = "<group>"; };
 		A028EB8E1FE035BC00017A6A /* ServiceSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSelectionDelegate.swift; sourceTree = "<group>"; };
+		A031D71722308F0100B8989E /* WalletTransitionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTransitionEntity.swift; sourceTree = "<group>"; };
 		A03337192020F3DB004097CE /* Order+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Order+Helper.swift"; path = "Common/Helpers/Order+Helper.swift"; sourceTree = "<group>"; };
 		A033371C2020F818004097CE /* OrderPaymentStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderPaymentStatus.swift; path = Models/OrderPaymentStatus.swift; sourceTree = "<group>"; };
 		A047A60C1FB9FFFA00624BCC /* PaymentSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentSectionView.xib; sourceTree = "<group>"; };
@@ -1214,6 +1232,22 @@
 		A08DA776205C481700126685 /* PatterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatterHelper.swift; path = Common/Helpers/PatterHelper.swift; sourceTree = "<group>"; };
 		A092DF52220EF65600F5B708 /* ReceiptHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReceiptHeaderView.xib; sourceTree = "<group>"; };
 		A092DF54220EF66000F5B708 /* FeedbackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackView.xib; sourceTree = "<group>"; };
+		A09324D722307A2600E7839A /* OrderEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEntity.swift; sourceTree = "<group>"; };
+		A09324D922307A7400E7839A /* AttributeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeEntity.swift; sourceTree = "<group>"; };
+		A09324DB22307A8B00E7839A /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
+		A09324DD22307AA100E7839A /* ProductEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEntity.swift; sourceTree = "<group>"; };
+		A09324DF22307AB800E7839A /* OrderGarmentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderGarmentEntity.swift; sourceTree = "<group>"; };
+		A09324E122307ACB00E7839A /* ServiceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntity.swift; sourceTree = "<group>"; };
+		A09324E322307AE400E7839A /* OrderDetailsReceiptEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsReceiptEntity.swift; sourceTree = "<group>"; };
+		A09324E522307AFE00E7839A /* BillingAddressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingAddressEntity.swift; sourceTree = "<group>"; };
+		A09324E722307B1300E7839A /* AddressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEntity.swift; sourceTree = "<group>"; };
+		A09324E922307B2600E7839A /* DeliveryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryEntity.swift; sourceTree = "<group>"; };
+		A09324EB22307B3900E7839A /* OrderAmountEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAmountEntity.swift; sourceTree = "<group>"; };
+		A09324ED22307B4B00E7839A /* PaymentCardEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardEntity.swift; sourceTree = "<group>"; };
+		A09324EF22307B6A00E7839A /* OrderDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailEntity.swift; sourceTree = "<group>"; };
+		A09324F122307B7C00E7839A /* OrderImagesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderImagesEntity.swift; sourceTree = "<group>"; };
+		A09324F322307B9300E7839A /* SettingsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEntity.swift; sourceTree = "<group>"; };
+		A09324F522307BA600E7839A /* PreferencesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesEntity.swift; sourceTree = "<group>"; };
 		A09900651FD59825009C7FA2 /* GarmentCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GarmentCardView.xib; sourceTree = "<group>"; };
 		A09900681FD5A8B9009C7FA2 /* GarmentCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarmentCardViewModel.swift; sourceTree = "<group>"; };
 		A0AFAFFC2059991300801DF9 /* OrderDetailDryCleaningComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderDetailDryCleaningComponentViewModel.swift; path = "Modules/Order Details/OrderDetailDryCleaningComponentViewModel.swift"; sourceTree = "<group>"; };
@@ -1250,7 +1284,7 @@
 		A0EA1FA11FB22AC800600AF4 /* DeleteButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DeleteButton.xib; path = Buttons/DeleteButton.xib; sourceTree = "<group>"; };
 		A0F0981F2018E07200469EBC /* PreferencesUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesUserView.xib; path = Xibs/NewOrderElements/PreferencesUserView.xib; sourceTree = "<group>"; };
 		A0F098222018E47700469EBC /* PreferencesUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferencesUserView.swift; path = Common/Views/NewOrderElements/PreferencesUserView.swift; sourceTree = "<group>"; };
-		A0F2018E222871BF001354BF /* PFARecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFARecord.swift; sourceTree = "<group>"; };
+		A0F2018E222871BF001354BF /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		A0F20197222871DB001354BF /* PersistanceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceProtocols.swift; sourceTree = "<group>"; };
 		A0F2019A222871F9001354BF /* PersistanceLayerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceLayerAPI.swift; sourceTree = "<group>"; };
 		A0F2019D22287222001354BF /* RealmStorageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorageContext.swift; sourceTree = "<group>"; };
@@ -2157,7 +2191,24 @@
 		A0F2018D222871BF001354BF /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				A0F2018E222871BF001354BF /* PFARecord.swift */,
+				A09324E722307B1300E7839A /* AddressEntity.swift */,
+				A09324D922307A7400E7839A /* AttributeEntity.swift */,
+				A09324E522307AFE00E7839A /* BillingAddressEntity.swift */,
+				A09324DB22307A8B00E7839A /* CategoryEntity.swift */,
+				A09324E922307B2600E7839A /* DeliveryEntity.swift */,
+				A09324EB22307B3900E7839A /* OrderAmountEntity.swift */,
+				A09324EF22307B6A00E7839A /* OrderDetailEntity.swift */,
+				A09324E322307AE400E7839A /* OrderDetailsReceiptEntity.swift */,
+				A09324D722307A2600E7839A /* OrderEntity.swift */,
+				A09324DF22307AB800E7839A /* OrderGarmentEntity.swift */,
+				A09324F122307B7C00E7839A /* OrderImagesEntity.swift */,
+				A09324ED22307B4B00E7839A /* PaymentCardEntity.swift */,
+				A09324F522307BA600E7839A /* PreferencesEntity.swift */,
+				A09324DD22307AA100E7839A /* ProductEntity.swift */,
+				A09324E122307ACB00E7839A /* ServiceEntity.swift */,
+				A09324F322307B9300E7839A /* SettingsEntity.swift */,
+				A0F2018E222871BF001354BF /* UserEntity.swift */,
+				A031D71722308F0100B8989E /* WalletTransitionEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -2278,7 +2329,6 @@
 			children = (
 				A00B25D21FD1C5BD00602C95 /* GarmentCards */,
 				8026AF8D1DBFA6D800852714 /* NewOrderElements */,
-				076F80281DA3CB0A007DCEAE /* AdminOrderCell.xib */,
 				459747121C5A3D6B008625E5 /* AlertView.xib */,
 				342A216720F671DA00C382F3 /* ServiceDefaultBackgroundWithText.xib */,
 				342A216D20F67DC900C382F3 /* ServiceSelectedBackgroundWithText.xib */,
@@ -2409,6 +2459,7 @@
 		A13F1F1E1C316A9500889647 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				076F80281DA3CB0A007DCEAE /* AdminOrderCell.xib */,
 				076F80271DA3CB0A007DCEAE /* AdminOrderCell.swift */,
 				076F802D1DA3E59B007DCEAE /* AdminOrderCellViewModel.swift */,
 				A13F1F1F1C316C0C00889647 /* OrderCell.swift */,
@@ -3436,18 +3487,23 @@
 				451176A01C4CF01900AC22C0 /* PaymentCardCell.swift in Sources */,
 				45A428BA1C96DE06007FF109 /* LocationData+JSON.swift in Sources */,
 				34AD5A3C20FD388600D80ACE /* BrandDefaultBackgroundWithText.swift in Sources */,
+				A09324EA22307B2600E7839A /* DeliveryEntity.swift in Sources */,
 				A1CD13471C4D165F00729FFB /* OrderSummaryViewModel.swift in Sources */,
 				346B670E20FE9B080042CD2E /* MaterialSelectedBackgroundWithText.swift in Sources */,
 				A14517461CD0F0CF0083E8F9 /* RequiredFieldView.swift in Sources */,
 				A08DA777205C481700126685 /* PatterHelper.swift in Sources */,
+				A09324E222307ACB00E7839A /* ServiceEntity.swift in Sources */,
 				071366921D92BE3100A86555 /* TextFieldWithPicker.swift in Sources */,
 				A168C1101CA5747C00356AB9 /* OutlineButton.swift in Sources */,
 				A0C10E8B204D945A00621EFA /* AddOrderDetailsMenShirtVM.swift in Sources */,
 				A0F098232018E47700469EBC /* PreferencesUserView.swift in Sources */,
 				A122E4D91C3C1CD80023789B /* MenuItemCell.swift in Sources */,
+				A09324F622307BA600E7839A /* PreferencesEntity.swift in Sources */,
 				A0CC8DC21FA9015A0052B38D /* SubproductAdminCell.swift in Sources */,
+				A09324D822307A2600E7839A /* OrderEntity.swift in Sources */,
 				45E71CE71C7F471C0076B4A0 /* RemoveKeyboardView.swift in Sources */,
 				45ACEFAE1CF7474600B23E68 /* GarmentType.swift in Sources */,
+				A09324F422307B9300E7839A /* SettingsEntity.swift in Sources */,
 				A1EAFAD81C3D6055001D0C99 /* IBInspectableView.swift in Sources */,
 				342A216520F671BE00C382F3 /* ServiceDefaultBackgroundWithText.swift in Sources */,
 				A0B922072056B7D30009BC85 /* OrderDetailMenShirtComponent.swift in Sources */,
@@ -3468,6 +3524,7 @@
 				8076AB431DE83B6300A30127 /* NewServiceViewController.swift in Sources */,
 				457D82921C352ED3008ECAD5 /* RestorePasswordViewController.swift in Sources */,
 				A0FE902F205C34CB006E1FBB /* BrandHelper.swift in Sources */,
+				A09324F222307B7C00E7839A /* OrderImagesEntity.swift in Sources */,
 				41D2FD4F1DAD124700CD20BF /* Note.swift in Sources */,
 				A02433002078748A003E6673 /* ReceiptTotalDoubleCell.swift in Sources */,
 				413FE3311D82B3040002F797 /* Dryers.swift in Sources */,
@@ -3483,6 +3540,7 @@
 				A122E4D41C3C19890023789B /* MenuViewController.swift in Sources */,
 				A122E4CE1C3C18D80023789B /* AuthRouter.swift in Sources */,
 				A07430C61FBB783D0061AFD4 /* ReceiptTableView.swift in Sources */,
+				A09324F022307B6A00E7839A /* OrderDetailEntity.swift in Sources */,
 				A1479FDB1C3BB8F900E6B0DC /* DeliveryViewController.swift in Sources */,
 				A07430CD1FBB78B60061AFD4 /* ReceiptItemSectionView.swift in Sources */,
 				A1FEAD931C3BDC5F004A5D09 /* UIImage.swift in Sources */,
@@ -3501,6 +3559,7 @@
 				A13084341C4FB6EB00635A2A /* SupportCellViewModel.swift in Sources */,
 				A07430B21FBB779E0061AFD4 /* PaymentSectionView.swift in Sources */,
 				A1F7F30C1CB7FE54005237FF /* NotificationView.swift in Sources */,
+				A09324DE22307AA100E7839A /* ProductEntity.swift in Sources */,
 				A1479FE01C3BBD8600E6B0DC /* DeliveryProposalText.swift in Sources */,
 				45A428B81C96DD1E007FF109 /* LocationData.swift in Sources */,
 				A028EB8F1FE035BC00017A6A /* ServiceSelectionDelegate.swift in Sources */,
@@ -3523,6 +3582,7 @@
 				A134AE4F1C3A98E600F43731 /* DeliveryOption.swift in Sources */,
 				A0FD16D7205D521C0039E728 /* IdentifierHelper.swift in Sources */,
 				A184F6441C3D451300922B51 /* NewOrderRouter.swift in Sources */,
+				A031D71822308F0100B8989E /* WalletTransitionEntity.swift in Sources */,
 				A0D643CB1FEAB16A00B68DA1 /* NewDepartmentViewModel.swift in Sources */,
 				A033371A2020F3DB004097CE /* Order+Helper.swift in Sources */,
 				45E71CD71C7F46E70076B4A0 /* UIViewController+Navigation.swift in Sources */,
@@ -3575,6 +3635,7 @@
 				A05722E72087C7DF00A6D770 /* AdminOrderCellNavigationDelegate.swift in Sources */,
 				A1CD13421C4D08DA00729FFB /* OrderInfoViewModel.swift in Sources */,
 				A13F1F171C3160D800889647 /* DataProvider.swift in Sources */,
+				A09324E022307AB800E7839A /* OrderGarmentEntity.swift in Sources */,
 				457D82731C328B8B008ECAD5 /* NSUserDefaultsDataKeys.swift in Sources */,
 				A184A2911C343C8500C3AC14 /* Colors.swift in Sources */,
 				80741A9D1DCCC09B002E1344 /* AddOrderDetailsViewController.swift in Sources */,
@@ -3626,17 +3687,21 @@
 				801DC9FA1DF01C1B00018EEA /* PickAttributeCategoryViewCell.swift in Sources */,
 				A13084381C4FB94100635A2A /* SupportViewModel.swift in Sources */,
 				45E71CE41C7F471C0076B4A0 /* HighlightedButton.swift in Sources */,
+				A09324DA22307A7400E7839A /* AttributeEntity.swift in Sources */,
 				A179D6441CBD46400079961D /* Preferences+JSON.swift in Sources */,
 				A0FD16EA205D6A350039E728 /* DryPreferenceRowViewModel.swift in Sources */,
 				A04D4B451F85347000BD120B /* ProductAdminCellViewModel.swift in Sources */,
 				417DF2741D88386A007D22F5 /* TipsView.swift in Sources */,
-				A0F20194222871BF001354BF /* PFARecord.swift in Sources */,
+				A0F20194222871BF001354BF /* UserEntity.swift in Sources */,
 				A1F883481C315919000703B0 /* AppStoryboardIdentifiers.swift in Sources */,
+				A09324E822307B1300E7839A /* AddressEntity.swift in Sources */,
 				A07430BB1FBB77D70061AFD4 /* FeedbackViewModel.swift in Sources */,
 				457B30C81C2ADD3C00AFCD14 /* AppDelegate.swift in Sources */,
+				A09324E622307AFE00E7839A /* BillingAddressEntity.swift in Sources */,
 				A19BAF1C1C3BF2C200A728D7 /* Order+JSON.swift in Sources */,
 				4554FE9D1C492D54005D21AD /* AddressDetailsViewController.swift in Sources */,
 				45ACEFC31CFC936200B23E68 /* CenterCellCollectionViewFlowLayout.swift in Sources */,
+				A09324E422307AE400E7839A /* OrderDetailsReceiptEntity.swift in Sources */,
 				A0C10E81204D87B000621EFA /* GarmentCardWashNFoldVM.swift in Sources */,
 				A0B922042056B79E0009BC85 /* OrderDetailWashFoldComponent.swift in Sources */,
 				450DEB2D1CC78D520042A313 /* ViewControllerForResult.swift in Sources */,
@@ -3680,8 +3745,11 @@
 				A02432F42077F83B003E6673 /* OrderDetailsReceipt+JSON.swift in Sources */,
 				A17590BF1C5FB64800B539B2 /* Float+Currency.swift in Sources */,
 				A1A3A0C41CD9BED50052AABF /* SuggestNotificationViewController.swift in Sources */,
+				A09324EE22307B4B00E7839A /* PaymentCardEntity.swift in Sources */,
+				A09324EC22307B3900E7839A /* OrderAmountEntity.swift in Sources */,
 				45F32FF11C468922001AF90C /* ProfileViewController.swift in Sources */,
 				A19BAF141C3BECD000A728D7 /* AccessToken.swift in Sources */,
+				A09324DC22307A8B00E7839A /* CategoryEntity.swift in Sources */,
 				A1EAFAD91C3D6055001D0C99 /* JSON.swift in Sources */,
 				80A59AF21DF96082002C02E9 /* UploadImageView.swift in Sources */,
 				459765391CBFCF490001A221 /* OrderButton.swift in Sources */,

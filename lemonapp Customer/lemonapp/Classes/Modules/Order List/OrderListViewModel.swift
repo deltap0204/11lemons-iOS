@@ -79,8 +79,10 @@ final class OrderListViewModel : ViewModel {
                     do {
                         hideLoadingOverlay()
                         try resolver()
+                        
                         walletTransition.archived = true
-                        walletTransition.syncDataModel()
+                        DataProvider.sharedInstance.saveWalletTransitionInDB(walletTransition: walletTransition)
+                        DataProvider.sharedInstance.refreshWallet()
                         let dashboardItem = walletTransition as DashboardItem
                         if let walletTransitionIndex = self?.dashboardItems.array.index(where: { $0 == dashboardItem }) {
                             self?.dashboardItems.remove(at: walletTransitionIndex)
@@ -104,7 +106,7 @@ final class OrderListViewModel : ViewModel {
                         hideLoadingOverlay()
                         try resolver()
                         order.status = .archived
-                        order.syncDataModel()
+                        DataProvider.sharedInstance.refreshUserOrders()
                         let dashboardItem = order as DashboardItem
                         if let orderIndex = self?.dashboardItems.array.index(where: { $0 == dashboardItem }) {
                             self?.dashboardItems.remove(at: orderIndex)
@@ -123,7 +125,7 @@ final class OrderListViewModel : ViewModel {
         return CancelOrderFlow(withOrder: order, fromViewController: viewController) { [weak self] didCancel, success in
             if didCancel {
                 order.status = .canceled
-                order.syncDataModel()
+                DataProvider.sharedInstance.refreshUserOrders()
                 let dashboardItem = order as DashboardItem
                 if let orderIndex = self?.dashboardItems.array.index(where: { $0 == dashboardItem }) {
                     self?.dashboardItems.remove(at: orderIndex)
@@ -191,7 +193,7 @@ final class OrderListViewModel : ViewModel {
     
     func reorderBySearchString(_ searchText: String) {
         //dashboardViewModels.array = dashboardItems.array.flatMap {
-        let auxArray: [ViewModel] = dashboardItems.array.flatMap {
+        let auxArray: [ViewModel] = dashboardItems.array.compactMap {
             if let order = $0 as? Order {
                 if (searchText.count == 0) {
                     return OrderCellViewModel(order: order)
@@ -254,8 +256,7 @@ final class OrderListViewModel : ViewModel {
                 _ = LemonAPI.addOrder(order: order).request().observeNext { (result: EventResolver<Order>)  in
                     do {
                         let order = try result()
-                        LemonCoreDataManager.insert(objects: order.dataModel)
-                        order.syncDataModel()
+                        DataProvider.sharedInstance.refreshUserOrders()
                         sink.completed(with: { return order })
                     } catch let error {
                         sink.completed(with: { throw error })

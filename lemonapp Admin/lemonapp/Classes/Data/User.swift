@@ -83,6 +83,32 @@ final class User: Copying, Codable {
             isAdmin: original.isAdmin)
     }
     
+    init(entity: UserEntity) {
+        self.id = entity.id
+        self.firstName = entity.firstName
+        self.lastName = entity.lastName
+        self.email = entity.email
+        self.mobilePhone = entity.mobilePhone
+        self.profilePhoto = entity.profilePhoto
+        if let pref = entity.preferences {
+            self.preferences = Preferences(entity: pref)
+        } else {
+            self.preferences = Preferences()
+        }
+        if let settings = entity.settings {
+            self.settings = Settings(entity: settings)
+        } else {
+            self.settings = Settings()
+        }
+        
+        self.defaultAddressId = entity.defaultAddressId.value
+        self.walletAmount = entity.walletAmount.value
+        self.referralCode = entity.referralCode
+        self.isAdmin = entity.isAdmin
+        
+        self.defaultPaymentCardId = entity.defaultPaymentCardId.value
+    }
+    
     func sync(_ user: User) {
         self.id = user.id
         self.firstName = user.firstName

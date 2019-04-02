@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum Detergent: String {
+enum Detergent: String, Codable {
     case Original,MountainSpring,Lavender,FreeNGentle
     
     var image: UIImage {

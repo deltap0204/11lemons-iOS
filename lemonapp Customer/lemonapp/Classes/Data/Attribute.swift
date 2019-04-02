@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+
 
 final class Attribute {
     
@@ -38,42 +38,38 @@ final class Attribute {
     var activeImage: String = ""
     var deleted: Bool = false
     
-    fileprivate var _dataModel: AttributeModel = AttributeModel()
-    
     init(id: Int) {
         self.id = id
     }
-    
-    convenience init(attributeModel: AttributeModel) {
-        self.init(id: attributeModel.id.intValue)
-        attributeName = attributeModel.attributeName
-        categoryId = attributeModel.categoryId.intValue
-        price = attributeModel.price.doubleValue
-        oneTimeUse = attributeModel.oneTimeUse
-        oneTimeUseProcessed = attributeModel.oneTimeUseProcessed
-        description = attributeModel.descr
-        image = attributeModel.image
-        percentUpcharge = attributeModel.percentUpcharge
-        roundPriceNearest = attributeModel.roundPriceNearest
-        displayReceipt = attributeModel.displayReceipt
-        displayPriceList = attributeModel.displayPriceList
-        unitType = attributeModel.unitType
-        pieces = attributeModel.pieces.intValue
-        taxable = attributeModel.taxable
-        upcharge = attributeModel.upcharge
-        dollarUpcharge = attributeModel.dollarUpcharge
-        itemizeOnReceipt = attributeModel.itemizeOnReceipt
-        roundPrice = attributeModel.roundPrice
-        alwaysRoundUp = attributeModel.alwaysRoundUp
-        upchargeAmount = attributeModel.upchargeAmount.doubleValue
-        attributeCategory = attributeModel.attributeCategory
-        isSelected = attributeModel.isSelected
-        upchargeMarkup = attributeModel.upchargeMarkup.doubleValue
-        inactiveImage = attributeModel.inactiveImage
-        activeImage = attributeModel.activeImage
-        deleted = attributeModel.isDelet
-        _dataModel = attributeModel
-        
+
+    init(entity: AttributeEntity) {
+        self.id = entity.id
+        self.attributeName = entity.attributeName
+        self.categoryId = entity.categoryId
+        self.price = entity.price
+        self.oneTimeUse = entity.oneTimeUse
+        self.oneTimeUseProcessed = entity.oneTimeUseProcessed
+        self.description = entity.descriptions
+        self.image = entity.image
+        self.percentUpcharge = entity.percentUpcharge
+        self.roundPriceNearest = entity.roundPriceNearest
+        self.displayReceipt = entity.displayReceipt
+        self.displayPriceList = entity.displayPriceList
+        self.unitType = entity.unitType
+        self.pieces = entity.pieces
+        self.taxable = entity.taxable
+        self.upcharge = entity.upcharge
+        self.dollarUpcharge = entity.dollarUpcharge
+        self.itemizeOnReceipt = entity.itemizeOnReceipt
+        self.roundPrice = entity.roundPrice
+        self.alwaysRoundUp = entity.alwaysRoundUp
+        self.upchargeAmount = entity.upchargeAmount
+        self.attributeCategory = entity.attributeCategory
+        self.isSelected = entity.isSelected
+        self.upchargeMarkup = entity.upchargeMarkup
+        self.inactiveImage = entity.inactiveImage
+        self.activeImage = entity.activeImage
+        self.deleted = entity.deleted
     }
     
     func sync(_ attribute: Attribute) {
@@ -103,44 +99,6 @@ final class Attribute {
         inactiveImage = attribute.inactiveImage
         activeImage = attribute.activeImage
         deleted = attribute.deleted
-        syncDataModel()
-    }
-}
-
-extension Attribute: DataModelWrapper {
-    
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        _dataModel.id = NSNumber(value: id as Int)
-        _dataModel.attributeName = attributeName
-        _dataModel.categoryId = NSNumber(value: categoryId as Int)
-        _dataModel.price = NSNumber(value: price as Double)
-        _dataModel.oneTimeUse = oneTimeUse
-        _dataModel.oneTimeUseProcessed = oneTimeUseProcessed
-        _dataModel.descr = description
-        _dataModel.image = image
-        _dataModel.percentUpcharge = percentUpcharge
-        _dataModel.roundPriceNearest = roundPriceNearest
-        _dataModel.displayReceipt = displayReceipt
-        _dataModel.displayPriceList = displayPriceList
-        _dataModel.unitType = unitType
-        _dataModel.pieces = NSNumber(value: pieces as Int)
-        _dataModel.taxable = taxable
-        _dataModel.upcharge = upcharge
-        _dataModel.dollarUpcharge = dollarUpcharge
-        _dataModel.itemizeOnReceipt = itemizeOnReceipt
-        _dataModel.roundPrice = roundPrice
-        _dataModel.alwaysRoundUp = alwaysRoundUp
-        _dataModel.upchargeAmount = NSNumber(value: upchargeAmount as Double)
-        _dataModel.attributeCategory = attributeCategory
-        _dataModel.isSelected = isSelected
-        _dataModel.upchargeMarkup = NSNumber(value: upchargeMarkup as Double)
-        _dataModel.inactiveImage = inactiveImage
-        _dataModel.activeImage = activeImage
-        _dataModel.isDelet = deleted
     }
 }
 

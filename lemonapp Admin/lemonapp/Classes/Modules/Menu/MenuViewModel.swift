@@ -15,28 +15,11 @@ final class MenuViewModel {
     var menuItems: MutableObservableArray<MenuItem>
     var selectedMenuItem: Observable<MenuItem>
     
-    let menuHeaderViewModel: Observable<UserViewModel?> = Observable(nil)
-    
     init() {
         self.selectedMenuItem = Observable<MenuItem>(.AdminDashboard)
         self.menuItems = MutableObservableArray<MenuItem>(MenuViewModel.AdminModeItems)
         
-        DataProvider.sharedInstance.userWrapperObserver.observeNext { [weak menuHeaderViewModel] in
-            if let userWrapper = $0 {
-                menuHeaderViewModel?.value = UserViewModel(userWrapper:userWrapper)
-                userWrapper.settingsDidChange.observeNext { [weak self, weak userWrapper] in
-                    if let cloudClosetEnabled = userWrapper?.changedUser.settings.cloudClosetEnabled, let strongSelf = self {
-                        if let index = strongSelf.menuItems.array.index(of: .CloudCloset), !cloudClosetEnabled {
-                            strongSelf.menuItems.remove(at: index)
-                        } else if cloudClosetEnabled && !strongSelf.menuItems.array.contains(.CloudCloset) {
-                            strongSelf.menuItems.insert(.CloudCloset, at: 2)
-                        }
-                    }
-                }
-            } else {
-                menuHeaderViewModel?.value = nil
-            }
-        }
+       
         
         self.menuItems.removeAll()
         self.menuItems.insert(contentsOf:  MenuViewModel.AdminModeItems, at: 0)

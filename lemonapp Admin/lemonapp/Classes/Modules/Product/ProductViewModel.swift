@@ -43,13 +43,6 @@ final class ProductViewModel: ViewModel {
     
     func updateDepartmentList(_ completion: @escaping () -> Void) {
         DataProvider.sharedInstance.refreshDepartments(completion)
-//        _ = LemonAPI.getDepartmentsAll().request().observeNext { [weak self] (result: EventResolver<[Service]>) in
-//            do {
-//                completion()
-//                let departments = try result()
-//                self?.refreshDepartmentList(departments)
-//            } catch { }
-//        }
     }
     
     func onEdit() {

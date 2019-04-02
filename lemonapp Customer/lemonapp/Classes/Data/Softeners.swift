@@ -8,6 +8,6 @@
 import Foundation
 
 
-enum Softener: String {
+enum Softener: String, Codable {
     case None, Downy
 }

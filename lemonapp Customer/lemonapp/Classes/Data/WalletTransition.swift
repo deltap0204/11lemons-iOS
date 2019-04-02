@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+
 import Bond
 
 enum WalletTransitionType: Int {
@@ -40,8 +40,6 @@ final class WalletTransition {
     var archived: Bool
     let viewed = Observable(false)
     
-    fileprivate var _dataModel: WalletTransitionModel
-    
     init(id: Int,
         date: Date?,
         amount: Double,
@@ -49,8 +47,7 @@ final class WalletTransition {
         notes: String?,
         userId: Int,
         type: WalletTransitionType = .gift,
-        archived: Bool,
-        dataModel: WalletTransitionModel? = nil) {
+        archived: Bool) {
             self.id = id
             self.date = date
             self.amount = amount
@@ -59,46 +56,11 @@ final class WalletTransition {
             self.userId = userId
             self.type = WalletTransitionType.gift
             self.archived = archived
-            self._dataModel = dataModel ?? LemonCoreDataManager.findWithId(id) ?? WalletTransitionModel()
-            self.viewed.value = _dataModel.viewed || archived
-            syncDataModel()
+            self.viewed.value = archived
             
             self.viewed.skip(first: 1).observeNext { [weak self] _ in
-                self?.syncDataModel()
+//                self?.syncDataModel()
             }
-    }
-    
-    convenience init(walletTransitionModel: WalletTransitionModel) {
-        self.init(id: walletTransitionModel.id.intValue,
-            date: walletTransitionModel.date as! Date,
-            amount: walletTransitionModel.amount.doubleValue,
-            reason: walletTransitionModel.reason,
-            notes: walletTransitionModel.notes,
-            userId: walletTransitionModel.userId.intValue,
-            type: WalletTransitionType(rawValue: (walletTransitionModel.type?.intValue ?? 0)) ?? .gift,
-            archived: walletTransitionModel.archived,
-            dataModel: walletTransitionModel
-        )
-    }
-}
-
-extension WalletTransition: DataModelWrapper {
-    
-    var dataModel: NSManagedObject {
-        return _dataModel
-    }
-    
-    func syncDataModel() {
-        _dataModel.id = NSNumber(value: self.id)
-        _dataModel.amount = NSNumber(value: self.amount)
-        _dataModel.date = self.date
-        _dataModel.reason = self.reason
-        _dataModel.notes = self.notes
-        _dataModel.userId = NSNumber(value: self.userId)
-        _dataModel.type = self.type.rawValue as NSNumber
-        _dataModel.archived = self.archived
-        _dataModel.viewed = self.viewed.value
-        saveDataModelChanges()
     }
 }
 

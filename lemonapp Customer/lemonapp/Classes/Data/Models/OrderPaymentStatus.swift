@@ -16,7 +16,7 @@ enum OrderPaymentStatus : Int {
     case ccDecline = 5
     case ccPending = 6
     case paymentProcessedSuccessfully = 7
-    
+
     static let allValues = [paymentNotProcessed, applePayPending, applePayComplete, ccDecline, ccPending, paymentProcessedSuccessfully]
     
     var color: UIColor {
