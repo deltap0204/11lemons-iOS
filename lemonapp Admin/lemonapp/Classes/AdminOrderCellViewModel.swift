@@ -36,7 +36,7 @@ class AdminOrderCellViewModel: ViewModel {
     weak var navigationDelegate: AdminOrderCellNavigationDelegate? = nil
     let canCancel: Bool
 
-    init(order: Order) {
+    init(order: Order, withOldTotal: Double? = nil) {
         self.order = order
         self.viewed = order.viewed
         orderId = "\(NSLocalizedString("Order", comment: "")) #\(order.id)"
@@ -46,7 +46,8 @@ class AdminOrderCellViewModel: ViewModel {
         default:
             deliveryStatus = order.status.comments(order.delivery.estimatedArrivalDate)
         }
-        self.orderTotal.value = 0
+        self.orderTotal.value = withOldTotal ?? 0
+        
         showStartBadge.value = order.orderDetails == nil || order.orderDetails!.count == 0
         orderStatus = order.status
         shouldWarnUser = order.status.isExceptional
@@ -65,7 +66,6 @@ class AdminOrderCellViewModel: ViewModel {
         statusColor = OrderHelper.getPaymentStatusColor(order)
         updated = order.updated
         lastModified = order.lastModified
-        self.orderTotal.value = 0
         self.avatarBackgroundColor.value = self.setAvatarBackground(order)
         if let userId = order.userId {
             self.getWallet(userId)
@@ -131,8 +131,8 @@ class AdminOrderCellViewModel: ViewModel {
         return UIColor.clear
     }
 
-    private func setTotalAmount(_ order: Order, wallet: NewWallet) {
-        let walletAmount =  wallet.amount
+    private func setTotalAmount(_ order: Order, wallet: NewWallet? = nil) {
+        let walletAmount =  wallet?.amount ?? Double(0)
         let subtotalAmount = self.getSubtotal(order, walletAmount: walletAmount)
         let priceTips = order.tips == 0 ? 0 : subtotalAmount * (Double(order.tips) / 100)
         
@@ -161,7 +161,7 @@ class AdminOrderCellViewModel: ViewModel {
         } else if order.orderDetails != nil && order.orderDetails!.count > 0 {
             if order.paymentStatus == OrderPaymentStatus.paymentNotProcessed {
                 return UIImage(named:"TagSyncIcon")
-            } else if order.paymentStatus == OrderPaymentStatus.ccDecline {
+            } else if order.paymentStatus == OrderPaymentStatus.decline {
                 return UIImage(named:"paymentError")
             }
         }
@@ -169,11 +169,13 @@ class AdminOrderCellViewModel: ViewModel {
     }
     
     fileprivate func getWallet(_ userId: Int) {
+
         _ = LemonAPI.getWallet(userId: userId).request().observeNext { [weak self] (resolver: EventResolver<NewWallet>) in
             guard let `self` = self else {return}
             if let wallet: NewWallet = try? resolver() {
                 self.setTotalAmount(self.order, wallet: wallet)
             }
         }
+        
     }
 }

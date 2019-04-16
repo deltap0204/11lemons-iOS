@@ -20,8 +20,8 @@ extension Order: JSONDecodable {
         let delivery = try Delivery.decode(j)
         let status = OrderStatus(rawValue: j["OrderStatus"].intValue) ?? .awaitingPickup
         let paymentStatus = OrderPaymentStatus(rawValue: j["PaymentStatus"].intValue) ?? .paymentNotProcessed
-        let orderDetails = try j["OrderDetails"].arrayValue.flatMap { try OrderDetail.decode($0) }
-        let orderImages = try j["OrderImages"].arrayValue.flatMap { try OrderImages.decode($0) }
+        let orderDetails = try j["OrderDetails"].arrayValue.compactMap { try OrderDetail.decode($0) }
+        let orderImages = try j["OrderImages"].arrayValue.compactMap { try OrderImages.decode($0) }
         let paymentId = j["PaymentID"].int
         let promoId = j["PromoID"].int
         let shirt = Shirt(rawValue: j["Shirts"].stringValue) ?? .Hanger
@@ -29,10 +29,11 @@ extension Order: JSONDecodable {
         let dryer = Dryer(rawValue: j["Order_Pref_DryerSheet"].stringValue) ?? .None
         let tips = j["OrderTipPercentage"].int ?? 0
         let detergent = Detergent(rawValue: j["Detergent"].stringValue) ?? .Original
-        let services = j["ServiceType"].stringValue.components(separatedBy: ",").flatMap { ServiceType(rawValue: $0) }
+        let services = j["ServiceType"].stringValue.components(separatedBy: ",").compactMap { ServiceType(rawValue: $0) }
         let lastModified = Date.fromServerString(try? j["LastModified"].value())
         let payToken = j["Payments"]["CardToken"].stringValue
         let isAplepay = j["Payments"]["CardType"].string?.lowercased() == "applepay"
+        let card = try PaymentCard.decode(j["Payments"])
         
         let lastModifiedUser = try? User.decode(j["LastModifiedUser"])
         let user = try? User.decode(j["Users"])
@@ -58,6 +59,7 @@ extension Order: JSONDecodable {
             dryer: dryer,
             softener: softener,
             tips: tips,
+            card: card,
             lastModifiedUser: lastModifiedUser,
             createdBy: user
         )
@@ -77,7 +79,7 @@ extension Order: Encodable {
         if let card = card {
             paymentId = card.id ?? 0
             cardType = card.type.rawValue
-            token = ""
+            token = card.token ?? ""
         }
         let serviceTypeList = (serviceType.map { $0.rawValue } as NSArray).componentsJoined(by: ",")
         

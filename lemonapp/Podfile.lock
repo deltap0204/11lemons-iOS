@@ -88,31 +88,6 @@ DEPENDENCIES:
   - SwiftyJSON
   - UIColor_Hex_Swift (~> 4.0.1)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - Bolts
-    - Bond
-    - Braintree
-    - Crashlytics
-    - Differ
-    - DrawerController
-    - Fabric
-    - IQKeyboardManagerSwift
-    - JSQCoreDataKit
-    - KeychainAccess
-    - MBProgressHUD
-    - MGSwipeTableCell
-    - Moya
-    - Reachability
-    - ReactiveKit
-    - Result
-    - SDWebImage
-    - SnapKit
-    - SwiftDate
-    - SwiftyJSON
-    - UIColor_Hex_Swift
-
 EXTERNAL SOURCES:
   BTNavigationDropdownMenu:
     :git: https://github.com/zkrige/BTNavigationDropdownMenu.git
@@ -149,4 +124,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6e295c3692adae80669466af169abd6251da76fe
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.4.0

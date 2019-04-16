@@ -86,6 +86,7 @@ extension DataProvider {
                 let orders = try result()
                 self?.lastUpdateDate = Date()
 
+                self?.deleteAllOrders()
                 self?.saveOrdersInDB(orders: orders)
                 self?.adminOrders.replace(with: orders)
                 self?.adminDashboardItems.replace(with: self?.getDashboardItems() ?? [])
@@ -110,18 +111,4 @@ extension DataProvider {
             }
         }.dispose(in: disposeBagBackend)
     }
-    
-//    func refreshNotioficationSetting(_ onComplete: @escaping () -> Void) {
-//        LemonAPI.getNotificationSetting().request().observeNext { [weak self] (result: EventResolver<[Settings]>) in
-//            do {
-//                let departments = try result()
-//                self?.productsItems.replace(with: departments)
-//                onComplete()
-//            } catch let error {
-//                print(error)
-//                onComplete()
-//            }
-//            }.dispose(in: disposeBagBackend)
-//
-//    }
 }

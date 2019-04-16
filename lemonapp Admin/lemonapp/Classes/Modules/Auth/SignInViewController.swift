@@ -102,7 +102,6 @@ final class SignInViewController: UIViewController {
     
     var viewModel: SignInViewModel = SignInViewModel()
     var authRouter: AuthRouter!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

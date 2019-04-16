@@ -99,9 +99,7 @@ enum LemonAPI {
     case updateOrder(order: Order, orderID: Int)
     case deleteOrderDetail(orderDetailID: Int)
     case processPayment(amount: Double, orderID: Int)
-    case getNotificationSetting
-    case updateNotificationSetting(isEmail:Bool, isSMS:Bool, isNotification:Bool)
-    //updateNotificationSetting(IsEnabledPushNotifications:Bool,IsEnabledEmailNotifications:Bool,IsEnabledSMSNotifications:Bool,EmailForContact:String,SMSForContact:String,PhoneForContact:String,OrderCountdownWarning:Int)
+    
 }
 
 extension LemonAPI : TargetType {
@@ -191,17 +189,6 @@ extension LemonAPI : TargetType {
             }
             return headers
             
-        case .getNotificationSetting, .updateNotificationSetting:
-            var headers: [String:String]? = nil
-            if let accessToken = LemonAPI.accessToken?.value,
-                let userId = LemonAPI.userId {
-                headers = [
-                    "Authorization": "Bearer \(accessToken)",
-                    LemonAPI.USER_ID_HEADER: "\(userId)"
-                ]
-            }
-            return headers
-            
         default:
             var headers: [String:String]? = nil
             if let accessToken = LemonAPI.accessToken?.value,
@@ -211,8 +198,8 @@ extension LemonAPI : TargetType {
                     LemonAPI.USER_ID_HEADER: "\(userId)"
                 ]
                 
-                print("Authorization: Bearer \(accessToken)")
-                print("User id: \(userId)")
+//                print("Authorization: Bearer \(accessToken)")
+                //print("User id: \(userId)")
             }
             
             return headers
@@ -404,10 +391,6 @@ extension LemonAPI : TargetType {
             return "orderdetails/\(orderDetailID)"
         case .processPayment(let amount, let orderID):
             return "processtransaction2/\(amount)/\(orderID)/"
-        case .getNotificationSetting:
-            return "GetNotificationAndContactInfoSetting/"
-        case .updateNotificationSetting:
-            return "UpdateNotificationAndContactInfoSetting/"
         }
     }
     
@@ -500,16 +483,6 @@ extension LemonAPI : TargetType {
             return ["$filter": "OrderStatus le 5 or OrderStatus eq 9" as AnyObject]
         case .updateOrder(let order, let _):
             return order.encode()
-        case .updateNotificationSetting:
-            return [
-                "IsEnabledPushNotifications" : ""  as AnyObject,
-                "IsEnabledEmailNotifications" :"" as AnyObject,
-                "IsEnabledSMSNotifications" :"" as AnyObject,
-                "EmailForContact" :"" as AnyObject,
-                "SMSForContact" :"" as AnyObject,
-                "PhoneForContact" :"" as AnyObject,
-                "OrderCountdownWarning" :"" as AnyObject
-            ]
         default:
             return nil
         }
@@ -587,8 +560,7 @@ extension LemonAPI : TargetType {
              .getAttributeCategoriesByService,
              .getRelationBtwCategoryAndService,
              .getOrderByID,
-             .getOrderDetails,
-             .getNotificationSetting:
+             .getOrderDetails:
             return .get
         case .updateAttributeCategory,
              .updateDepartment,
@@ -600,8 +572,7 @@ extension LemonAPI : TargetType {
              .deleteRelationBtwCategoryAndService,
              .deleteCategory,
              .deleteOrderDetail,
-             .deleteDepartment,
-             .updateNotificationSetting:
+             .deleteDepartment:
             return .delete
         default:
             return .post

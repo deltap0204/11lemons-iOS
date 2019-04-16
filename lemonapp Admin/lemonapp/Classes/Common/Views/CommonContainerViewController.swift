@@ -20,11 +20,8 @@ final class CommonContainerViewModel: ViewModel {
             return AddressDetailsViewModel(userWrapper: userWrapper, backButtonTitle: backButtonTitle)
         case .PaymentCardScreen:
             return PaymentCardDetailsViewModel(userWrapper: userWrapper, backButtonTitle: backButtonTitle)
-            
         case .SettingsScreen:
             return SettingsViewModel(userWrapper: userWrapper, settingsRouter: router as? SettingsRouter)
-//        case .SettingsScreen:
-//            return SettingsViewModel(userWrapper: userWrapper, settingsRouter: router as? SettingsRouter)
         default:
             return nil
         }

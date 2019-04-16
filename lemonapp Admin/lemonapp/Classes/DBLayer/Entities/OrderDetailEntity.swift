@@ -28,7 +28,7 @@ public class OrderDetailEntity: Object {
     @objc dynamic var product: ProductEntity? = nil
     
     static func create(with orderDetail: OrderDetail) -> OrderDetailEntity {
-        let orderDetailEntity = OrderDetailEntity()
+        var orderDetailEntity = OrderDetailEntity()
         orderDetailEntity.id = orderDetail.id
         orderDetailEntity.orderId =  orderDetail.orderId
         orderDetailEntity.quantity.value =  orderDetail.quantity

@@ -211,7 +211,6 @@ typealias GenericObjectResolver<T> = () -> T
 typealias EventResolver<T> = () throws -> T
 //typealias ImageResolver = (Event<UIImage?, NSError>)
 typealias ImageResolver = UIImage?
-typealias NotificationResolver = [String:Any]?
 
 typealias UserSignal = Signal<(UserResolver), NSError>
 typealias StringSignal = Signal<(StringResolver), NSError>
@@ -299,8 +298,8 @@ extension LemonAPI {
                     do {
                         
                         if let requestUrl = response.request?.url?.absoluteString {
-                            print("Request Url: \n")
-                            print(requestUrl)
+                            //print("Request Url: \n")
+                            //print(requestUrl)
                         }
                         
                         //let resultValue = try JSONDecoder().decode([T].self, from: response.data)

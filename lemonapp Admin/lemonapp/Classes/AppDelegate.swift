@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     
-    var reachability : Reachability? = Reachability.forInternetConnection()
+    public var reachability : Reachability? = Reachability.forInternetConnection()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         
-//        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .lightContent
 
         customizeUI()
         
@@ -91,10 +91,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func setupReachability() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
         reachability?.startNotifier()
-        
     }
     
     @objc func reachabilityChanged(note: Notification) {

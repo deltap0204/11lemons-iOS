@@ -33,6 +33,7 @@ final class OrderCell : MGSwipeTableCell {
             } else {
                 self.rightButtons = []
             }
+            self.refreshButtons(false)
             rightSwipeSettings.transition = .clipCenter
             
             let updated = viewModel?.updated.value ?? false

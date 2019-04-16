@@ -63,11 +63,11 @@ final class SettingsViewModel: ViewModel {
     }
     
     func refresh() {
-//        userWrapper.refresh()
-//        cloudClosetEnabled.value = changedUser.settings.cloudClosetEnabled
-//        pushEnabled.value = changedUser.settings.pushEnabled
-//        mailEnabled.value = changedUser.settings.mailEnabled
-//        messageEnabled.value = changedUser.settings.messageEnabled
+        userWrapper.refresh()
+        cloudClosetEnabled.value = changedUser.settings.cloudClosetEnabled
+        pushEnabled.value = changedUser.settings.pushEnabled
+        mailEnabled.value = changedUser.settings.mailEnabled
+        messageEnabled.value = changedUser.settings.messageEnabled
     }
     
     
