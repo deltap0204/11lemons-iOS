@@ -46,6 +46,7 @@ class DataProvider {
     let adminOrders: MutableObservableArray<Order> = MutableObservableArray([])
     let adminDashboardItems = MutableObservableArray<DashboardItem>([])
     let productsItems: MutableObservableArray<Service> = MutableObservableArray([])
+     let notificationSetting: MutableObservableArray<Service> = MutableObservableArray([])
 //    let adminOrdersUpdates = ReplayOneSubject<Int, NoError>()
     let cloudCloset = MutableObservableArray<Garment>([])
     let cloudClosetUpdates = ReplayOneSubject<Int, NoError>()
@@ -181,6 +182,9 @@ class DataProvider {
         self.refreshPaymentToken()
 
         self.refreshDepartments(){}
+//        self.refreshNotioficationSetting {
+//            
+//        }
         
         // replace SaveData
 //        LemonCoreDataManager.fetchAsync(GarmentModel.self) { [weak self] in

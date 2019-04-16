@@ -3007,7 +3007,6 @@
 				45D449881C2AD4B0004D7D15 /* Resources */,
 				2798A091FFFA227A494B0BFB /* [CP] Embed Pods Frameworks */,
 				415542111DDDA81700850512 /* ShellScript */,
-				222FC0637A3BBEBCEDBA177B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3028,7 +3027,6 @@
 				A1C531CD1C92FD1600CCCE7C /* Resources */,
 				6679AC0B7F69E033D7313CCD /* [CP] Embed Pods Frameworks */,
 				34593BFC20C070A500146BA6 /* ShellScript */,
-				E0B86E0B4DB04886CF1D84EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3354,21 +3352,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		222FC0637A3BBEBCEDBA177B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp/Pods-lemonapp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		264604485D702C21CB5DD563 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3393,7 +3376,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BTNavigationDropdownMenu/BTNavigationDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -3442,7 +3425,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		34593BFC20C070A500146BA6 /* ShellScript */ = {
@@ -3477,7 +3460,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BTNavigationDropdownMenu/BTNavigationDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -3526,7 +3509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA96E19215747E9943F7BCCA /* [CP] Check Pods Manifest.lock */ = {
@@ -3545,21 +3528,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E0B86E0B4DB04886CF1D84EC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

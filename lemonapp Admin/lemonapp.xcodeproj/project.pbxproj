@@ -221,6 +221,12 @@
 		45F32FF71C46A332001AF90C /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F32FF61C46A332001AF90C /* AddressesViewController.swift */; };
 		45F32FFB1C47B76C001AF90C /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F32FFA1C47B76C001AF90C /* AddressCell.swift */; };
 		45FF9DB71C7F12AE005BD163 /* CommonContainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45FF9DB61C7F12AE005BD163 /* CommonContainer.storyboard */; };
+		7701787F226253D30078DF89 /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701787C226253D20078DF89 /* OperationsViewController.swift */; };
+		77017880226253D30078DF89 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701787D226253D20078DF89 /* ContactInfoViewController.swift */; };
+		77017881226253D30078DF89 /* NotificationStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701787E226253D30078DF89 /* NotificationStyleViewController.swift */; };
+		7701788322626F330078DF89 /* DayOperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701788222626F320078DF89 /* DayOperationsViewController.swift */; };
+		7744A53E2260CC2E00B48818 /* ContactInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744A53D2260CC2E00B48818 /* ContactInformationVC.swift */; };
+		77B205312260AA68004F00C0 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B205302260AA68004F00C0 /* NotificationViewController.swift */; };
 		8004A9E51DC77799004A012F /* PickupColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004A9E41DC77799004A012F /* PickupColorView.swift */; };
 		8004A9E61DC77848004A012F /* PickupColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004A9E41DC77799004A012F /* PickupColorView.swift */; };
 		800F3A1F1DC89B3100D01615 /* NotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800F3A1E1DC89B3100D01615 /* NotesView.xib */; };
@@ -1077,6 +1083,12 @@
 		45FF9DB61C7F12AE005BD163 /* CommonContainer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommonContainer.storyboard; sourceTree = "<group>"; };
 		4BF204686904DCAEB9D5C062 /* Pods-lemonapp Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lemonapp Staging.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging.debug.xcconfig"; sourceTree = "<group>"; };
 		69D2886F2763DA3CCFBB7161 /* Pods_lemonapp_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lemonapp_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7701787C226253D20078DF89 /* OperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
+		7701787D226253D20078DF89 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
+		7701787E226253D30078DF89 /* NotificationStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationStyleViewController.swift; sourceTree = "<group>"; };
+		7701788222626F320078DF89 /* DayOperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOperationsViewController.swift; sourceTree = "<group>"; };
+		7744A53D2260CC2E00B48818 /* ContactInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInformationVC.swift; sourceTree = "<group>"; };
+		77B205302260AA68004F00C0 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		8004A9E41DC77799004A012F /* PickupColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickupColorView.swift; path = Common/Views/NewOrderElements/PickupColorView.swift; sourceTree = "<group>"; };
 		800F3A1E1DC89B3100D01615 /* NotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotesView.xib; path = Xibs/NewOrderElements/NotesView.xib; sourceTree = "<group>"; };
 		800F3A201DC89C3F00D01615 /* NotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotesView.swift; path = Common/Views/NewOrderElements/NotesView.swift; sourceTree = "<group>"; };
@@ -1528,6 +1540,7 @@
 				457B30B81C2ADD3C00AFCD14 /* AppDelegate.swift */,
 				A1C531E81C92FDED00CCCE7C /* ProductionConfig.swift */,
 				A1C531EA1C92FE0D00CCCE7C /* StagingConfig.swift */,
+				A13F1F2C1C31913900889647 /* View */,
 				A1F8834E1C315933000703B0 /* Common */,
 				457B30B91C2ADD3C00AFCD14 /* Data */,
 				A1F883561C315950000703B0 /* Modules */,
@@ -1698,6 +1711,22 @@
 				3C088F963E891B937B74B2B9 /* Pods-lemonapp Staging.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7744A53C2260CBC400B48818 /* ContactInformationVC */ = {
+			isa = PBXGroup;
+			children = (
+				7744A53D2260CC2E00B48818 /* ContactInformationVC.swift */,
+			);
+			name = ContactInformationVC;
+			sourceTree = "<group>";
+		};
+		77B2052C2260A9D7004F00C0 /* NotificationVC */ = {
+			isa = PBXGroup;
+			children = (
+				77B205302260AA68004F00C0 /* NotificationViewController.swift */,
+			);
+			name = NotificationVC;
 			sourceTree = "<group>";
 		};
 		8026AF8D1DBFA6D800852714 /* NewOrderElements */ = {
@@ -2490,6 +2519,8 @@
 		A13F1F2C1C31913900889647 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7744A53C2260CBC400B48818 /* ContactInformationVC */,
+				77B2052C2260A9D7004F00C0 /* NotificationVC */,
 				A00B25D61FD1C68500602C95 /* GarmentCards */,
 				8026AF901DBFA75000852714 /* NewOrderElements */,
 				45AE74161CF46DA40078844C /* ActivityButton.swift */,
@@ -2680,6 +2711,10 @@
 				450DEB301CC78D800042A313 /* SettingsRouter.swift */,
 				A1C1098C1C43DB230082BDA5 /* SettingsViewController.swift */,
 				A1C1098E1C43DBBB0082BDA5 /* SettingsViewModel.swift */,
+				7701787D226253D20078DF89 /* ContactInfoViewController.swift */,
+				7701787E226253D30078DF89 /* NotificationStyleViewController.swift */,
+				7701787C226253D20078DF89 /* OperationsViewController.swift */,
+				7701788222626F320078DF89 /* DayOperationsViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2830,7 +2865,6 @@
 			isa = PBXGroup;
 			children = (
 				A1A3A0CC1CD9F8CB0052AABF /* Transitions */,
-				A13F1F2C1C31913900889647 /* View */,
 				A1F8834D1C31592D000703B0 /* Helpers */,
 				A1F8834A1C31591C000703B0 /* Extensions */,
 			);
@@ -3236,7 +3270,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BTNavigationDropdownMenu/BTNavigationDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -3287,7 +3321,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lemonapp/Pods-lemonapp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		34593BFC20C070A500146BA6 /* ShellScript */ = {
@@ -3322,7 +3356,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BTNavigationDropdownMenu/BTNavigationDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -3373,7 +3407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lemonapp Staging/Pods-lemonapp Staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA96E19215747E9943F7BCCA /* [CP] Check Pods Manifest.lock */ = {
@@ -3476,6 +3510,7 @@
 				450DEB531CD227200042A313 /* ReferralProgramViewController.swift in Sources */,
 				A1862D641C621137000D0C0A /* DeliveryPricing+JSON.swift in Sources */,
 				45C2AD8B1D005EEF00E57E4E /* CloudClosetRouter.swift in Sources */,
+				77017881226253D30078DF89 /* NotificationStyleViewController.swift in Sources */,
 				A028EB771FDEFE1300017A6A /* DepartmentSelectionViewController.swift in Sources */,
 				A07430C41FBB783D0061AFD4 /* ReceiptTotalCell.swift in Sources */,
 				8035D0111DE1AFC2000F4930 /* Attribute+JSON.swift in Sources */,
@@ -3510,6 +3545,7 @@
 				A13F1F331C33FFC100889647 /* LemonBackground.swift in Sources */,
 				457D828A1C32C3D7008ECAD5 /* Address.swift in Sources */,
 				A12F72281C5959D80068CA5A /* OrderDetail.swift in Sources */,
+				7701788322626F330078DF89 /* DayOperationsViewController.swift in Sources */,
 				A04ACDE5206170EB006E15DE /* ServiceViewDoubleLine.swift in Sources */,
 				45E71CD61C7F46E70076B4A0 /* UIViewController+Keyboard.swift in Sources */,
 				45E71CEE1C7F479E0076B4A0 /* OptionPicker.swift in Sources */,
@@ -3601,6 +3637,7 @@
 				A028EB871FDF0B8900017A6A /* ServiceSelectionViewController.swift in Sources */,
 				45ACEFA51CF732CF00B23E68 /* Garment.swift in Sources */,
 				4539B31C1D0B341C003FEE1A /* BondCollectionView.swift in Sources */,
+				7701787F226253D30078DF89 /* OperationsViewController.swift in Sources */,
 				A1C531E91C92FDED00CCCE7C /* ProductionConfig.swift in Sources */,
 				80677F7A1DDEF532006DC11C /* ServiceCategory.swift in Sources */,
 				45E71CD31C7F46E70076B4A0 /* OptionItemProtocol.swift in Sources */,
@@ -3649,6 +3686,7 @@
 				A053C0FD201BA42900CAE499 /* UIBarButtonItem+Badge.swift in Sources */,
 				A07430C21FBB783D0061AFD4 /* ReceiptItemCell.swift in Sources */,
 				80B1BEE81DCA23E500647970 /* WeightView.swift in Sources */,
+				77B205312260AA68004F00C0 /* NotificationViewController.swift in Sources */,
 				A0072DA8221E0DC5000A655C /* DataProvider + PushNotification.swift in Sources */,
 				459746FE1C565639008625E5 /* Product+JSON.swift in Sources */,
 				A1CD133E1C4D04C800729FFB /* OrderSummaryCell.swift in Sources */,
@@ -3719,6 +3757,7 @@
 				A1632D4D1C9C355D005E0722 /* CancelOrderFlow.swift in Sources */,
 				A17F92441C3FDB7E00B06248 /* OrderListRouter.swift in Sources */,
 				A1A3A0671CD2404C0052AABF /* DateInRegion.swift in Sources */,
+				7744A53E2260CC2E00B48818 /* ContactInformationVC.swift in Sources */,
 				8026AF921DBFA78500852714 /* ServiceView.swift in Sources */,
 				457D827C1C32AD4A008ECAD5 /* LemonApiProvider.swift in Sources */,
 				A0086B8C22137F09008BC2D4 /* Crashlytics+Error.swift in Sources */,
@@ -3730,6 +3769,7 @@
 				8072EA5E1DED80BF0022B2CB /* PickAttributeCategoryViewController.swift in Sources */,
 				45F32FF71C46A332001AF90C /* AddressesViewController.swift in Sources */,
 				45ACEFC01CF85C6C00B23E68 /* CloudClosetCell.swift in Sources */,
+				77017880226253D30078DF89 /* ContactInfoViewController.swift in Sources */,
 				A1862D601C620254000D0C0A /* ServiceType+JSON.swift in Sources */,
 				45E71CE31C7F471C0076B4A0 /* CommonContainerViewController.swift in Sources */,
 				456C904B1C75F18400760A43 /* ApplePayCard.swift in Sources */,
