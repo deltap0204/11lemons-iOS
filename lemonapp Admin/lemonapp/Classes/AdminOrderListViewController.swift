@@ -241,7 +241,7 @@ extension AdminOrderListViewController: MGSwipeTableCellDelegate {
         return true
     }
 
-    func swipeTableCell(_ cell: MGSwipeTableCell!, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         guard let viewModel = (cell as? AdminOrderCell)?.viewModel else {
             return true
         }

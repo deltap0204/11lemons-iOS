@@ -186,8 +186,8 @@ class AdminOrderCell : MGSwipeTableCell {
                         strongSelf.imgBadge.isHidden = false
                         strongSelf.lblBadgeTotal.isHidden = false
                     }
-                    strongSelf.viewBadge.backgroundColor = OrderPaymentStatus.ccDecline.color
-                    strongSelf.imgBadge.image = OrderPaymentStatus.ccDecline.icon
+                    strongSelf.viewBadge.backgroundColor = OrderPaymentStatus.decline.color
+                    strongSelf.imgBadge.image = OrderPaymentStatus.decline.icon
                 case .failedAndProcessing:
                     strongSelf.badgeActicity.startAnimating()
                     strongSelf.imgBadge.isHidden = true
@@ -195,8 +195,8 @@ class AdminOrderCell : MGSwipeTableCell {
                     strongSelf.viewBadge.isHidden = false
                     strongSelf.lblBadgeStart.isHidden = true
                     strongSelf.imgForward.isHidden = true
-                    strongSelf.viewBadge.backgroundColor = OrderPaymentStatus.ccDecline.color
-                    strongSelf.imgBadge.image = OrderPaymentStatus.ccDecline.icon
+                    strongSelf.viewBadge.backgroundColor = OrderPaymentStatus.decline.color
+                    strongSelf.imgBadge.image = OrderPaymentStatus.decline.icon
                 case .error:
                     strongSelf.badgeActicity.stopAnimating()
                     strongSelf.viewBadge.isHidden = false
@@ -242,8 +242,8 @@ class AdminOrderCell : MGSwipeTableCell {
             } else {
                 rightButtons = [noteButton, orderStatusButton]
             }
+            self.refreshButtons(false)
             rightSwipeSettings.transition = .clipCenter
-            
             leftButtons = [nextStatusButton]
             leftExpansion.buttonIndex = 0
             leftExpansion.fillOnTrigger = true
@@ -308,6 +308,12 @@ class AdminOrderCell : MGSwipeTableCell {
         }
         nextStatusButton.setTitle(title, for: UIControlState())
         nextStatusButton.setImage(icon, for: UIControlState())
+        if title == "Undefined" {
+            leftButtons = []
+        } else {
+            leftButtons = [nextStatusButton]
+        }
+        self.refreshButtons(false)
     }
 
     fileprivate func getInitialsFromUser(_ user: User) -> String {

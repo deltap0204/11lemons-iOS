@@ -96,13 +96,14 @@ final class DeliveryViewModel {
         // default payment is available
         if let card = order.card, editMode && !card.deleted {
             paymentOption.value = Option.chose(item: card)
-        } else if let card = DataProvider.sharedInstance.userWrapper?.defaultPaymentCard.value as? PaymentCard {
-            paymentOption.value = Option.chose(item: card)
-            self.order.card = card
-        } else if let applePayCard = DataProvider.sharedInstance.userWrapper?.applePayCard {
-            paymentOption.value = Option.chose(item: applePayCard)
-            self.order.card = nil
         }
+//        else if let card = DataProvider.sharedInstance.userWrapper?.defaultPaymentCard.value as? PaymentCard {
+//            paymentOption.value = Option.chose(item: card)
+//            self.order.card = card
+//        } else if let applePayCard = DataProvider.sharedInstance.userWrapper?.applePayCard {
+//            paymentOption.value = Option.chose(item: applePayCard)
+//            self.order.card = nil
+//        }
         newPaymentViewModel?.result.observeNext { result in
             if let card = result as? PaymentCard {
                 self.paymentOption.value = Option.chose(item: card)

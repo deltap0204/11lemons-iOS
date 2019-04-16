@@ -135,33 +135,27 @@ class NotificationStyleViewController: UIViewController {
 //    }
     
     func getNotificationSetting(){
-        //Config.LemonEndpoints.APIEndpoint
-       // LemonAPI.getNotificationSetting
-        
-//        print(" LemonAPI.getNotificationSetting", LemonAPI.getNotificationSetting)
-//        print("Config.LemonEndpoints.APIEndpoint", Config.LemonEndpoints.APIEndpoint)
-        //let url = URL(string: Config.LemonEndpoints + "/GetNotificationAndContactInfoSetting" )
-        let url = URL(string: "http://11lemons-api-test.azurewebsites.net/api/v1/GetNotificationAndContactInfoSetting")!
-        var request = URLRequest(url: url)
-        request.setValue("bearer xMSKXKu30uWJyTE-CoZK_rc-yhyg9y2CKdw31p0lOSS3zTB_ofk0Mt2QnjK6JUH2eMOz3ufDumqPx0VEmJoTFnLvdPWYrYqbB-7KAiJY3r2Hycn7RQwh0jrrSpQ4sjLQKsmsekx064R0r1IIXeV0aMLJ1IhyhjW4HdsQtfLl8u0N_6Pjrw34ACjus2gcXNRSW84hv_7CV_qrgs9TM5dPfd4nTiCo54-j6NoGDfWvFdiZ3iowUJXxZXnF5dYIB0uF", forHTTPHeaderField: "Authorization")
-        request.setValue("1070",forHTTPHeaderField:"x-usr-id")
-        //request.setValue(LemonAPI.getNotificationSetting.headers, forHTTPHeaderField: )
-        
-        request.httpMethod = "GET"
-        // request.httpBody = jsonData
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
+        if let url = URL(string: String(format: "%@/GetNotificationAndContactInfoSetting", Config.LemonEndpoints.APIEndpoint.rawValue)) {
+            var request = URLRequest(url: url)
+            request.setValue("bearer xMSKXKu30uWJyTE-CoZK_rc-yhyg9y2CKdw31p0lOSS3zTB_ofk0Mt2QnjK6JUH2eMOz3ufDumqPx0VEmJoTFnLvdPWYrYqbB-7KAiJY3r2Hycn7RQwh0jrrSpQ4sjLQKsmsekx064R0r1IIXeV0aMLJ1IhyhjW4HdsQtfLl8u0N_6Pjrw34ACjus2gcXNRSW84hv_7CV_qrgs9TM5dPfd4nTiCo54-j6NoGDfWvFdiZ3iowUJXxZXnF5dYIB0uF", forHTTPHeaderField: "Authorization")
+            request.setValue("1070",forHTTPHeaderField:"x-usr-id")
+            //request.setValue(LemonAPI.getNotificationSetting.headers, forHTTPHeaderField: )
+            
+            request.httpMethod = "GET"
+            // request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                    print("responsenotificationSettingJSON",responseJSON)
+                    self.dataDict = responseJSON
+                }
             }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("responsenotificationSettingJSON",responseJSON)
-                self.dataDict = responseJSON
-                
-            }
+            task.resume()
         }
-        task.resume()
     }
     // post method UpdateNotificationAndContactInfoSetting
     func UpdateNotificationAndContactInfoSetting(){
@@ -173,14 +167,6 @@ class NotificationStyleViewController: UIViewController {
         let SMSForContact = "1112"
         let PhoneForContact = "1234"
         let OrderCountdownWarning = "30"
-        
-        //        let IsEnabledPushNotifications = notificationDict.value(forKey: "IsEnabledPushNotifications")
-        //       let IsEnabledEmailNotifications = notificationDict.value(forKey: "IsEnabledEmailNotifications")
-        //        let IsEnabledSMSNotifications = notificationDict.value(forKey: "IsEnabledSMSNotifications")
-        //        let EmailForContact = notificationDict.value(forKey: "EmailForContact")
-        //        let SMSForContact = notificationDict.value(forKey: "SMSForContact")
-        //        let PhoneForContact = notificationDict.value(forKey: "PhoneForContact")
-        //         let OrderCountdownWarning = notificationDict.value(forKey: "OrderCountdownWarning")
         
         
         let param: [String: Any] = ["IsEnabledPushNotifications": IsEnabledPushNotifications,"IsEnabledEmailNotifications":IsEnabledEmailNotifications,"IsEnabledSMSNotifications":IsEnabledSMSNotifications,"EmailForContact":EmailForContact,"SMSForContact":SMSForContact,"PhoneForContact":PhoneForContact,"OrderCountdownWarning":OrderCountdownWarning]

@@ -85,7 +85,7 @@ extension DataProvider {
             do {
                 let orders = try result()
                 self?.lastUpdateDate = Date()
-
+                self?.deleteAllOrders()
                 self?.saveOrdersInDB(orders: orders)
                 self?.adminOrders.replace(with: orders)
                 self?.adminDashboardItems.replace(with: self?.getDashboardItems() ?? [])

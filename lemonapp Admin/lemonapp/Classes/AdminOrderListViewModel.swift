@@ -67,9 +67,18 @@ class AdminOrderListViewModel: ViewModel {
                 break
             default:
                 if let strongSelf = self {
-                    let dashboardViewModelsArray: [ViewModel] = strongSelf.dashboardItems.array.compactMap {
+                    let dashboardViewModelsArray: [ViewModel] = DataProvider.sharedInstance.adminDashboardItems.array.compactMap {
+                        var oldTotal: Double? = nil
                         if let order = $0 as? Order {
-                            return AdminOrderCellViewModel(order: order)
+                            if let existVM = strongSelf.dashboardViewModels.array.first(where: { (current) -> Bool in
+                                if let vmCell = current as? AdminOrderCellViewModel, vmCell.order.id == order.id {
+                                    return true
+                                }
+                                return false
+                            }) as? AdminOrderCellViewModel {
+                                oldTotal = existVM.orderTotal.value
+                            }
+                            return AdminOrderCellViewModel(order: order, withOldTotal: oldTotal)
                         }
                         return nil
                     }
@@ -137,7 +146,8 @@ class AdminOrderListViewModel: ViewModel {
     
     func callToOrderCreator(_ order: Order, fromViewController viewController: UIViewController) {
         if let phone = order.createdBy?.mobilePhone,
-            let phoneUrl = URL(string: "tel:\(phone.replacingOccurrences(of: " ", with: ""))"), UIApplication.shared.canOpenURL(phoneUrl) {
+            let phoneUrl = URL(string: "tel://\(phone.replacingOccurrences(of: " ", with: ""))") {
+
             UIApplication.shared.open(phoneUrl, options: [:], completionHandler: nil)
         }
     }
