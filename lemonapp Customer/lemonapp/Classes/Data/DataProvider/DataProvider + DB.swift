@@ -122,13 +122,4 @@ extension DataProvider {
             }
         }
     }
-    
-    func deleteAllOrders() {
-        do {
-            try Storage.deleteAll(OrderEntity.self)
-        } catch (let error) {
-            let appError = DeleteAllRealmError()
-            track(error: appError, additionalInfo: appError.errorUserInfo)
-        }
-    }
 }

@@ -275,8 +275,7 @@ final class DeliveryViewModel {
             task.set(result: order)
         } catch let error as BackendError {
             task.set(error: NSError(domain: "11lemons", code: 0, userInfo: [NSLocalizedDescriptionKey : error.message]))
-        } catch let error {
-            print("errror \(error.localizedDescription)")
+        } catch _ {
             task.set(error: (NSError(domain: "11lemons", code: 0, userInfo: [NSLocalizedDescriptionKey : "Error in receiving order id of the newly created order"])))
         }
     }

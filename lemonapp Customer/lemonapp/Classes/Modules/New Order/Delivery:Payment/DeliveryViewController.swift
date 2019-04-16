@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
-//import Braintree
+import Braintree
 import PassKit
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.

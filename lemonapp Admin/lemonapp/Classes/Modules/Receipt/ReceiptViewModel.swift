@@ -42,11 +42,11 @@ final class ReceiptViewModel {
         self.delegate = delegate
         self.order = order
         self.paymentViewModel.value = PaymentSectionViewModel(order: order)
-//        if let userWrapper = DataProvider.sharedInstance.userWrapper {
-//            newPaymentViewModel = CommonContainerViewModel(userWrapper: userWrapper, screenIndetifier: .PaymentCardScreen, backButtonTitle: "Order")
-//        } else {
+        if let userWrapper = DataProvider.sharedInstance.userWrapper {
+            newPaymentViewModel = CommonContainerViewModel(userWrapper: userWrapper, screenIndetifier: .PaymentCardScreen, backButtonTitle: "Order")
+        } else {
             newPaymentViewModel = nil
-//        }
+        }
         
         if let user = order.createdBy {
             self.getWallet(user.id)
@@ -56,14 +56,14 @@ final class ReceiptViewModel {
         
         // default payment is available
         if let card = order.card, !card.deleted {
-            self.changePaymentOption(card: card, updating: false)
+            self.changePaymentOption(card: card)
         } else {
             self.delegate?.showErrorNoCreditCardSelected()
         }
         
         newPaymentViewModel?.result.observeNext { result in
             if let card = result as? PaymentCard {
-                self.changePaymentOption(card: card, updating: true)
+                self.changePaymentOption(card: card)
             }
         }.dispose(in:self.disposeBag)
 
@@ -104,7 +104,7 @@ final class ReceiptViewModel {
     }
     
     func onDone() {
-        if self.order.paymentStatus == .paymentProcessedSuccessfully {
+        if self.order.paymentStatus == .applePayComplete || self.order.paymentStatus == .paymentProcessedSuccessfully {
             self.delegate?.goBack()
         } else {
             self.processPayment()
@@ -116,14 +116,19 @@ final class ReceiptViewModel {
                                            total: self.totalPrice,
                                            status: OrderProcessStatus.processing,
                                            retryCount: 0)
-
-        OrderProcessHandler.sharedInstance.add(order: newOrderProcess)
+       
         
+//        Si puedo pagar con la plata que tengo en el monedero {
+//            api/v1/admineditpaystatus/{orderid}/{paymentstatusid}
+//            
+//            api/v1/admineditwallet/{amount}/{userid}/{orderid}
+//        }
+        
+        OrderProcessHandler.sharedInstance.add(order: newOrderProcess)
         _ = LemonAPI.processPayment(amount: self.totalPrice, orderID: self.order.id).request().observeNext { (result: EventResolver<String>) in
             
             do {
                 let resultString = try result()
-                print(resultString)
                 if resultString == "Success" {
                     OrderProcessHandler.sharedInstance.change(status: .accepted, to: newOrderProcess)
                 } else {
@@ -136,9 +141,9 @@ final class ReceiptViewModel {
 
         self.delegate?.goBack()
     }
-
+    
     fileprivate func changeOrder() {
-        _ = LemonAPI.updateOrder(order: self.order, orderID: self.order.id).request().observeNext { [weak self] (result: EventResolver<Order>) in
+        _ = LemonAPI.setOrderStatus(editedOrder: self.order, status: self.order.status).request().observeNext { [weak self] (result: EventResolver<Order>) in
             guard let strongSelf = self else { return }
             do {
                 let newOrder = try result()
@@ -287,6 +292,7 @@ final class ReceiptViewModel {
             guard let self = self else {return}
             do {
                 let paymentCards = try paymentCardsResolver()
+                print(paymentCards)
                 self.updateActivePayments(with: paymentCards)
             } catch {}
         }
@@ -297,25 +303,36 @@ final class ReceiptViewModel {
     }
     
     func paymentOptionChanged(_ paymentSelected: OptionItemProtocol) {
-        self.changePaymentOption(card: paymentSelected, updating: true)
+        self.changePaymentOption(card: paymentSelected)
+        if let paymentCard = paymentSelected as? PaymentCard {
+            
+            if let oldOption = self.paymentOption {
+                switch oldOption {
+                case Option.chose(let card):
+                    if let creditCard  = card as? PaymentCard, let oldPaymentID = creditCard.id {
+                        
+                        let areDifferent = oldPaymentID != (paymentCard.id ?? -1)
+                        if areDifferent {
+                            self.changeOrder()
+                        }
+                    }
+                default: ()
+                }
+            }
+        }
     }
     
-    func changePaymentOption(card: OptionItemProtocol, updating: Bool) {
-        if let newCard = card as? PaymentCard {
-            self.paymentViewModel.value!.paymentId.value = newCard.id!
-            self.paymentViewModel.value!.cardNumber.value = newCard.number
-            self.paymentViewModel.value!.methodImageNamed.value = newCard.type.image!
+    func changePaymentOption(card: OptionItemProtocol) {
+        if let card  = card as? PaymentCard {
+            self.paymentViewModel.value!.paymentId.value = card.id!
+            self.paymentViewModel.value!.cardNumber.value = card.number
+            self.paymentViewModel.value!.methodImageNamed.value = card.type.image!
             self.order.applePayToken = ""
-            self.order.card = newCard
-        } else if let newCard = card as? ApplePayCard {
-            self.order.card = nil
-            self.order.paymentId = nil
-            self.paymentViewModel.value!.paymentId.value = newCard.id!
+            self.order.card = card
+        } else if let card = card as? ApplePayCard {
+            self.paymentViewModel.value!.paymentId.value = card.id!
             self.paymentViewModel.value!.cardNumber.value = "Apple Pay"
-            self.paymentViewModel.value!.methodImageNamed.value = newCard.image!
-        }
-        if updating {
-            self.changeOrder()
+            self.paymentViewModel.value!.methodImageNamed.value = card.image!
         }
     }
 }

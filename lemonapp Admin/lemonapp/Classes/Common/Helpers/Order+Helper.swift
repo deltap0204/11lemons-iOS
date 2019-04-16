@@ -52,10 +52,7 @@ final class OrderHelper {
         } else if order.orderDetails != nil && order.orderDetails!.count > 0 {
             if order.paymentStatus == OrderPaymentStatus.paymentNotProcessed {
                 return UIImage(named:"TagSyncIcon")
-            } else if order.paymentStatus == OrderPaymentStatus.decline {
-                return UIImage(named:"paymentError")
-            }
-            else if order.paymentStatus == OrderPaymentStatus.withError {
+            } else if order.paymentStatus == OrderPaymentStatus.ccDecline {
                 return UIImage(named:"paymentError")
             }
         }
@@ -68,9 +65,7 @@ final class OrderHelper {
             return UIImage(named: "ic_bottom_arrow")!
         case .paymentProcessedSuccessfully:
             return UIImage(named: "paymentSuccess")!
-        case .decline:
-            return UIImage(named: "paymentError")!
-        case .withError:
+        case .ccDecline:
             return UIImage(named: "paymentError")!
         default:
             return UIImage(named: "ic_bottom_arrow")!

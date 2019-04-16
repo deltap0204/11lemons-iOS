@@ -302,7 +302,7 @@ extension AddOrderDetailsViewModel: ComponentsViewModelDelegate {
         } else if order.orderDetails != nil && order.orderDetails!.count > 0 {
             if order.paymentStatus == OrderPaymentStatus.paymentNotProcessed {
                 return UIImage(named:"TagSyncIcon")
-            } else if order.paymentStatus == OrderPaymentStatus.decline {
+            } else if order.paymentStatus == OrderPaymentStatus.ccDecline {
                 return UIImage(named:"paymentError")
             }
         }

@@ -1547,11 +1547,11 @@
 		457B30B91C2ADD3C00AFCD14 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A09325422230815200E7839A /* DataProvider */,
 				A17F923F1C3FC28A00B06248 /* Preferences.swift */,
 				A15EE9581CDAA754003524D2 /* Preferences+Scheduled.swift */,
 				457E89661C68F14000C1AD24 /* Settings.swift */,
 				45A428BD1C9811C4007FF109 /* UserWrapper.swift */,
-				A09325422230815200E7839A /* DataProvider */,
 				A13F1F151C3160B800889647 /* Models */,
 			);
 			path = Data;
@@ -1637,10 +1637,10 @@
 		45ACEF9A1CF7254100B23E68 /* CloudCloset */ = {
 			isa = PBXGroup;
 			children = (
-				45ACEFC21CFC936200B23E68 /* CenterCellCollectionViewFlowLayout.swift */,
-				45ACEFBF1CF85C6C00B23E68 /* CloudClosetCell.swift */,
-				45C2AD8A1D005EEF00E57E4E /* CloudClosetRouter.swift */,
 				45ACEF9B1CF7255F00B23E68 /* CloudClosetViewController.swift */,
+				45ACEFBF1CF85C6C00B23E68 /* CloudClosetCell.swift */,
+				45ACEFC21CFC936200B23E68 /* CenterCellCollectionViewFlowLayout.swift */,
+				45C2AD8A1D005EEF00E57E4E /* CloudClosetRouter.swift */,
 			);
 			name = CloudCloset;
 			path = Modules/CloudCloset;
@@ -1874,9 +1874,9 @@
 		A028EB561FDED28600017A6A /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				A028EB6B1FDEFE1300017A6A /* SelectService */,
 				80F86E111DE2DD6700AC8B0F /* NewAttributeCategoryViewController.swift */,
 				A028EB5E1FDED6BB00017A6A /* NewAttributeCategoryViewModel.swift */,
-				A028EB6B1FDEFE1300017A6A /* SelectService */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1900,8 +1900,8 @@
 		A028EB591FDED29A00017A6A /* Department */ = {
 			isa = PBXGroup;
 			children = (
-				A0D643CA1FEAB16A00B68DA1 /* NewDepartmentViewModel.swift */,
 				8064BFA01DDD961700F7968A /* NewServiceCategoryViewController.swift */,
+				A0D643CA1FEAB16A00B68DA1 /* NewDepartmentViewModel.swift */,
 			);
 			name = Department;
 			sourceTree = "<group>";
@@ -1927,10 +1927,10 @@
 		A028EB6C1FDEFE1300017A6A /* Department */ = {
 			isa = PBXGroup;
 			children = (
-				A028EB8B1FE0175900017A6A /* DepartmentAndServiceSelectionDelegate.swift */,
+				A028EB6D1FDEFE1300017A6A /* Cell */,
 				A028EB701FDEFE1300017A6A /* DepartmentSelectionViewController.swift */,
 				A028EB711FDEFE1300017A6A /* DepartmentSelectionViewModel.swift */,
-				A028EB6D1FDEFE1300017A6A /* Cell */,
+				A028EB8B1FE0175900017A6A /* DepartmentAndServiceSelectionDelegate.swift */,
 			);
 			path = Department;
 			sourceTree = "<group>";
@@ -1947,10 +1947,10 @@
 		A028EB721FDEFE1300017A6A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				A028EB8E1FE035BC00017A6A /* ServiceSelectionDelegate.swift */,
+				A028EB7E1FDF0B8900017A6A /* Cell */,
 				A028EB811FDF0B8900017A6A /* ServiceSelectionViewController.swift */,
 				A028EB821FDF0B8900017A6A /* ServiceSelectionViewModel.swift */,
-				A028EB7E1FDF0B8900017A6A /* Cell */,
+				A028EB8E1FE035BC00017A6A /* ServiceSelectionDelegate.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2070,9 +2070,9 @@
 		A0B921FE2056B64C0009BC85 /* AddOrderDetails */ = {
 			isa = PBXGroup;
 			children = (
-				80741A9C1DCCC09B002E1344 /* AddOrderDetailsViewController.swift */,
 				A0B921FF2056B7030009BC85 /* Components */,
 				A0C8CDC71FD9855E00597CF8 /* ViewModels */,
+				80741A9C1DCCC09B002E1344 /* AddOrderDetailsViewController.swift */,
 			);
 			name = AddOrderDetails;
 			sourceTree = "<group>";
@@ -2080,11 +2080,11 @@
 		A0B921FF2056B7030009BC85 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A0B922002056B7760009BC85 /* OrderDetailComponents.swift */,
-				A0AFAFFF205999CC00801DF9 /* OrderDetailDryCleaningComponent.swift */,
-				A0B922062056B7D30009BC85 /* OrderDetailMenShirtComponent.swift */,
-				A0B922032056B79E0009BC85 /* OrderDetailWashFoldComponent.swift */,
 				A0B922092056CBBC0009BC85 /* ViewModels */,
+				A0B922002056B7760009BC85 /* OrderDetailComponents.swift */,
+				A0B922032056B79E0009BC85 /* OrderDetailWashFoldComponent.swift */,
+				A0B922062056B7D30009BC85 /* OrderDetailMenShirtComponent.swift */,
+				A0AFAFFF205999CC00801DF9 /* OrderDetailDryCleaningComponent.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -2092,11 +2092,11 @@
 		A0B922092056CBBC0009BC85 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A0B9220D2056CF550009BC85 /* ComponentsViewModel.swift */,
 				A0B922102056CF6E0009BC85 /* ComponentsViewModelDelegate.swift */,
-				A0AFAFFC2059991300801DF9 /* OrderDetailDryCleaningComponentViewModel.swift */,
-				A0B922132056DD900009BC85 /* OrderDetailMenShirtComponentViewModel.swift */,
+				A0B9220D2056CF550009BC85 /* ComponentsViewModel.swift */,
 				A0B9220A2056CBD90009BC85 /* OrderDetailWashFoldComponentViewModel.swift */,
+				A0B922132056DD900009BC85 /* OrderDetailMenShirtComponentViewModel.swift */,
+				A0AFAFFC2059991300801DF9 /* OrderDetailDryCleaningComponentViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -2104,8 +2104,8 @@
 		A0C10E78204D838200621EFA /* ServicesTypes */ = {
 			isa = PBXGroup;
 			children = (
-				A0C10E8A204D945A00621EFA /* AddOrderDetailsMenShirtVM.swift */,
 				A0C10E79204D839E00621EFA /* AddOrderDetailsWhasNFoldVM.swift */,
+				A0C10E8A204D945A00621EFA /* AddOrderDetailsMenShirtVM.swift */,
 			);
 			name = ServicesTypes;
 			sourceTree = "<group>";
@@ -2134,10 +2134,10 @@
 		A0C8CDC71FD9855E00597CF8 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A0C10E75204D82EF00621EFA /* AddOrderDetailGarmentTypesVM.swift */,
+				A0C10E78204D838200621EFA /* ServicesTypes */,
 				A0C8CDC81FD9858200597CF8 /* AddOrderDetailsViewModel.swift */,
 				A053C0F9201B893900CAE499 /* AddOrderViewModelDelegate.swift */,
-				A0C10E78204D838200621EFA /* ServicesTypes */,
+				A0C10E75204D82EF00621EFA /* AddOrderDetailGarmentTypesVM.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -2153,8 +2153,8 @@
 		A0E84051223392D700077FA3 /* DBLayer */ = {
 			isa = PBXGroup;
 			children = (
-				A0E84053223392D700077FA3 /* PersistanceLayerAPI.swift */,
 				A0E84052223392D700077FA3 /* PersistanceProtocols.swift */,
+				A0E84053223392D700077FA3 /* PersistanceLayerAPI.swift */,
 				A0E84054223392D700077FA3 /* Entities */,
 				A0E84067223392D700077FA3 /* Realm */,
 			);
@@ -2279,12 +2279,12 @@
 		A122E4D01C3C195F0023789B /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				45588AF51CAAAE4E00BACC3D /* MenuHeaderView.swift */,
+				A122E4D71C3C1CC10023789B /* Cell */,
 				A122E4D51C3C1AD40023789B /* MenuItem.swift */,
 				A16882271C3C24320046731F /* MenuRouter.swift */,
 				A122E4D31C3C19890023789B /* MenuViewController.swift */,
 				A122E4D11C3C19790023789B /* MenuViewModel.swift */,
-				A122E4D71C3C1CC10023789B /* Cell */,
+				45588AF51CAAAE4E00BACC3D /* MenuHeaderView.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -2393,14 +2393,14 @@
 		A13F1F0F1C315BDC00889647 /* Order List */ = {
 			isa = PBXGroup;
 			children = (
+				A0D931AE20E036DE00C9EE00 /* Services */,
+				417C12181DABA22900AFD174 /* UtilButtons */,
 				A13F1F1E1C316A9500889647 /* Cell */,
 				450BDD891CE6287A007A88B2 /* DashboardItemProtocol.swift */,
 				A17F92431C3FDB7E00B06248 /* OrderListRouter.swift */,
 				A13F1F0D1C315BD800889647 /* OrderListViewController.swift */,
 				A13F1F111C315D6400889647 /* OrderListViewModel.swift */,
-				A0D931AE20E036DE00C9EE00 /* Services */,
 				A15EE9541CDA975B003524D2 /* Tutorial */,
-				417C12181DABA22900AFD174 /* UtilButtons */,
 			);
 			name = "Order List";
 			sourceTree = "<group>";
@@ -2444,15 +2444,15 @@
 		A13F1F291C31885C00889647 /* Order Details */ = {
 			isa = PBXGroup;
 			children = (
-				801DC9F91DF01C1B00018EEA /* PickAttributeCategoryViewCell.swift */,
-				8072EA5D1DED80BF0022B2CB /* PickAttributeCategoryViewController.swift */,
 				A0B921FE2056B64C0009BC85 /* AddOrderDetails */,
-				A028EB571FDED28E00017A6A /* Attribute */,
-				A028EB561FDED28600017A6A /* Category */,
 				A028EB5A1FDED30100017A6A /* CreationBase */,
 				A028EB591FDED29A00017A6A /* Department */,
-				A1CD133A1C4D036800729FFB /* Details */,
 				A028EB581FDED29400017A6A /* Service */,
+				A028EB561FDED28600017A6A /* Category */,
+				A028EB571FDED28E00017A6A /* Attribute */,
+				A1CD133A1C4D036800729FFB /* Details */,
+				8072EA5D1DED80BF0022B2CB /* PickAttributeCategoryViewController.swift */,
+				801DC9F91DF01C1B00018EEA /* PickAttributeCategoryViewCell.swift */,
 			);
 			name = "Order Details";
 			sourceTree = "<group>";
@@ -2460,32 +2460,39 @@
 		A13F1F2C1C31913900889647 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A00B25D61FD1C68500602C95 /* GarmentCards */,
+				8026AF901DBFA75000852714 /* NewOrderElements */,
 				45AE74161CF46DA40078844C /* ActivityButton.swift */,
 				45E71CD81C7F471C0076B4A0 /* AlertView.swift */,
 				4539B31B1D0B341C003FEE1A /* BondCollectionView.swift */,
-				34AD5A3B20FD388600D80ACE /* BrandDefaultBackgroundWithText.swift */,
-				34AD5A3E20FD3A3300D80ACE /* BrandSelectedBackgroundWithText.swift */,
-				80AB94DB1DCB8F02009385EF /* CardView.swift */,
+				A1D77F621C46785B0096BC26 /* Button with forward arrow */,
+				A1EAFAE31C3D689F001D0C99 /* Circular progress bar */,
 				A168C1121CA57F4A00356AB9 /* CircularButtonWithTitle.swift */,
 				A184A2901C343C8500C3AC14 /* Colors.swift */,
 				45E71CD91C7F471C0076B4A0 /* CommonContainerViewController.swift */,
 				A182FE601CEE33D300EC8CD6 /* CopyableLabel.swift */,
 				413851901DBE23E3009B3F3A /* DatePickerDialog.swift */,
+				342A216420F671BE00C382F3 /* ServiceDefaultBackgroundWithText.swift */,
+				342A216A20F67DB200C382F3 /* ServiceSelectedBackgroundWithText.swift */,
+				34AD5A3B20FD388600D80ACE /* BrandDefaultBackgroundWithText.swift */,
+				34AD5A3E20FD3A3300D80ACE /* BrandSelectedBackgroundWithText.swift */,
+				346B670A20FE9A790042CD2E /* MaterialDefaultBackgroundWithText.swift */,
+				346B670D20FE9B080042CD2E /* MaterialSelectedBackgroundWithText.swift */,
+				A1D77F5B1C43FD720096BC26 /* Dropdown */,
 				45E71CDA1C7F471C0076B4A0 /* HighlightedButton.swift */,
 				450DEB2A1CC78D520042A313 /* LabelWithPaddings.swift */,
 				45E71CDB1C7F471C0076B4A0 /* LeftRightImageButton.swift */,
 				A13F1F321C33FFC000889647 /* LemonBackground.swift */,
 				450DEB271CC643D50042A313 /* LemonPaymentRequest.swift */,
 				45E71CDC1C7F471C0076B4A0 /* LoadingOverlay.swift */,
-				346B670A20FE9A790042CD2E /* MaterialDefaultBackgroundWithText.swift */,
-				346B670D20FE9B080042CD2E /* MaterialSelectedBackgroundWithText.swift */,
 				41E203181D80032B00D4CCCF /* NextPickupView.swift */,
+				A1F7F30E1CB800F8005237FF /* Notification */,
+				45E71CEC1C7F479E0076B4A0 /* OptionPicker */,
 				459765381CBFCF490001A221 /* OrderButton.swift */,
 				A168C10F1CA5747C00356AB9 /* OutlineButton.swift */,
 				A187FD0D1CCE449E00996915 /* PromocodeView.swift */,
+				A1AAD07A1C3460F900E8639E /* Radio Button */,
 				45E71CDD1C7F471C0076B4A0 /* RemoveKeyboardView.swift */,
-				342A216420F671BE00C382F3 /* ServiceDefaultBackgroundWithText.swift */,
-				342A216A20F67DB200C382F3 /* ServiceSelectedBackgroundWithText.swift */,
 				A1EAFADE1C3D607E001D0C99 /* StartNavigationController.swift */,
 				45C2AD8D1D01A8A900E57E4E /* SwipedTabBar.swift */,
 				45E71CDF1C7F471C0076B4A0 /* TextFieldWithColorPalceholder.swift */,
@@ -2496,17 +2503,10 @@
 				417DF2731D88386A007D22F5 /* TipsView.swift */,
 				45E71CE11C7F471C0076B4A0 /* TransparentNavigationController.swift */,
 				A16235241C5268FC00DBBA27 /* TransparentToolbar.swift */,
+				A1EAFAE01C3D60DE001D0C99 /* User view */,
 				450DEB2B1CC78D520042A313 /* ViewControllerForResult.swift */,
 				A131E0B21C667A9B001DC9C7 /* YellowNavigationController.swift */,
-				A1D77F621C46785B0096BC26 /* Button with forward arrow */,
-				A1EAFAE31C3D689F001D0C99 /* Circular progress bar */,
-				A1D77F5B1C43FD720096BC26 /* Dropdown */,
-				A00B25D61FD1C68500602C95 /* GarmentCards */,
-				8026AF901DBFA75000852714 /* NewOrderElements */,
-				A1F7F30E1CB800F8005237FF /* Notification */,
-				45E71CEC1C7F479E0076B4A0 /* OptionPicker */,
-				A1AAD07A1C3460F900E8639E /* Radio Button */,
-				A1EAFAE01C3D60DE001D0C99 /* User view */,
+				80AB94DB1DCB8F02009385EF /* CardView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2514,11 +2514,11 @@
 		A13F1F2F1C33EB5E00889647 /* New Order */ = {
 			isa = PBXGroup;
 			children = (
-				A184F6431C3D451300922B51 /* NewOrderRouter.swift */,
-				A1479FDE1C3BBD5600E6B0DC /* Common */,
-				A1479FD91C3BB8AC00E6B0DC /* Delivery/Payment */,
-				A12D2B5B1C68EB9C001F3E6B /* Services/Preferences */,
 				A1A3A0C21CD9BE260052AABF /* Suggest Notifications */,
+				A12D2B5B1C68EB9C001F3E6B /* Services/Preferences */,
+				A1479FD91C3BB8AC00E6B0DC /* Delivery/Payment */,
+				A1479FDE1C3BBD5600E6B0DC /* Common */,
+				A184F6431C3D451300922B51 /* NewOrderRouter.swift */,
 			);
 			name = "New Order";
 			sourceTree = "<group>";
@@ -2536,8 +2536,8 @@
 		A1479FDE1C3BBD5600E6B0DC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A1479FDF1C3BBD8600E6B0DC /* DeliveryProposalText.swift */,
 				A1DBDFCA1C6CAA0D00DD6C91 /* Delivery Picker */,
+				A1479FDF1C3BBD8600E6B0DC /* DeliveryProposalText.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2582,8 +2582,8 @@
 		A173249C1C4D28BE007D3DD0 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				A173249D1C4D28E0007D3DD0 /* OrderDetailCell.swift */,
 				A1CD133F1C4D077900729FFB /* OrderDetailViewModel.swift */,
+				A173249D1C4D28E0007D3DD0 /* OrderDetailCell.swift */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -2613,9 +2613,7 @@
 			children = (
 				A19BAF131C3BECD000A728D7 /* AccessToken.swift */,
 				A19BAF171C3BF1DD00A728D7 /* Address+JSON.swift */,
-				8035D0101DE1AFC2000F4930 /* Attribute+JSON.swift */,
 				A177F3CF1C60DFCB00E2FDAE /* BillingAddress+JSON.swift */,
-				8035D0131DE1B250000F4930 /* Category+JSON.swift */,
 				A19BAF1F1C3BF9C600A728D7 /* Delivery+JSON.swift */,
 				A1862D631C621137000D0C0A /* DeliveryPricing+JSON.swift */,
 				A131E0B01C665B04001DC9C7 /* FaqItem+JSON.swift */,
@@ -2627,17 +2625,19 @@
 				A19BAF1B1C3BF2C200A728D7 /* Order+JSON.swift */,
 				A12F72231C593F3E0068CA5A /* OrderAmount+JSON.swift */,
 				A12F72291C595CBA0068CA5A /* OrderDetail+JSON.swift */,
-				A02432F32077F83B003E6673 /* OrderDetailsReceipt+JSON.swift */,
-				8035D0161DE1B6E7000F4930 /* OrderGarment+JSON.swift */,
-				80B491D81DD47BEC00635F7D /* OrderImages+JSON.swift */,
 				A19BAF191C3BF28300A728D7 /* PaymentCard+JSON.swift */,
 				A179D6431CBD46400079961D /* Preferences+JSON.swift */,
 				459746FD1C565639008625E5 /* Product+JSON.swift */,
-				80787D311DF59F1100F644DF /* Service+JSON.swift */,
 				A1862D5F1C620254000D0C0A /* ServiceType+JSON.swift */,
 				071B012D1D9E784700C36577 /* User+JSON.swift */,
 				450DEB491CCA57640042A313 /* Wallet+JSON.swift */,
 				450DEB431CCA53E60042A313 /* WalletTransition+JSON.swift */,
+				80B491D81DD47BEC00635F7D /* OrderImages+JSON.swift */,
+				8035D0101DE1AFC2000F4930 /* Attribute+JSON.swift */,
+				8035D0131DE1B250000F4930 /* Category+JSON.swift */,
+				8035D0161DE1B6E7000F4930 /* OrderGarment+JSON.swift */,
+				80787D311DF59F1100F644DF /* Service+JSON.swift */,
+				A02432F32077F83B003E6673 /* OrderDetailsReceipt+JSON.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2734,8 +2734,8 @@
 		A1DBDFCA1C6CAA0D00DD6C91 /* Delivery Picker */ = {
 			isa = PBXGroup;
 			children = (
-				A1DBDFCD1C6CAE2400DD6C91 /* DeliveryOptionCell.swift */,
 				A1DBDFCB1C6CAA3600DD6C91 /* DeliveryOptionPicker.swift */,
+				A1DBDFCD1C6CAE2400DD6C91 /* DeliveryOptionCell.swift */,
 			);
 			name = "Delivery Picker";
 			sourceTree = "<group>";
@@ -2772,8 +2772,6 @@
 				A1F883461C315919000703B0 /* AppStoryboardIdentifiers.swift */,
 				A1F883471C315919000703B0 /* AppStoryboards.swift */,
 				A1EAFAD01C3D6055001D0C99 /* Array+JSONDecodable.swift */,
-				A1A3A0661CD2404C0052AABF /* DateInRegion.swift */,
-				A0F5E46222409C3B00E7E640 /* Dictionary+Breadcrum.swift */,
 				A12F72251C5941CD0068CA5A /* Double+Currency.swift */,
 				A17590BE1C5FB64800B539B2 /* Float+Currency.swift */,
 				A1EAFAD11C3D6055001D0C99 /* IBInspectableView.swift */,
@@ -2783,15 +2781,17 @@
 				45E71CCD1C7F46E70076B4A0 /* OptionItemProtocol.swift */,
 				45E71CCE1C7F46E70076B4A0 /* String.swift */,
 				457D82721C328B8B008ECAD5 /* String+Validation.swift */,
-				A053C0FC201BA42900CAE499 /* UIBarButtonItem+Badge.swift */,
 				A1EAFAD31C3D6055001D0C99 /* UIButton.swift */,
 				A1FEAD921C3BDC5F004A5D09 /* UIImage.swift */,
 				A122E4DD1C3C1E890023789B /* UINib.swift */,
-				450D79FD1CEC909300E5DD0B /* UITextField+Bond.swift */,
 				45E71CCF1C7F46E70076B4A0 /* UIView.swift */,
 				A1EAFAD41C3D6055001D0C99 /* UIViewController+Alert.swift */,
 				45E71CD01C7F46E70076B4A0 /* UIViewController+Keyboard.swift */,
 				45E71CD11C7F46E70076B4A0 /* UIViewController+Navigation.swift */,
+				A1A3A0661CD2404C0052AABF /* DateInRegion.swift */,
+				450D79FD1CEC909300E5DD0B /* UITextField+Bond.swift */,
+				A053C0FC201BA42900CAE499 /* UIBarButtonItem+Badge.swift */,
+				A0F5E46222409C3B00E7E640 /* Dictionary+Breadcrum.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2799,25 +2799,25 @@
 		A1F8834D1C31592D000703B0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A1EAFADC1C3D6077001D0C99 /* Action.swift */,
-				34E542E420AB713F008643E2 /* BondHelper.swift */,
-				A0FE902E205C34CB006E1FBB /* BrandHelper.swift */,
 				450DEB2E1CC78D6D0042A313 /* Collections+Helper.swift */,
-				45E71CC71C7F46970076B4A0 /* Copying.swift */,
-				A08E66F4221C11FD00185AB7 /* Crashlytics + Error.swift */,
-				A0F5E4602240991C00E7E640 /* CrashlyticsTool.swift */,
-				A0F5E45E224097DF00E7E640 /* EventTracker.swift */,
-				A0FE9031205C352C006E1FBB /* GarmentsHelper.swift */,
-				A0FD16D6205D521C0039E728 /* IdentifierHelper.swift */,
-				45E71CC81C7F46970076B4A0 /* ImageCache.swift */,
-				343EFB1C20DD7F4400E93FDC /* LemonUtils.swift */,
-				A0FE9034205C3577006E1FBB /* MaterialHelper.swift */,
-				A03337192020F3DB004097CE /* Order+Helper.swift */,
-				A08DA776205C481700126685 /* PatterHelper.swift */,
-				A04D4B471F8534AF00BD120B /* ProductHelper.swift */,
-				450BDD861CE60F5F007A88B2 /* SwiftyTimer.swift */,
 				459765221CAC1E530001A221 /* ViewModel.swift */,
+				45E71CC71C7F46970076B4A0 /* Copying.swift */,
+				45E71CC81C7F46970076B4A0 /* ImageCache.swift */,
+				A1EAFADC1C3D6077001D0C99 /* Action.swift */,
 				A1F8834B1C315925000703B0 /* WeakReference.swift */,
+				450BDD861CE60F5F007A88B2 /* SwiftyTimer.swift */,
+				A04D4B471F8534AF00BD120B /* ProductHelper.swift */,
+				A03337192020F3DB004097CE /* Order+Helper.swift */,
+				A0FE902E205C34CB006E1FBB /* BrandHelper.swift */,
+				A0FE9031205C352C006E1FBB /* GarmentsHelper.swift */,
+				A0FE9034205C3577006E1FBB /* MaterialHelper.swift */,
+				A08DA776205C481700126685 /* PatterHelper.swift */,
+				A0FD16D6205D521C0039E728 /* IdentifierHelper.swift */,
+				34E542E420AB713F008643E2 /* BondHelper.swift */,
+				343EFB1C20DD7F4400E93FDC /* LemonUtils.swift */,
+				A08E66F4221C11FD00185AB7 /* Crashlytics + Error.swift */,
+				A0F5E45E224097DF00E7E640 /* EventTracker.swift */,
+				A0F5E4602240991C00E7E640 /* CrashlyticsTool.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -2825,10 +2825,10 @@
 		A1F8834E1C315933000703B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A1F8834A1C31591C000703B0 /* Extensions */,
-				A1F8834D1C31592D000703B0 /* Helpers */,
 				A1A3A0CC1CD9F8CB0052AABF /* Transitions */,
 				A13F1F2C1C31913900889647 /* View */,
+				A1F8834D1C31592D000703B0 /* Helpers */,
+				A1F8834A1C31591C000703B0 /* Extensions */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2836,6 +2836,8 @@
 		A1F883561C315950000703B0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				3438CCAC20BF276400C77615 /* Splash */,
+				A0887AE11F7D6D1700B909A5 /* Receipt */,
 				457D826C1C328AFE008ECAD5 /* Auth */,
 				45ACEF9A1CF7254100B23E68 /* CloudCloset */,
 				A122E4D01C3C195F0023789B /* Menu */,
@@ -2845,10 +2847,8 @@
 				A184F63E1C3D308900922B51 /* Preferences */,
 				459747031C566A38008625E5 /* Pricing */,
 				45F32FE91C468922001AF90C /* Profile */,
-				A0887AE11F7D6D1700B909A5 /* Receipt */,
 				A182FE5F1CEE2DC600EC8CD6 /* Referral */,
 				A1C1098B1C43DB000082BDA5 /* Settings */,
-				3438CCAC20BF276400C77615 /* Splash */,
 				A130842C1C4FA5FC00635A2A /* Support */,
 				A15EE96C1CDC0429003524D2 /* Wallet */,
 			);

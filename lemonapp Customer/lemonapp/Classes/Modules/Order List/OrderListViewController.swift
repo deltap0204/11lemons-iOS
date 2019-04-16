@@ -345,11 +345,6 @@ extension OrderListViewController : MGSwipeTableCellDelegate {
     }
     
     func swipeTableCell(_ cell: MGSwipeTableCell, shouldHideSwipeOnTap point: CGPoint) -> Bool {
-        print("touche button")
-        return true
-    }
-    
-    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         if let viewModel = (cell as? OrderCell)?.viewModel {
             let order = viewModel.order
             if viewModel.canCancel {
@@ -360,7 +355,7 @@ extension OrderListViewController : MGSwipeTableCellDelegate {
         } else if let transition = (cell as? WalletTransitionCell)?.viewModel?.walletTransition {
             self.viewModel.archiveWalletTransition(transition).execute { _ in }
         }
-        
+
         return true
     }
 }

@@ -35,6 +35,9 @@ final class UserWrapper {
     
     let applePayCard: ApplePayCard?
     
+    let settings: Observable<[Settings]> = Observable([])
+
+    
     var activeAddresses: [Address] {
         return self.addresses.value.compactMap { !$0.deleted ? $0 : nil }
     }

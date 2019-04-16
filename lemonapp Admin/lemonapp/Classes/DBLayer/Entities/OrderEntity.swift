@@ -88,7 +88,7 @@ public class OrderEntity: Object {
     var hasChanges: Bool = false
     
     static func create(with order: Order) -> OrderEntity {
-        let orderEntity = OrderEntity()
+        var orderEntity = OrderEntity()
         orderEntity.id = order.id
         orderEntity.userId.value = order.userId
         orderEntity.lastModifiedUserId.value = order.lastModifiedUserId

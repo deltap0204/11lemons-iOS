@@ -193,7 +193,7 @@ final class ReceiptViewController: UIViewController {
     
     fileprivate func setupBtnDone() {
         if let viewModel = self.viewModel {
-            if viewModel.order.paymentStatus == .paymentProcessedSuccessfully {
+            if viewModel.order.paymentStatus == .applePayComplete || viewModel.order.paymentStatus == .paymentProcessedSuccessfully {
 
                 btnDone.setTitle("Done")
             }

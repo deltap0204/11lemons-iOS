@@ -164,7 +164,9 @@ final class ReceiptViewController: UIViewController {
     }
     
     fileprivate func showPickupPaymentAlert() {
+//        should show the options of the customer not the admin
         guard let viewModel = self.viewModel else {return}
+
 
             let cardList: [OptionItemProtocol] = viewModel.activePaymentCards.map { $0 }
 
@@ -195,7 +197,7 @@ final class ReceiptViewController: UIViewController {
     
     fileprivate func setupBtnDone() {
             if let viewModel = self.viewModel {
-                if viewModel.order.paymentStatus == .paymentProcessedSuccessfully {
+                if viewModel.order.paymentStatus == .applePayComplete || viewModel.order.paymentStatus == .paymentProcessedSuccessfully {
                     
                     btnDone.setTitle("Done")
                 }

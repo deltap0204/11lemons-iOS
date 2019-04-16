@@ -338,19 +338,19 @@ extension LemonAPI {
                 case .success(let response):
                     do {
                         
-//                        if let requestUrl = response.request?.url?.absoluteString {
+                        if let requestUrl = response.request?.url?.absoluteString {
                             //print("Request Url: \n")
                             //print(requestUrl)
-//                        }
+                        }
                         
-//                        if let jsonBody = response.request?.httpBody {
-//                            let string0 = String(data: jsonBody, encoding: String.Encoding.utf8) ?? "Data could not be printed"
-//                            print("Json body: \n")
+                        if let jsonBody = response.request?.httpBody {
+                            let string0 = String(data: jsonBody, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+                            print("Json body: \n")
                             //print(string0)
-//                        }
+                        }
                         
                         
-//                        let string1 = String(data: response.data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+                        let string1 = String(data: response.data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
                         //print(string1)
                         
                         //let resultValue = try JSONDecoder().decode(T.self, from: response.data)
@@ -421,11 +421,12 @@ extension LemonAPI {
                         if let jsonBody = response.request?.httpBody {
                             let string0 = String(data: jsonBody, encoding: String.Encoding.utf8) ?? "Data could not be printed"
                             print("Json body: \n")
+                            //print(string0)
                         }
                         
-                        print("Request Response: \n")
+                        //print("Request Response: \n")
                         let string1 = String(data: response.data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
-                        print(string1)
+                        //print(string1)
                         
                         if let backendError = try? BackendError.decode(JSON(data: response.data)["Error"]) {
                             //observer.failed(backendError as NSError)
