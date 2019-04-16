@@ -85,6 +85,7 @@ extension DataProvider {
                 let orders = try result()
                 self?.lastUpdateDate = Date()
 
+                self?.deleteAllOrders()
                 self?.saveOrdersInDB(orders: orders)
                 self?.userOrders.replace(with: orders)
 //                self?.userOrdersUpdates.next(self?.userOrders.array.flatMap { $0.viewed.value ? nil : $0 }.count ?? 0)

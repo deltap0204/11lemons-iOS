@@ -8,7 +8,7 @@
 import Foundation
 import Bond
 import PassKit
-import Braintree
+//import Braintree
 import ReactiveKit
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -122,8 +122,8 @@ final class OrderListViewModel : ViewModel {
     }
     
     func cancelOrder(_ order: Order, fromViewController viewController: UIViewController) -> CancelOrderFlow {
-        return CancelOrderFlow(withOrder: order, fromViewController: viewController) { [weak self] didCancel, success in
-            if didCancel {
+        return CancelOrderFlow(withOrder: order, fromViewController: viewController) { [weak self] result in
+            if result == .success {
                 order.status = .canceled
                 DataProvider.sharedInstance.refreshUserOrders()
                 let dashboardItem = order as DashboardItem
@@ -151,7 +151,7 @@ final class OrderListViewModel : ViewModel {
                 break
             default:
                 if let strongSelf = self {
-                    let auxArray: [ViewModel] = strongSelf.dashboardItems.array.compactMap {
+                    let auxArray: [ViewModel] = DataProvider.sharedInstance.userDashboardItems.array.compactMap {
                         if let order = $0 as? Order {
                             return OrderCellViewModel(order: order)
                         } else if let walletTransition = $0 as? WalletTransition {

@@ -74,6 +74,7 @@ final class Order {
          dryer: Dryer,
          softener: Softener,
          tips: Int,
+         card: PaymentCard? = nil,
          lastModifiedUser: User? = nil,
          createdBy: User? = nil) {
         
@@ -100,6 +101,7 @@ final class Order {
         self.tips = tips
         self.createdBy = createdBy
         self.lastModifiedUser = lastModifiedUser
+        self.card = card
     }
     
     init(entity: OrderEntity) {

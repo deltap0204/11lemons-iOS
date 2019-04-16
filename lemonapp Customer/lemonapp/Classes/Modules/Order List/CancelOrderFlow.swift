@@ -8,10 +8,14 @@
 import Foundation
 import UIKit
 
+enum CancelOrderFlowResult {
+    case cancel
+    case success
+}
 
 final class CancelOrderFlow {
     
-    typealias Completion = (_ didCancel: Bool, _ success: Bool) -> Void
+    typealias Completion = (_ result: CancelOrderFlowResult) -> Void
     
     fileprivate let viewController: UIViewController
     fileprivate let completion: Completion
@@ -32,7 +36,7 @@ final class CancelOrderFlow {
         let alert = UIAlertController(title: "Are you sure you want to cancel your order?", message: "If you need to make a change you can always call us at (914) 249-9534", preferredStyle: UIAlertControllerStyle.alert)
         
         let no = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel) {_ in
-            self.completion(false, true)
+            self.completion(.cancel)
             alert.dismiss(animated: true, completion: nil)
         }
         alert.addAction(no)
@@ -50,12 +54,12 @@ final class CancelOrderFlow {
         let alert = UIAlertController(title: "Cancel Order", message: "Please help improve our service by providing a reason for your cancellation.", preferredStyle: UIAlertControllerStyle.alert)
 
         let back = UIAlertAction(title: "Go Back", style: UIAlertActionStyle.cancel) { _ in
-            self.completion(false, true)
+            self.completion(.cancel)
             alert.dismiss(animated: true, completion: nil)
         }
         alert.addAction(back)
         
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { _ in
+        let confirmCancel = UIAlertAction(title: "Delete Confirmation", style: UIAlertActionStyle.default) { _ in
             alert.dismiss(animated: true, completion: nil)
             showLoadingOverlay()
             _ = LemonAPI.cancelOrder(orderId: self.order.id).request().observeNext { (result: EventResolver<Order>) in
@@ -63,15 +67,15 @@ final class CancelOrderFlow {
                 do {
                     let order = try result()
                     if order.status == OrderStatus.canceled {
-                        self.completion(true, true)
+                        self.completion(.success)
                         return
                     }
                 } catch {
-                    self.completion(true, true)
+                    self.completion(.success)
                 }
             }
         }
-        alert.addAction(cancel)
+        alert.addAction(confirmCancel)
         
         alert.addTextField { textField in
             textField.placeholder = "Why are you cancelling?"
