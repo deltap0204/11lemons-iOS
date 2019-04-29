@@ -28,11 +28,8 @@ final class NotificationStyleViewModel: ViewModel {
 //        return Action { [weak self] in
 //            Signal { [weak self] sink in
 //                _ = LemonAPI.getNotificationSetting().request().observeNext { (event : EventResolver<User>) in
-//                    
-//                    
 //                }
 //                return BlockDisposable {}
-//
 //            }
 //        }
 //    }
@@ -55,7 +52,11 @@ class StyleCell: UITableViewCell {
 class NotificationStyleViewController: UIViewController {
     var viewModel: NotificationStyleViewModel = NotificationStyleViewModel()
 
-    var dataDict = [String:Any]()
+    var dictNotificationSettings: [String:Any] = [:]
+    
+    var hourString = "0 hours"
+    var minString = "0 mins"
+    var OrderCountdownWarning = "0 hours 0 mins"
     
     let hoursArray = [
         "0 hours",
@@ -101,14 +102,17 @@ class NotificationStyleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tblView.reloadData()
-        getNotificationSetting()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.tblView.reloadData()
+        
         navigationController?.navigationBar.barTintColor = UIColor(red: 1.0/255.0, green: 180.0/255.0, blue: 208.0/255.0, alpha: 1.0)
+    }
+    
+    @IBAction func bntDoneTapped(_ sender: Any) {
+        self.updateNotificationAndContactInfoSetting()
     }
     
     @IBAction func bntPickerDoneTapped(_ sender: Any) {
@@ -116,81 +120,90 @@ class NotificationStyleViewController: UIViewController {
         self.txtFieldPicker.resignFirstResponder()
     }
     
-//    func getnotificationSettingApi() {
-////        viewModel.getNotificationRequest.execute { [weak self] resolver in
-////            guard let self = self else {
-////                hideLoadingOverlay()
-////                return
-////            }
-////        }
-////        _ = LemonAPI.getNotificationSetting().request().observeNext { [weak self] (resolver : EventResolver<[String:Any]>) in
-////            do {
-////                let dict = try resolver()
-////
-////            }catch {
-////
-////            }
-////            print("Rakesh")
-////        }
-//    }
-    
-    func getNotificationSetting(){
-        if let url = URL(string: String(format: "%@/GetNotificationAndContactInfoSetting", Config.LemonEndpoints.APIEndpoint.rawValue)) {
-            var request = URLRequest(url: url)
-            request.setValue("bearer xMSKXKu30uWJyTE-CoZK_rc-yhyg9y2CKdw31p0lOSS3zTB_ofk0Mt2QnjK6JUH2eMOz3ufDumqPx0VEmJoTFnLvdPWYrYqbB-7KAiJY3r2Hycn7RQwh0jrrSpQ4sjLQKsmsekx064R0r1IIXeV0aMLJ1IhyhjW4HdsQtfLl8u0N_6Pjrw34ACjus2gcXNRSW84hv_7CV_qrgs9TM5dPfd4nTiCo54-j6NoGDfWvFdiZ3iowUJXxZXnF5dYIB0uF", forHTTPHeaderField: "Authorization")
-            request.setValue("1070",forHTTPHeaderField:"x-usr-id")
-            //request.setValue(LemonAPI.getNotificationSetting.headers, forHTTPHeaderField: )
+    // post method UpdateNotificationAndContactInfoSetting
+    func updateNotificationAndContactInfoSetting(){
+        var dictParam:[String:Any] = [:]
+        if let cell0:StyleCell = self.tblView.cellForRow(at: IndexPath(row: 0, section: 0)) as? StyleCell {
+            if let isOn:Bool = cell0.switchOptions.isOn {
+                dictParam["IsEnabledPushNotifications"] = isOn
+            }
+        }
+        
+        if let cell1:StyleCell = self.tblView.cellForRow(at: IndexPath(row: 1, section: 0)) as? StyleCell {
+            if let isOn:Bool = cell1.switchOptions.isOn {
+                dictParam["IsEnabledEmailNotifications"] = isOn
+            }
+        }
+        
+        if let cell2:StyleCell = self.tblView.cellForRow(at: IndexPath(row: 2, section: 0)) as? StyleCell {
+            if let isOn:Bool = cell2.switchOptions.isOn
+            {
+                dictParam["IsEnabledSMSNotifications"] = isOn
+            }
+        }
+        dictParam["OrderCountdownWarning"] = 30//self.hourString + " " + self.minString
+//        dictParam["EmailForContact"] = "borysenko19931128@outlook.com"
+//        dictParam["SMSForContact"] = "borysenko19931128@outlook.com"
+
+        DispatchQueue.main.async {
+            showLoadingOverlay()
+        }
+        
+        if let url = URL(string: String(format: "%@/UpdateNotificationAndContactInfoSetting", Config.LemonEndpoints.APIEndpoint.rawValue)) {
             
-            request.httpMethod = "GET"
-            // request.httpBody = jsonData
+          //  let jsonNotificationSettings = try? JSONSerialization.data(withJSONObject: dictParam)
+            
+            var headers: [String:String]? = nil
+            if let accessToken = LemonAPI.accessToken?.value,
+                let userId = LemonAPI.userId {
+                headers = [
+                    "Authorization": "Bearer \(accessToken)",
+                    LemonAPI.USER_ID_HEADER: "\(userId)",
+                ]
+                  print("accessToken",accessToken)
+            }
+            let body = NSMutableData()
+            for (key, value) in dictParam {
+                body.append("&\(key)=\(value)".data(using: String.Encoding.utf8)!)
+                
+            }
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = headers
+            
+            request.httpMethod = "POST"
+            
+            request.httpBody = body as Data
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data, error == nil else {
                     print(error?.localizedDescription ?? "No data")
                     return
                 }
                 let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                print("UpdateNotificationAndContactInfoSetting \(responseJSON ?? "")")
+                DispatchQueue.main.async {
+                    hideLoadingOverlay()
+                }
                 if let responseJSON = responseJSON as? [String: Any] {
-                    print("responsenotificationSettingJSON",responseJSON)
-                    self.dataDict = responseJSON
+                    print(responseJSON)
+                    if let isSuccess:Bool = responseJSON["IsSuccess"] as? Bool {
+                        if isSuccess {
+                            self.dictNotificationSettings = responseJSON
+                            DispatchQueue.main.async {
+                                self.navigationController?.popViewController(animated: true)
+//                                if let time = dictParam["OrderCountdownWarning"] as? String
+//                                {
+//                                 self.OrderCountdownWarning = time
+//                                }
+//                                self.tblView.reloadData()
+                            }
+                        }
+                    }
                 }
             }
+            
             task.resume()
         }
-    }
-    // post method UpdateNotificationAndContactInfoSetting
-    func UpdateNotificationAndContactInfoSetting(){
         
-        let IsEnabledPushNotifications = 1
-        let IsEnabledEmailNotifications = 0
-        let IsEnabledSMSNotifications = 1
-        let EmailForContact = "n@gmail.com"
-        let SMSForContact = "1112"
-        let PhoneForContact = "1234"
-        let OrderCountdownWarning = "30"
-        
-        
-        let param: [String: Any] = ["IsEnabledPushNotifications": IsEnabledPushNotifications,"IsEnabledEmailNotifications":IsEnabledEmailNotifications,"IsEnabledSMSNotifications":IsEnabledSMSNotifications,"EmailForContact":EmailForContact,"SMSForContact":SMSForContact,"PhoneForContact":PhoneForContact,"OrderCountdownWarning":OrderCountdownWarning]
-        let jsonData = try? JSONSerialization.data(withJSONObject: param)
-        
-        let url = URL(string: "http://11lemons-api-test.azurewebsites.net/api/v1/UpdateNotificationAndContactInfoSetting")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("bearer xMSKXKu30uWJyTE-CoZK_rc-yhyg9y2CKdw31p0lOSS3zTB_ofk0Mt2QnjK6JUH2eMOz3ufDumqPx0VEmJoTFnLvdPWYrYqbB-7KAiJY3r2Hycn7RQwh0jrrSpQ4sjLQKsmsekx064R0r1IIXeV0aMLJ1IhyhjW4HdsQtfLl8u0N_6Pjrw34ACjus2gcXNRSW84hv_7CV_qrgs9TM5dPfd4nTiCo54-j6NoGDfWvFdiZ3iowUJXxZXnF5dYIB0uF", forHTTPHeaderField: "Authorization")
-        request.setValue("1070",forHTTPHeaderField:"x-usr-id")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("UpdateNotificationAndContactInfoSetting",responseJSON)
-            }
-        }
-        
-        task.resume()
     }
     
   
@@ -208,31 +221,6 @@ class NotificationStyleViewController: UIViewController {
     }
     
     @IBAction func switchValuehanged(sender: UISwitch) {
-        
-        //        let IsEnabledPushNotifications = notificationDict.value(forKey: "IsEnabledPushNotifications")
-        //       let IsEnabledEmailNotifications = notificationDict.value(forKey: "IsEnabledEmailNotifications")
-        //        let IsEnabledSMSNotifications = notificationDict.value(forKey: "IsEnabledSMSNotifications")
-        //        let EmailForContact = notificationDict.value(forKey: "EmailForContact")
-        //        let SMSForContact = notificationDict.value(forKey: "SMSForContact")
-        //        let PhoneForContact = notificationDict.value(forKey: "PhoneForContact")
-        //         let OrderCountdownWarning = notificationDict.value(forKey: "OrderCountdownWarning")
-        
-        print("\n switchValuehanged \(sender.tag) -  \(sender.isOn)")
-        if(sender.tag == 100)
-        {
-           dataDict["IsEnabledPushNotifications"] = sender.isOn ? "true" : "false"
-
-        }
-        else if(sender.tag == 101)
-        {
-            dataDict["IsEnabledEmailNotifications"] = sender.isOn ? "true" : "false"
-
-        }
-        else if(sender.tag == 102)
-        {
-           dataDict["IsEnabledSMSNotifications"] = sender.isOn ? "true" : "false"
-
-        }
     }
 }
 
@@ -273,18 +261,25 @@ extension NotificationStyleViewController:UIPickerViewDelegate, UIPickerViewData
         
         print("\n selected component \(component) row \(row)")
         
+        
         if component == 0 {
-            
+            hourString = hoursArray[row]
             print("\n selected hour component \(component) row \(row)")
             
         }else if component == 1 {
-           
+            minString = minsArray[row]
             print("\n selected min component \(component) row \(row)")
             
         }
+        self.OrderCountdownWarning = self.hourString + " " + self.minString
+        self.tblView.reloadData()
         
-        
-        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+//            let indexPath = IndexPath(row: 0, section: 1)
+//            let cell: SettingsCell = self.tblView.cellForRow(at: indexPath) as! SettingsCell
+//            cell.lblTitle.text = String("Changes to Yellow")
+//            cell.lblSubTitle.text = self.hourString + " " + self.minString
+//        }
     }
     
 
@@ -337,42 +332,26 @@ extension NotificationStyleViewController:UITableViewDelegate, UITableViewDataSo
             let cell:StyleCell = tableView.dequeueReusableCell(withIdentifier: String(describing: StyleCell.self), for: indexPath) as? StyleCell ?? StyleCell()
             cell.lblTitle.text = ""
             cell.switchOptions.tag = indexPath.row + 100
+            cell.switchOptions.setOn(false, animated: true)
             if indexPath.row == 0 {
-                
                 cell.lblTitle.text = String("Push")
-                if dataDict["IsEnabledPushNotifications"] as? String == "true"
-                {
-                     cell.switchOptions.setOn(true, animated: false)
-                }else
-                {
-                     cell.switchOptions.setOn(false, animated: false)
+                if let isEnabled:Bool = dictNotificationSettings["IsEnabledPushNotifications"] as? Bool {
+                    cell.switchOptions.setOn(isEnabled, animated: true)
                 }
-                
-                
             }else if indexPath.row == 1 {
                 
                 cell.lblTitle.text = String("Email")
                 
-                if dataDict["IsEnabledEmailNotifications"]as? String == "true"
-                {
-                    cell.switchOptions.setOn(true, animated: false)
-                }else
-                {
-                    cell.switchOptions.setOn(false, animated: false)
+                if let isEnabled:Bool = dictNotificationSettings["IsEnabledEmailNotifications"] as? Bool {
+                    cell.switchOptions.setOn(isEnabled, animated: true)
                 }
-                
                 
             }else if indexPath.row == 2 {
                 
                 cell.lblTitle.text = String("SMS")
                 
-                if dataDict["IsEnabledSMSNotifications"]as? String == "true"
-                {
-                    cell.switchOptions.setOn(true, animated: false)
-                }else
-                {
-                    cell.switchOptions.setOn(false, animated: false)
-                
+                if let isEnabled:Bool = dictNotificationSettings["IsEnabledSMSNotifications"] as? Bool {
+                    cell.switchOptions.setOn(isEnabled, animated: true)
                 }
             }
             return cell
@@ -380,7 +359,9 @@ extension NotificationStyleViewController:UITableViewDelegate, UITableViewDataSo
             
             let cell:SettingsCell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath) as? SettingsCell ?? SettingsCell()
             cell.lblTitle.text = String("Changes to Yellow")
-            cell.lblSubTitle.text = "30 Minutes"
+            cell.lblSubTitle.text = self.OrderCountdownWarning
+            
+            
             return cell
         }
         return UITableViewCell()

@@ -15,34 +15,29 @@ import SwiftyJSON
 
 
 class SettingsCell: UITableViewCell {
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblSubTitle: UILabel!
+    @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var lblSubTitle: UILabel!
     @IBOutlet weak var btnAccessor: UIButton!
-    
+    @IBOutlet weak var txtFieldTitle: UITextField!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.lblTitle.font = UIFont.systemFont(ofSize: 15)
-        self.lblSubTitle.font = UIFont.systemFont(ofSize: 15)
+        if let _ = self.lblSubTitle {
+            self.lblSubTitle.font = UIFont.systemFont(ofSize: 15)            
+        }
     }
 }
 
 final class SettingsViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
-
     var router: MenuRouter!
     
+    var dictSettings:[String:Any] = [:]
+    var dictHoursOperation:[String:Any] = [:]
+    
     let settingArr = [["title":"","description":"Notification","RushService":""],["title":"CUSTOMER SERVICE","description":"Contact Information","RushService":""],["title":"BUSINESS INFORMATION","description":"Hours of Opration","RushService":"Rush Services can  be  customized in the Hours of Opration Section"]]
-    
-//    let section = ["", "CUSTOMER SERVICE", "BUSINESS INFORMATION"]
-//    let items = [["Notification"], ["Contact Information"], ["Hours of Opration", "Rush Services can  be  customized in the Hours of Opration Section"]]
-//
-//    //@IBOutlet fileprivate weak var cloudClosetSwitch: UISwitch!
-   // @IBOutlet fileprivate weak var pushButton: UIButton!
-   // @IBOutlet fileprivate weak var emailButton: UIButton!
-   // @IBOutlet fileprivate weak var messageButton: UIButton!
-   // @IBOutlet var circularButtons: [UIButton]!
-   // @IBOutlet var cloudClosetIconView: UIImageView!
-    
+
     @IBOutlet var doneBtn: HighlightedButton!
     @IBOutlet var doneBtnHeight: NSLayoutConstraint!
    
@@ -50,7 +45,6 @@ final class SettingsViewController: UIViewController {
         didSet {
             if let viewModel = viewModel {
                 bindViewModel(viewModel)
-               
             }
         }
     }
@@ -59,25 +53,20 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tblView.reloadData()
-
-
-
-        //circularButtons.forEach { $0.centerImageAndTitle() }
-        
-        
+      //  getHoursOperation()
         if let viewModel = viewModel {
             bindViewModel(viewModel)
-          
-           
+            
         }
         
-       // cloudClosetIconView.tintColor = UIColor.white
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.alpha = 1
+        getNotificationSetting()
+
         viewModel?.refresh()
     }
     
@@ -101,36 +90,6 @@ final class SettingsViewController: UIViewController {
     
     func bindViewModel(_ viewModel: SettingsViewModel) {
         guard isViewLoaded else { return }
-        
-        
-        
-//        viewModel.cloudClosetEnabled.bidirectionalBind(to: cloudClosetSwitch.bnd_on)
-//
-//        viewModel.mailSelected.bind(to: emailButton.bnd_selected)
-//        viewModel.mailEnabled.bidirectionalBind(to: viewModel.mailSelected)
-//
-//        viewModel.pushSelected.bind(to: pushButton.bnd_selected)
-//        viewModel.pushEnabled.bidirectionalBind(to: viewModel.pushSelected)
-//
-//        viewModel.messageSelected.bind(to: messageButton.bnd_selected)
-//        viewModel.messageEnabled.bidirectionalBind(to: viewModel.messageSelected)
-//
-//
-//        emailButton.bnd_tap.observeNext { [weak self] result in
-//            guard let strongSelf = self else { return }
-//            strongSelf.emailButton.isSelected = !strongSelf.emailButton.isSelected
-//            viewModel.mailSelected.next(strongSelf.emailButton.isSelected)
-//        }
-//        pushButton.bnd_tap.observeNext { [weak self] result in
-//            guard let strongSelf = self else { return }
-//            strongSelf.pushButton.isSelected = !strongSelf.pushButton.isSelected
-//            viewModel.pushSelected.next(strongSelf.pushButton.isSelected)
-//        }
-//        messageButton.bnd_tap.observeNext { [weak self] result in
-//            guard let strongSelf = self else { return }
-//            strongSelf.messageButton.isSelected = !strongSelf.messageButton.isSelected
-//            viewModel.messageSelected.next(strongSelf.messageButton.isSelected)
-//        }
     }
     
     
@@ -138,10 +97,50 @@ final class SettingsViewController: UIViewController {
         self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }
     
-   
-    
-    
-    
+    func getNotificationSetting(){
+        if let url = URL(string: String(format: "%@/GetNotificationAndContactInfoSetting", Config.LemonEndpoints.APIEndpoint.rawValue)) {
+            DispatchQueue.main.async {
+                showLoadingOverlay()
+            }
+
+            var headers: [String:String]? = nil
+            if let accessToken = LemonAPI.accessToken?.value,
+                let userId = LemonAPI.userId {
+                headers = [
+                    "Authorization": "Bearer \(accessToken)",
+                    LemonAPI.USER_ID_HEADER: "\(userId)"
+                ]
+                  print("accessToken",accessToken)
+            }
+//            headers = [
+//                "Authorization": "bearer YZnmUgR0Xr7eG9Ghnwi-EFYm8Sa93uhn-fE2Z0aWJ-7cIUYemU9XFvXsXaI5l107vbTucN2_PPqYFR6tL115U5WeFvpsLs59UFd3BKX7WYTyVaKvyDbB5VTAaONjKqlEpVEj2ik-HyuSgV8BD-We7wNeYM0sYHtmDR4LGMbcBdRcSbr0r_p9Yfhx-Z85luVcuV8chn6B9pJSH18nXGKF8KH0iqr5fi03MoRgVFfgvMwyr3f1l7ty4R5rnvHczAte",
+//                LemonAPI.USER_ID_HEADER: "1070"
+//            ]
+            
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = headers
+            
+            request.httpMethod = "GET"
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                DispatchQueue.main.async {
+                    hideLoadingOverlay()
+                }
+                
+
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                    print("responsenotificationSettingJSON",responseJSON)
+                    self.dictSettings = responseJSON
+                }
+            }
+            task.resume()
+        }
+    }
     
     
 }
@@ -202,12 +201,15 @@ extension SettingsViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let vc:NotificationStyleViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: NotificationStyleViewController.self)) as? NotificationStyleViewController ?? NotificationStyleViewController()
+            vc.dictNotificationSettings = self.dictSettings
             self.navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.section == 1 {
             let vc:ContactInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: ContactInfoViewController.self)) as? ContactInfoViewController ?? ContactInfoViewController()
+            vc.dictContactInfo = self.dictSettings
             self.navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.section == 2 {
             let vc:OperationsViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: OperationsViewController.self)) as? OperationsViewController ?? OperationsViewController()
+              vc.dictHours = self.dictHoursOperation
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

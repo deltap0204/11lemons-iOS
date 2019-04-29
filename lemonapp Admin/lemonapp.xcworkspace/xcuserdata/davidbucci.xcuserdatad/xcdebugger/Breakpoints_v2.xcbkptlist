@@ -9,45 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lemonapp/Classes/Networking/LemonAPI.swift"
-            timestampString = "577138512.597219"
+            filePath = "lemonapp/Classes/DayOperationsViewController.swift"
+            timestampString = "577732136.65773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "headers"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/ReactiveKit/Sources/SignalProtocol.swift"
-            timestampString = "577115811.106128"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "observeFailed(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/ReactiveKit/Sources/SignalProtocol.swift"
-            timestampString = "577115811.106343"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "observeCompleted(with:)"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "updateHoursOfOperation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lemonapp/Classes/Modules/Settings/SettingsViewModel.swift"
-            timestampString = "577115811.106506"
+            filePath = "lemonapp/Classes/DayOperationsViewController.swift"
+            timestampString = "577732136.6585931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "saveRequest"
-            landmarkType = "24">
+            startingLineNumber = "272"
+            endingLineNumber = "272"
+            landmarkName = "updateHoursOfOperation()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -73,29 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lemonapp/Classes/Modules/Settings/SettingsViewModel.swift"
-            timestampString = "577115811.106679"
+            filePath = "lemonapp/Classes/NotificationViewController.swift"
+            timestampString = "577569797.1835459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "SettingsViewModel"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lemonapp/Classes/NotificationStyleViewController.swift"
-            timestampString = "577134960.425557"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "UpdateNotificationAndContactInfoSetting()"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lemonapp/Classes/NotificationStyleViewController.swift"
-            timestampString = "577134960.426318"
+            timestampString = "577727647.1563801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "updateNotificationAndContactInfoSetting()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lemonapp/Classes/NotificationStyleViewController.swift"
-            timestampString = "577134960.426892"
+            timestampString = "577727647.156895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "updateNotificationAndContactInfoSetting()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,12 +90,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lemonapp/Classes/NotificationStyleViewController.swift"
-            timestampString = "577134960.42723"
+            timestampString = "577727647.157348"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
-            landmarkName = "tableView(_:viewForHeaderInSection:)"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "updateNotificationAndContactInfoSetting()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lemonapp/Classes/AppDelegate.swift"
+            timestampString = "577736285.86339"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "checkAPIVersion()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

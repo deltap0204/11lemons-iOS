@@ -10,70 +10,116 @@ import UIKit
 
 class OperationsViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
-    let aryDays:[[String:Any]] = [["day":"Monday", "time":"9:00 am to 10:00 pm"], ["day":"Tuesday", "time":"9:00 am to 10:00 pm"], ["day":"Wednesday", "time":"9:00 am to 10:00 pm"], ["day":"Thursday", "time":"9:00 am to 10:00 pm"], ["day":"Friday", "time":"9:00 am to 10:00 pm"], ["day":"Saturday", "time":"9:00 am to 10:00 pm"], ["day":"Sunday", "time":"Closed"], ]
+     var dictHours:[String:Any] = [:]
+      var dictupdateHours:[String:Any] = [:]
+      var dictHoursOperation:[String:Any] = [:]
+
+    
+    var aryDays:[[String:Any]] = [ ]
     override func viewDidLoad() {
         super.viewDidLoad()
-               getHoursOfOperation()
-        self.tblView.reloadData()
+       
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getHoursOperation()
+        self.tblView.reloadData()
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        // navigationController?.navigationBar.barTintColor = UIColor(red: 1.0/255.0, green: 180.0/255.0, blue: 208.0/255.0, alpha: 1.0)
 
     }
-    // getHoursofOperation
-    
-    func getHoursOfOperation(){
-        
-        let url = URL(string:"http://11lemons-api-test.azurewebsites.net/api/v1/GetHoursOfOperations")!
-        var request = URLRequest(url: url)
-        request.setValue("bearer xMSKXKu30uWJyTE-CoZK_rc-yhyg9y2CKdw31p0lOSS3zTB_ofk0Mt2QnjK6JUH2eMOz3ufDumqPx0VEmJoTFnLvdPWYrYqbB-7KAiJY3r2Hycn7RQwh0jrrSpQ4sjLQKsmsekx064R0r1IIXeV0aMLJ1IhyhjW4HdsQtfLl8u0N_6Pjrw34ACjus2gcXNRSW84hv_7CV_qrgs9TM5dPfd4nTiCo54-j6NoGDfWvFdiZ3iowUJXxZXnF5dYIB0uF", forHTTPHeaderField: "Authorization")
-        request.setValue("1070",forHTTPHeaderField:"x-usr-id")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
-        request.httpMethod = "GET"
-        // request.httpBody = jsonData
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
+    func getHoursOperation(){
+        if let url = URL(string: String(format: "%@/GetHoursOfOperations", Config.LemonEndpoints.APIEndpoint.rawValue)) {
+            
+            var headers: [String:String]? = nil
+            if let accessToken = LemonAPI.accessToken?.value,
+                let userId = LemonAPI.userId {
+                headers = [
+                    "Authorization": "Bearer \(accessToken)",
+                    LemonAPI.USER_ID_HEADER: "\(userId)"
+                ]
+                print("accessToken",accessToken)
             }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("responseHoursOfOperation",responseJSON)
+           
+            
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = headers
+            
+            request.httpMethod = "GET"
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                    print("responsedictHoursOperation",responseJSON)
+                   // self.dictHoursOperation = responseJSON
+                    if let ary = responseJSON["OperationHours"] as? [[String:Any]] {
+                        print("responsedictHoursOperation",responseJSON)
+                        self.aryDays = ary;
+                        // self.dictHoursOperation = responseJSON
+                        DispatchQueue.main.async {
+                            self.tblView.reloadData()
+                        }
+                    }
+                    
+                }
+            }
+            task.resume()
+        }
+    }
+    func UpdateHoursOfOperations(){
+            if let url = URL(string: String(format: "%@/UpdateHoursOfOperations", Config.LemonEndpoints.APIEndpoint.rawValue)) {
+                
+                var headers: [String:String]? = nil
+                if let accessToken = LemonAPI.accessToken?.value,
+                    let userId = LemonAPI.userId {
+                    headers = [
+                        "Authorization": "Bearer \(accessToken)",
+                        LemonAPI.USER_ID_HEADER: "\(userId)"
+                    ]
+                }
+//                headers = [
+//                    "Authorization": "bearer YZnmUgR0Xr7eG9Ghnwi-EFYm8Sa93uhn-fE2Z0aWJ-7cIUYemU9XFvXsXaI5l107vbTucN2_PPqYFR6tL115U5WeFvpsLs59UFd3BKX7WYTyVaKvyDbB5VTAaONjKqlEpVEj2ik-HyuSgV8BD-We7wNeYM0sYHtmDR4LGMbcBdRcSbr0r_p9Yfhx-Z85luVcuV8chn6B9pJSH18nXGKF8KH0iqr5fi03MoRgVFfgvMwyr3f1l7ty4R5rnvHczAte",
+//                    LemonAPI.USER_ID_HEADER: "1070"
+//                ]
+                
+                var request = URLRequest(url: url)
+                request.allHTTPHeaderFields = headers
+                
+                request.httpMethod = "POST"
+                
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    print("responsedictSpecificHours",response!)
+                    guard let data = data, error == nil else {
+                        print(error?.localizedDescription ?? "No data")
+                        return
+                    }
+                    let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                    if let responseJSON = responseJSON as? [String: Any] {
+                        if let isSuccess:Bool = responseJSON["IsSuccess"] as? Bool {
+                            if isSuccess {
+                                print("responseJSONdictSpecificHours",responseJSON)
+                                self.dictupdateHours = responseJSON
+                                DispatchQueue.main.async {
+                                    self.tblView.reloadData()
+                                }
+                            }
+                        }
+                    }
+                }
+                task.resume()
             }
         }
-        
-        task.resume()
+    
+    @IBAction func btnDone(_ sender: Any) {
+        UpdateHoursOfOperations()
     }
-    
-    // getHoursofSpecificDayOperation
-    
-    func getHoursOfspecificDayOperation(){
-        
-        let url = URL(string:"http://11lemons-api-test.azurewebsites.net/api/v1/GetHoursOfOperations")!
-        var request = URLRequest(url: url)
-        request.setValue("bearer xMSKXKu30uWJyTE-CoZK_rc-yhyg9y2CKdw31p0lOSS3zTB_ofk0Mt2QnjK6JUH2eMOz3ufDumqPx0VEmJoTFnLvdPWYrYqbB-7KAiJY3r2Hycn7RQwh0jrrSpQ4sjLQKsmsekx064R0r1IIXeV0aMLJ1IhyhjW4HdsQtfLl8u0N_6Pjrw34ACjus2gcXNRSW84hv_7CV_qrgs9TM5dPfd4nTiCo54-j6NoGDfWvFdiZ3iowUJXxZXnF5dYIB0uF", forHTTPHeaderField: "Authorization")
-        request.setValue("1070",forHTTPHeaderField:"x-usr-id")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
-        request.httpMethod = "GET"
-        // request.httpBody = jsonData
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("responseHoursOfOperation",responseJSON)
-            }
-        }
-        
-        task.resume()
-    }
-    
 }
 
 extension OperationsViewController:UITableViewDelegate, UITableViewDataSource {
@@ -113,45 +159,46 @@ extension OperationsViewController:UITableViewDelegate, UITableViewDataSource {
         
         cell.lblTitle.text = ""
         cell.lblSubTitle.text = ""
-        if let dict:[String:Any] = self.aryDays[indexPath.row] as? [String:Any] {
-            if let str:String = dict["day"] as? String {
-                cell.lblTitle.text = str
-            }
-            if let str:String = dict["time"] as? String {
-                cell.lblSubTitle.text = str
+        if let dict:[String:Any] = self.aryDays[indexPath.row] {
+            if let strDayName:String = dict["DayName"] as? String,
+                let strOpenTime:String = dict["OpenTime"] as? String,
+                let strCloseTime:String = dict["CloseTime"] as? String {
+                
+                cell.lblTitle.text =  strDayName
+                
+                cell.lblSubTitle.text =  strOpenTime + "-" + strCloseTime
+                if let isClosed:Bool = dict["IsClosed"] as? Bool {
+                    if isClosed {
+                        cell.lblSubTitle.text = "Closed"
+                    }
+                }
             }
         }
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
+            guard let  dict:[String:Any] = self.aryDays[indexPath.row] else {
+                return
+            }
             
             var strDayName:String = "" ;
-            if let dict:[String:Any] = self.aryDays[indexPath.row] as? [String:Any] {
-                if let str:String = dict["day"] as? String {
-                    
-                    strDayName = str;
-                }
+            
+            if let str:String = dictHours["DayName"] as? String {
+                
+                strDayName = str;
             }
-                if(indexPath.row == 6){
-                let vc:DayOperationsViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DayOperationsViewController.self)) as? DayOperationsViewController ?? DayOperationsViewController()
+            let vc:DayOperationsViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DayOperationsViewController.self)) as? DayOperationsViewController ?? DayOperationsViewController()
+            
+            
+            if(indexPath.row == 0){
                 vc.isSunday = true;
-                vc.strDay = strDayName;
-                self.navigationController?.pushViewController(vc, animated: true)
-                
             }else{
-                let vc:DayOperationsViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: DayOperationsViewController.self)) as? DayOperationsViewController ?? DayOperationsViewController()
                 vc.isSunday = false;
-                vc.strDay = strDayName;
-
-                self.navigationController?.pushViewController(vc, animated: true)
-                
             }
-        }else if indexPath.section == 1 {
-            let vc:ContactInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: ContactInfoViewController.self)) as? ContactInfoViewController ?? ContactInfoViewController()
+            vc.strDay = strDayName;
+            vc.dictOperationDetail = dict
             self.navigationController?.pushViewController(vc, animated: true)
-        }else if indexPath.section == 2 {
             
         }
     }
